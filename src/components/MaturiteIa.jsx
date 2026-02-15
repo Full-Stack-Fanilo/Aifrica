@@ -21,9 +21,9 @@ export default function MaturiteIa() {
           personnalisée de vos résultats avec un expert.
         </p>
 
-        <a href="#" className="maturite-btn">
+        <button className="maturite-btn">
           Commencer le diagnostic
-        </a>
+        </button>
       </div>
 
       <div className="maturite-right">

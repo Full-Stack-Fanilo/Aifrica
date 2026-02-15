@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import Service from "./Service";
 import Header from "../components/Header";
 import Actualite from "../components/Actualite";

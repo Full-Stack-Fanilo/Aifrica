@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React from "react";
 import { FaArrowRight } from "react-icons/fa";
 import "../css/Header.css";
 import headerImage from "../assets/images/NewAifrica.png";
