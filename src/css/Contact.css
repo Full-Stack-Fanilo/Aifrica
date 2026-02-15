@@ -39,6 +39,41 @@
     font-weight: 400;
 }
 
+.form-duration {
+    display: inline-block;
+    margin-top: 12px;
+    font-size: 0.85rem;
+    color: #6b7280;
+    background: #f3f4f6;
+    padding: 6px 16px;
+    border-radius: 20px;
+}
+
+/* ==============================
+   STATUS MESSAGES
+================================ */
+.status-message {
+    padding: 1rem 1.5rem;
+    border-radius: 10px;
+    margin-bottom: 2rem;
+    text-align: center;
+    font-weight: 500;
+    max-width: 700px;
+    width: 100%;
+}
+
+.success-msg {
+    background: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.error-msg {
+    background: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
 /* ==============================
    CONTENEUR DU FORMULAIRE
 ================================ */
@@ -47,9 +82,106 @@
     border-radius: 20px;
     padding: 48px 40px;
     width: 100%;
-    max-width: 700px;
+    max-width: 750px;
     box-shadow: 0 4px 40px rgba(0, 0, 0, 0.08), 0 1px 4px rgba(0, 0, 0, 0.04);
     border: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+/* ==============================
+   STEPPER
+================================ */
+.stepper {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 36px;
+    position: relative;
+    padding: 0 8px;
+}
+
+.stepper-step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 2;
+    flex: 1;
+}
+
+.stepper-circle {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: #e5e7eb;
+    color: #6b7280;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 0.85rem;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+}
+
+.stepper-step.active .stepper-circle {
+    background: #f4c400;
+    color: #1a1a1a;
+    border-color: #e6b800;
+    box-shadow: 0 2px 8px rgba(244, 196, 0, 0.35);
+}
+
+.stepper-step.completed .stepper-circle {
+    background: #27ae60;
+    color: white;
+    border-color: #219a52;
+}
+
+.stepper-label {
+    font-size: 0.7rem;
+    color: #9ca3af;
+    margin-top: 6px;
+    text-align: center;
+    max-width: 80px;
+    line-height: 1.2;
+    transition: color 0.3s ease;
+}
+
+.stepper-step.active .stepper-label {
+    color: #1a1a1a;
+    font-weight: 600;
+}
+
+.stepper-step.completed .stepper-label {
+    color: #27ae60;
+}
+
+.stepper-line {
+    position: absolute;
+    top: 18px;
+    left: 10%;
+    right: 10%;
+    height: 3px;
+    background: #e5e7eb;
+    z-index: 1;
+    border-radius: 2px;
+}
+
+.stepper-line-fill {
+    height: 100%;
+    background: #27ae60;
+    border-radius: 2px;
+    transition: width 0.4s ease;
+}
+
+/* ==============================
+   STEP TITLE
+================================ */
+.step-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin-bottom: 28px;
+    padding-bottom: 14px;
+    border-bottom: 2px solid #f3f4f6;
 }
 
 /* ==============================
@@ -82,7 +214,7 @@
 /* ==============================
    LABELS
 ================================ */
-label {
+.contact-form label {
     font-weight: 600;
     margin-bottom: 6px;
     color: #1a1a1a;
@@ -97,10 +229,13 @@ label {
 }
 
 /* ==============================
-   INPUTS + TEXTAREA
+   INPUTS + TEXTAREA + SELECT
 ================================ */
-input,
-textarea {
+.contact-form input[type="text"],
+.contact-form input[type="email"],
+.contact-form input[type="tel"],
+.contact-form textarea,
+.contact-form select {
     background: #f9fafb;
     border: 1.5px solid #e5e7eb;
     border-radius: 10px;
@@ -111,43 +246,189 @@ textarea {
     outline: none;
     transition: border-color 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
     width: 100%;
+    box-sizing: border-box;
 }
 
-input::placeholder,
-textarea::placeholder {
+.contact-form input::placeholder,
+.contact-form textarea::placeholder {
     color: #9ca3af;
 }
 
-input:focus,
-textarea:focus {
-    border-color: #ff9800;
+.contact-form input:focus,
+.contact-form textarea:focus,
+.contact-form select:focus {
+    border-color: #f4c400;
     background: #ffffff;
-    box-shadow: 0 0 0 3px rgba(255, 152, 0, 0.12);
+    box-shadow: 0 0 0 3px rgba(244, 196, 0, 0.12);
 }
 
-textarea {
+.contact-form textarea {
     resize: vertical;
     min-height: 120px;
 }
 
+.contact-form select {
+    cursor: pointer;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%236b7280' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 16px center;
+    padding-right: 40px;
+}
+
+.input-error {
+    border-color: #e74c3c !important;
+    box-shadow: 0 0 0 3px rgba(231, 76, 60, 0.1) !important;
+}
+
 /* ==============================
-   BOUTON
+   RADIO / CHECKBOX GROUP
 ================================ */
-.submit-btn {
-    background-color: #f4c400;
+.radio-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 4px;
+}
+
+.radio-option {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 16px;
+    background: #f9fafb;
+    border: 1.5px solid #e5e7eb;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-weight: 400 !important;
+    margin-bottom: 0;
+}
+
+.radio-option:hover {
+    border-color: #f4c400;
+    background: #fffdf0;
+}
+
+.radio-option.selected {
+    border-color: #f4c400;
+    background: #fffbeb;
+    box-shadow: 0 0 0 2px rgba(244, 196, 0, 0.15);
+}
+
+.radio-option input[type="radio"],
+.radio-option input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+    accent-color: #f4c400;
+    cursor: pointer;
+    flex-shrink: 0;
+}
+
+.radio-label {
+    font-size: 0.9rem;
+    color: #374151;
+    line-height: 1.3;
+}
+
+/* ==============================
+   CONSENT
+================================ */
+.consent-label {
+    display: flex !important;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    font-weight: 400 !important;
+    font-size: 0.9rem !important;
+    color: #374151;
+    padding: 12px 16px;
+    background: #f9fafb;
+    border: 1.5px solid #e5e7eb;
+    border-radius: 10px;
+    transition: all 0.2s ease;
+}
+
+.consent-label:hover {
+    border-color: #f4c400;
+}
+
+.consent-label input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    accent-color: #f4c400;
+    cursor: pointer;
+    flex-shrink: 0;
+}
+
+.consent-error {
+    border-color: #e74c3c !important;
+}
+
+/* ==============================
+   FIELD ERROR
+================================ */
+.field-error {
+    color: #e74c3c;
+    font-size: 0.8rem;
+    margin-top: 6px;
+    font-weight: 500;
+}
+
+/* ==============================
+   NAVIGATION BUTTONS
+================================ */
+.form-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 12px;
+    gap: 16px;
+}
+
+.nav-btn {
     border: none;
-    color: black;
     font-size: 1rem;
     font-weight: 700;
     padding: 14px 32px;
     border-radius: 10px;
     cursor: pointer;
     transition: all 0.3s ease;
-    width: auto;
-    min-width: 200px;
-    align-self: center;
     letter-spacing: 0.3px;
+}
+
+.prev-btn {
+    background: #f3f4f6;
+    color: #374151;
+}
+
+.prev-btn:hover {
+    background: #e5e7eb;
+}
+
+.next-btn {
+    background-color: #f4c400;
+    color: black;
+    margin-left: auto;
     box-shadow: 0 4px 14px rgba(244, 196, 0, 0.35);
+}
+
+.next-btn:hover {
+    background-color: #e6b800;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(244, 196, 0, 0.45);
+}
+
+.next-btn:active {
+    transform: translateY(0);
+}
+
+.submit-btn {
+    background-color: #f4c400;
+    color: black;
+    margin-left: auto;
+    box-shadow: 0 4px 14px rgba(244, 196, 0, 0.35);
+    min-width: 220px;
 }
 
 .submit-btn:hover {
@@ -166,6 +447,7 @@ textarea {
     position: relative;
     color: transparent;
     box-shadow: none;
+    transform: none;
 }
 
 .submit-btn.loading::after {
@@ -183,11 +465,6 @@ textarea {
     animation: spinner 0.8s linear infinite;
 }
 
-.submit-btn.success {
-    background-color: #27ae60;
-    box-shadow: 0 4px 14px rgba(39, 174, 96, 0.35);
-}
-
 @keyframes spinner {
     to { transform: rotate(360deg); }
 }
@@ -195,13 +472,13 @@ textarea {
 /* ==============================
    RESPONSIVE
 ================================ */
-@media (max-width: 600px) {
+@media (max-width: 700px) {
     .contact-section {
         padding: 60px 16px;
     }
 
     .contact-form-container {
-        padding: 32px 24px;
+        padding: 32px 20px;
     }
 
     .form-row {
@@ -209,8 +486,31 @@ textarea {
         gap: 1rem;
     }
 
+    .stepper-label {
+        display: none;
+    }
+
+    .stepper-circle {
+        width: 30px;
+        height: 30px;
+        font-size: 0.75rem;
+    }
+
+    .stepper-line {
+        top: 15px;
+    }
+
+    .nav-btn {
+        padding: 12px 24px;
+        font-size: 0.9rem;
+    }
+
     .submit-btn {
-        width: 100%;
         min-width: unset;
+        width: auto;
+    }
+
+    .radio-option {
+        width: 100%;
     }
 }
