@@ -67,16 +67,32 @@ export default function Navbar() {
     setIsMegaOpen(null);
 
     if (location.pathname === "/") {
-      const el = document.getElementById(section);
-      if (el) {
-        scroll.scrollTo(el.offsetTop - 80, {
+      if (section === "top") {
+        scroll.scrollToTop({
           duration: 600,
           smooth: "easeInOutQuart",
         });
+      } else {
+        const el = document.getElementById(section);
+        if (el) {
+          scroll.scrollTo(el.offsetTop - 80, {
+            duration: 600,
+            smooth: "easeInOutQuart",
+          });
+        }
       }
     } else {
       navigate(`/#${section}`);
     }
+  };
+
+  const scrollToTop = () => {
+    setIsMobileMenuOpen(false);
+    setIsMegaOpen(null);
+    scroll.scrollToTop({
+      duration: 600,
+      smooth: "easeInOutQuart",
+    });
   };
 
   const toggleMobileMenu = () => {
@@ -149,13 +165,12 @@ export default function Navbar() {
       <nav className={`modern-navbar ${isScrolled ? "scrolled" : ""}`}>
         <div className="navbar-container">
           {/* Logo */}
-          <Link
+          <button
             className="navbar-logo-link"
-            to="/"
-            onClick={() => setIsMobileMenuOpen(false)}
+            onClick={scrollToTop}
           >
             <img src={logo} alt="Aifrica Logo" className="navbar-logo-img" />
-          </Link>
+          </button>
 
           {/* Desktop Navigation */}
           <div className="navbar-desktop">
@@ -166,7 +181,10 @@ export default function Navbar() {
                 onMouseEnter={() => setIsMegaOpen("yoafrica")}
                 onMouseLeave={() => setIsMegaOpen(null)}
               >
-                <button className="navbar-link">
+                <button 
+                  className="navbar-link"
+                  onClick={scrollToTop}
+                >
                   <span className="yo-text">Yo!</span> Aifrica
                   <FaChevronDown
                     className={`dropdown-icon ${isMegaOpen === "yoafrica" ? "rotated" : ""}`}
@@ -208,7 +226,10 @@ export default function Navbar() {
                 onMouseEnter={() => setIsMegaOpen("services")}
                 onMouseLeave={() => setIsMegaOpen(null)}
               >
-                <button className="navbar-link">
+                <button 
+                  className="navbar-link"
+                  onClick={() => handleNavigateScroll("services")}
+                >
                   Services
                   <FaChevronDown
                     className={`dropdown-icon ${isMegaOpen === "services" ? "rotated" : ""}`}
@@ -309,9 +330,10 @@ export default function Navbar() {
           <div className="mobile-menu-section">
             <button
               className="mobile-section-title"
-              onClick={() =>
-                setIsMegaOpen(isMegaOpen === "yoafrica" ? null : "yoafrica")
-              }
+              onClick={() => {
+                scrollToTop();
+                setIsMegaOpen(isMegaOpen === "yoafrica" ? null : "yoafrica");
+              }}
             >
               <span>
                 <span className="yo-text">Yo!</span> Aifrica
@@ -344,9 +366,10 @@ export default function Navbar() {
           <div className="mobile-menu-section">
             <button
               className="mobile-section-title"
-              onClick={() =>
-                setIsMegaOpen(isMegaOpen === "services" ? null : "services")
-              }
+              onClick={() => {
+                handleNavigateScroll("services");
+                setIsMegaOpen(isMegaOpen === "services" ? null : "services");
+              }}
             >
               <span>Services</span>
               <FaChevronDown
