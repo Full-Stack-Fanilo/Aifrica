@@ -1,7 +1,9 @@
-/* SECTION PLEIN ÉCRAN SANS MARGES */
+/* SECTION APPROCHE */
 .approach-new {
     width: 100%;
     background: white;
+    padding: 60px 0;
+    overflow: hidden;
 }
 
 /* IMAGE CENTRÉE */
@@ -10,6 +12,22 @@
     height: auto;
     display: block;
     margin: 0 auto;
-    /* <-- centre l’image */
     object-fit: cover;
+    border-radius: 12px;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.07);
+    transition: box-shadow 0.3s ease;
+}
+
+.approach-img:hover {
+    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.12);
+}
+
+@media (max-width: 768px) {
+    .approach-new {
+        padding: 40px 0;
+    }
+
+    .approach-img {
+        width: 92%;
+    }
 }

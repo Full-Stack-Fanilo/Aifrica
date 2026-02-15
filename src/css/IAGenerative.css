@@ -93,11 +93,11 @@
 
 /* Sous-titre */
 .ia-subtitle {
-    font-size: 1.3rem;
-    font-weight: 400;
+    font-size: 1.2rem;
+    font-weight: 500;
     color: #1a1a1a;
     margin: 0;
-    line-height: 1.5;
+    line-height: 1.6;
 }
 
 .ia-strong {
@@ -108,11 +108,12 @@
 
 /* Texte descriptif */
 .ia-text {
-    font-size: 0.95rem;
+    font-size: 1rem;
     color: #6b7280;
-    line-height: 1.7;
+    line-height: 1.8;
     margin: 0;
-    text-align: justify;
+    text-align: left;
+    font-weight: 400;
 }
 
 /* ============================================
@@ -197,7 +198,7 @@
     }
 
     .ia-text {
-        font-size: 0.9rem;
+        font-size: 0.95rem;
     }
 
     .ia-img {
