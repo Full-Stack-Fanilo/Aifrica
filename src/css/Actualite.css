@@ -1,0 +1,285 @@
+/* ============================================
+   VARIABLES
+   ============================================ */
+:root {
+    --primary: #1a3a52;
+    --primary-dark: #0f2537;
+    --accent: #d4a017;
+    --accent-light: #f4c430;
+    --background: #ffffff;
+    --surface: #f8f9fa;
+    --text: #1a1a1a;
+    --text-light: #6b7280;
+    --border: #e5e7eb;
+    --shadow: rgba(26, 58, 82, 0.08);
+}
+
+/* ============================================
+   SECTION ACTUALITÉS
+   ============================================ */
+.actu-section {
+    padding: 70px 20px;
+    background: linear-gradient(180deg, #ffffff 0%, #f8f9fa 100%);
+    position: relative;
+}
+
+.actu-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    /* background: linear-gradient(90deg, var(--primary) 0%, var(--accent) 100%); */
+}
+
+.actu-title {
+    font-size: 1.8rem;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 50px;
+    color: var(--primary-dark);
+    line-height: 1.3;
+}
+
+.actu-title span {
+    background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* ============================================
+   CONTENEUR
+   ============================================ */
+.actu-cards-wrapper {
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.actu-cards {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 25px;
+    margin-bottom: 40px;
+}
+
+/* ============================================
+   CARD
+   ============================================ */
+.actu-card {
+    background: var(--background);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 15px rgba(26, 58, 82, 0.08);
+    transition: all 0.3s ease;
+    border: 1px solid rgba(26, 58, 82, 0.08);
+    position: relative;
+}
+
+.actu-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: linear-gradient(180deg, var(--accent) 0%, var(--accent-light) 100%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.actu-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 30px rgba(26, 58, 82, 0.12);
+    border-color: var(--accent-light);
+}
+
+.actu-card:hover::before {
+    opacity: 1;
+}
+
+/* ============================================
+   IMAGE
+   ============================================ */
+.left-img {
+    position: relative;
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+    background: #e5e7eb;
+}
+
+.left-img::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 40%;
+    background: linear-gradient(to top, rgba(26, 58, 82, 0.3) 0%, transparent 100%);
+}
+
+.left-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.actu-card:hover .left-img img {
+    transform: scale(1.06);
+}
+
+.img-title {
+    position: absolute;
+    bottom: 15px;
+    left: 15px;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    color: var(--primary);
+    padding: 6px 14px;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    z-index: 2;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* ============================================
+   TEXTE
+   ============================================ */
+.right-text {
+    padding: 22px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.quote-icon {
+    font-size: 2rem;
+    color: var(--accent);
+    opacity: 0.25;
+    line-height: 0.5;
+    font-family: Georgia, serif;
+}
+
+.quote {
+    font-size: 0.88rem;
+    color: var(--text);
+    line-height: 1.6;
+    margin: 0;
+    padding-left: 12px;
+    border-left: 2px solid var(--accent-light);
+}
+
+/* ============================================
+   BOUTON
+   ============================================ */
+.link-service {
+    background: var(--primary);
+    color: var(--background);
+    border: none;
+    padding: 10px 20px;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    align-self: flex-start;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 2px 10px rgba(26, 58, 82, 0.15);
+}
+
+.link-service:hover {
+    background: var(--primary-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(26, 58, 82, 0.25);
+}
+
+/* ============================================
+   FLÈCHES
+   ============================================ */
+.arrows {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 30px;
+}
+
+.arrow-btn {
+    background: var(--background);
+    border: 2px solid var(--primary);
+    width: 44px;
+    height: 44px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(26, 58, 82, 0.08);
+}
+
+.arrow-btn:hover {
+    background: var(--primary);
+    transform: scale(1.05);
+}
+
+.arrow-btn:hover svg path {
+    stroke: var(--background);
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+@media (max-width: 768px) {
+    .actu-section {
+        padding: 50px 15px;
+    }
+
+    .actu-title {
+        font-size: 1.5rem;
+        margin-bottom: 35px;
+    }
+
+    .actu-cards {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .left-img {
+        height: 180px;
+    }
+
+    .right-text {
+        padding: 18px 16px;
+    }
+
+    .quote {
+        font-size: 0.85rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .actu-section {
+        padding: 40px 12px;
+    }
+
+    .actu-title {
+        font-size: 1.3rem;
+    }
+
+    .quote-icon {
+        font-size: 1.5rem;
+    }
+
+    .arrow-btn {
+        width: 40px;
+        height: 40px;
+    }
+}

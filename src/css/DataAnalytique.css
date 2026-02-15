@@ -1,0 +1,202 @@
+.data-section {
+    width: 100%;
+    padding: 50px 110px;
+    background: #f5f5f5;
+    margin-top: 100px;
+}
+
+/* TITRE */
+.data-title {
+    font-size: 42px;
+    font-weight: 400;
+    margin-bottom: 40px;
+    color: #000;
+    text-align: center;
+}
+
+
+/* SOUS-TITRE */
+.data-subtitle {
+    font-size: 22px;
+    font-weight: 600;
+    color: black;
+    margin-bottom: 40px;
+}
+
+/* TITRE : uniquement les spans en gras */
+.data-title span {
+    font-weight: 800;
+    /* gras pour le span */
+}
+
+/* SOUS-TITRE / p : uniquement les spans en gras */
+.data-subtitle span {
+    font-weight: 700;
+    /* gras pour le span */
+    color: black;
+    /* optionnel si tu veux changer la couleur */
+}
+
+
+/* IMAGE */
+.data-img {
+    width: 100%;
+    margin-bottom: 40px;
+}
+
+/* TEXTE */
+.data-content {
+    max-width: 1100px;
+    /* margin: auto; */
+    text-align: left;
+}
+
+.data-content p {
+    font-size: 20px;
+    line-height: 1.7;
+    margin-bottom: 25px;
+    color: #333;
+}
+
+/* LIEN EN JAUNE */
+.data-link {
+    display: block;
+    margin-top: 30px;
+    font-size: 22px;
+    color: #0a1f68;
+    text-decoration: underline;
+    border: none;
+    background: none;
+}
+
+.data-link:hover {
+    text-decoration: underline;
+}
+
+/* ========================= */
+/*        992px (Tablette)   */
+/* ========================= */
+@media (max-width: 992px) {
+
+    .data-section {
+        padding: 40px 50px;
+    }
+
+    .data-title {
+        font-size: 36px;
+    }
+
+    .data-subtitle {
+        font-size: 20px;
+    }
+
+    .data-img {
+        height: 220px;
+    }
+
+    .data-content p {
+        font-size: 19px;
+        line-height: 1.65;
+    }
+
+    .data-link {
+        text-align: center;
+    }
+}
+
+
+/* ========================= */
+/*        768px (Mobile L)   */
+/* ========================= */
+@media (max-width: 768px) {
+
+    .data-section {
+        padding: 35px 30px;
+    }
+
+    .data-title {
+        font-size: 30px;
+    }
+
+    .data-subtitle {
+        font-size: 18px;
+    }
+
+    .data-img {
+        height: 180px;
+    }
+
+    .data-content p {
+        font-size: 17px;
+        line-height: 1.55;
+    }
+
+    .data-link {
+        font-size: 20px;
+        text-align: center;
+    }
+}
+
+
+/* ========================= */
+/*        576px (Mobile S)   */
+/* ========================= */
+@media (max-width: 576px) {
+
+    .data-section {
+        padding: 30px 20px;
+    }
+
+    .data-title {
+        font-size: 26px;
+    }
+
+    .data-subtitle {
+        font-size: 17px;
+        margin-bottom: 25px;
+    }
+
+    .data-img {
+        height: 160px;
+    }
+
+    .data-content p {
+        font-size: 16px;
+        line-height: 1.5;
+    }
+
+    .data-link {
+        font-size: 18px;
+    }
+}
+
+
+/* ========================= */
+/*        400px (Mini)       */
+/* ========================= */
+@media (max-width: 400px) {
+
+    .data-section {
+        padding: 25px 15px;
+    }
+
+    .data-title {
+        font-size: 22px;
+    }
+
+    .data-subtitle {
+        font-size: 15px;
+    }
+
+    .data-img {
+        height: 150px;
+    }
+
+    .data-content p {
+        font-size: 15px;
+    }
+
+    .data-link {
+        font-size: 17px;
+    }
+}

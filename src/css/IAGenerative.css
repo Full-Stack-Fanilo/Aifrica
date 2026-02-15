@@ -1,0 +1,234 @@
+/* ============================================
+   SECTION IA GÉNÉRATIVE - Design Premium
+   ============================================ */
+.ia-gen-section1 {
+    padding: 80px 20px;
+    background: linear-gradient(180deg, #f8f9fa 0%, #ffffff 100%);
+    position: relative;
+}
+
+.ia-gen-section1::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    /* background: linear-gradient(90deg, #1a3a52 0%, #d4a017 100%); */
+}
+
+/* ============================================
+   CONTENEUR PRINCIPAL
+   ============================================ */
+.ia-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 45% 55%;
+    gap: 60px;
+    align-items: center;
+}
+
+/* ============================================
+   IMAGE GAUCHE
+   ============================================ */
+.ia-left {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.ia-left::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, rgba(212, 160, 23, 0.1) 0%, transparent 70%);
+    border-radius: 50%;
+    z-index: 0;
+}
+
+.ia-img {
+    width: 100%;
+    max-width: 500px;
+    height: auto;
+    border-radius: 16px;
+    box-shadow: 0 8px 30px rgba(26, 58, 82, 0.15);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    position: relative;
+    z-index: 1;
+}
+
+.ia-img:hover {
+    transform: scale(1.03);
+    box-shadow: 0 12px 40px rgba(26, 58, 82, 0.2);
+}
+
+/* ============================================
+   TEXTE DROITE
+   ============================================ */
+.ia-right {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Titre principal */
+.ia-title {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: #1a3a52;
+    margin: 0;
+    line-height: 1.2;
+    letter-spacing: -0.5px;
+}
+
+.ia-title span {
+    background: linear-gradient(135deg, #d4a017 0%, #f4c430 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Sous-titre */
+.ia-subtitle {
+    font-size: 1.3rem;
+    font-weight: 400;
+    color: #1a1a1a;
+    margin: 0;
+    line-height: 1.5;
+}
+
+.ia-strong {
+    font-weight: 700;
+    color: #1a3a52;
+    position: relative;
+}
+
+/* Texte descriptif */
+.ia-text {
+    font-size: 0.95rem;
+    color: #6b7280;
+    line-height: 1.7;
+    margin: 0;
+    text-align: justify;
+}
+
+/* ============================================
+   BOUTON
+   ============================================ */
+.ia-link {
+    background: #1a3a52;
+    color: #ffffff;
+    border: none;
+    padding: 14px 30px;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    align-self: flex-start;
+    box-shadow: 0 4px 15px rgba(26, 58, 82, 0.2);
+    position: relative;
+    overflow: hidden;
+    margin-top: 10px;
+}
+
+.ia-link::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s ease;
+}
+
+.ia-link:hover::before {
+    left: 100%;
+}
+
+.ia-link:hover {
+    background: #0f2537;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(26, 58, 82, 0.3);
+}
+
+.ia-link:active {
+    transform: translateY(0);
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+@media (max-width: 1024px) {
+    .ia-content {
+        grid-template-columns: 1fr;
+        gap: 40px;
+        text-align: center;
+    }
+
+    .ia-right {
+        align-items: center;
+    }
+
+    .ia-text {
+        text-align: center;
+    }
+
+    .ia-link {
+        align-self: center;
+    }
+}
+
+@media (max-width: 768px) {
+    .ia-gen-section1 {
+        padding: 60px 20px;
+    }
+
+    .ia-title {
+        font-size: 2rem;
+    }
+
+    .ia-subtitle {
+        font-size: 1.1rem;
+    }
+
+    .ia-text {
+        font-size: 0.9rem;
+    }
+
+    .ia-img {
+        max-width: 400px;
+    }
+}
+
+@media (max-width: 480px) {
+    .ia-gen-section1 {
+        padding: 50px 15px;
+    }
+
+    .ia-title {
+        font-size: 1.6rem;
+    }
+
+    .ia-subtitle {
+        font-size: 1rem;
+    }
+
+    .ia-text {
+        font-size: 0.85rem;
+        text-align: left;
+    }
+
+    .ia-link {
+        padding: 12px 24px;
+        font-size: 0.9rem;
+    }
+
+    .ia-img {
+        max-width: 100%;
+    }
+}

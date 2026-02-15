@@ -1,0 +1,15 @@
+/* SECTION PLEIN ÉCRAN SANS MARGES */
+.approach-new {
+    width: 100%;
+    background: white;
+}
+
+/* IMAGE CENTRÉE */
+.approach-img {
+    width: 83%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    /* <-- centre l’image */
+    object-fit: cover;
+}

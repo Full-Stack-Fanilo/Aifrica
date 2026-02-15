@@ -1,0 +1,198 @@
+/* ==============================
+   SECTION PRINCIPALE
+================================ */
+.contact-section {
+    background: white;
+    padding: 2rem 1rem;
+    color: black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* ==============================
+   TITRES
+================================ */
+.contact-header {
+    text-align: center;
+}
+
+.contact-header h3 {
+    font-size: 2rem;
+    font-weight: 800;
+    margin-bottom: 1rem;
+}
+
+.contact-header .highlighted {
+    color: #ffda2b;
+}
+
+.contact-header p {
+    font-size: 1.1rem;
+    color: black;
+    /* corrigé */
+    margin-bottom: 3rem;
+}
+
+/* ==============================
+   CONTENEUR DU FORMULAIRE
+================================ */
+.contact-form-container {
+    background: rgba(0, 0, 0, 0.03);
+    border-radius: 16px;
+    padding: 2rem;
+    width: 100%;
+    max-width: 700px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    backdrop-filter: blur(6px);
+}
+
+/* ==============================
+   FORMULAIRE
+================================ */
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+}
+
+.form-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+}
+
+.form-group {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group.full-width {
+    width: 100%;
+}
+
+/* ==============================
+   LABELS
+================================ */
+label {
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: black;
+    /* corrigé */
+}
+
+.optional {
+    font-size: 0.85rem;
+    color: #444;
+    /* corrigé */
+}
+
+/* ==============================
+   INPUTS + TEXTAREA
+================================ */
+input,
+textarea {
+    background: rgba(0, 0, 0, 0.05);
+    /* meilleure lisibilité */
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    color: black;
+    /* texte noir */
+    padding: 0.8rem 1rem;
+    font-size: 1rem;
+    outline: none;
+    transition: border 0.3s ease, box-shadow 0.3s ease;
+}
+
+input::placeholder,
+textarea::placeholder {
+    color: #666;
+    /* corrigé */
+}
+
+input:focus,
+textarea:focus {
+    border: 1px solid #ff9800;
+    box-shadow: 0 0 8px rgba(255, 152, 0, 0.5);
+}
+
+/* ==============================
+   BOUTON
+================================ */
+.submit-btn {
+    background-color: #f4c400;
+    border: none;
+    color: black;
+    font-size: 1.1rem;
+    font-weight: 600;
+    padding: 1rem;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 30%;
+    margin: 0 auto;
+    /* <=== centre le bouton */
+}
+
+
+.submit-btn:hover {
+    background-color: #e6b800;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(244, 196, 0, 0.4);
+}
+
+.submit-btn.loading {
+    background-color: #95a5a6;
+    cursor: not-allowed;
+    position: relative;
+    color: transparent;
+}
+
+.submit-btn.loading::after {
+    content: "";
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    top: 50%;
+    left: 50%;
+    margin-left: -10px;
+    margin-top: -10px;
+    border: 2px solid #ffffff;
+    border-radius: 50%;
+    border-top-color: transparent;
+    animation: spinner 0.8s linear infinite;
+}
+
+.submit-btn.success {
+    background-color: #27ae60;
+}
+
+@keyframes spinner {
+    to { transform: rotate(360deg); }
+}
+
+/* ==============================
+   RESPONSIVE
+================================ */
+@media (max-width: 600px) {
+    .contact-form-container {
+        padding: 1.5rem;
+    }
+
+    .form-row {
+        flex-direction: column;
+    }
+    
+    .submit-btn {
+        width: 100%;
+    }
+    
+    .contact-header h3 {
+        font-size: 1.5rem;
+    }
+    
+    .contact-header p {
+        font-size: 1rem;
+    }
+}
