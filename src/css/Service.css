@@ -63,6 +63,7 @@
 
 .services-header {
     margin-bottom: 40px;
+    font-size: 24px; /* Agrandir la taille du texte "Nos Services" */
 }
 
 .services-badge {
@@ -74,7 +75,7 @@
     border: 1px solid rgba(26, 58, 82, 0.15);
     border-radius: 50px;
     color: var(--primary-navy);
-    font-size: 13px;
+    font-size: 16px;
     font-weight: 600;
     letter-spacing: 0.3px;
     margin-bottom: 24px;
@@ -93,7 +94,7 @@
 }
 
 .services-title {
-    font-size: clamp(36px, 4.5vw, 48px);
+    font-size: clamp(32px, 4vw, 42px);
     font-weight: 800;
     line-height: 1.2;
     color: var(--primary-navy);
@@ -196,7 +197,8 @@
     display: flex;
     gap: 0;
     align-items: stretch;
-    min-height: 200px;
+    min-height: 160px;
+    max-height: 200px;
 }
 
 .service-card::before {
@@ -305,11 +307,18 @@
 }
 
 .service-description {
-    font-size: 15px;
-    line-height: 1.7;
+    font-size: 14px;
+    line-height: 1.6;
     color: var(--text-gray);
     margin: 0;
     font-weight: 400;
+    overflow: hidden;
+    display: -webkit-box;
+    display: box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+    text-overflow: ellipsis;
 }
 
 /* Card Link */

@@ -133,6 +133,33 @@ export default function Navbar() {
     },
   ];
 
+  const infosLinks = [
+    {
+      to: "/afrique",
+      icon: <FaGlobe />,
+      label: "Afrique",
+      description: "Actualités africaines",
+    },
+    {
+      to: "/entreprise",
+      icon: <FaHandsHelping />,
+      label: "Entreprise",
+      description: "Vie de l'entreprise",
+    },
+    {
+      to: "/metier",
+      icon: <FaBrain />,
+      label: "Métier",
+      description: "Carrières et compétences",
+    },
+    {
+      to: "/technologie",
+      icon: <FaRobot />,
+      label: "Technologie",
+      description: "Innovations tech",
+    },
+  ];
+
   const servicesLinks = [
     {
       to: "/diagnosticDataIA",
@@ -263,14 +290,47 @@ export default function Navbar() {
                 </div>
               </li>
 
-              {/* Regular Links */}
-              <li className="navbar-item">
-                <button
+              {/* Infos Mega Menu */}
+              <li
+                className="navbar-item mega-menu-item"
+                onMouseEnter={() => setIsMegaOpen("infos")}
+                onMouseLeave={() => setIsMegaOpen(null)}
+              >
+                <button 
                   className="navbar-link"
-                  onClick={() => handleNavigateScroll("blog")}
+                  onClick={() => handleNavigateScroll("infos")}
                 >
-                  Blog
+                  Infos
+                  <FaChevronDown
+                    className={`dropdown-icon ${isMegaOpen === "infos" ? "rotated" : ""}`}
+                  />
                 </button>
+                <div
+                  className={`mega-menu ${isMegaOpen === "infos" ? "active" : ""}`}
+                >
+                  <div className="mega-menu-header">
+                    <h3>Nos Infos</h3>
+                    <p>Découvrez nos actualités</p>
+                  </div>
+                  <div className="mega-menu-content">
+                    {infosLinks.map((link, index) => (
+                      <Link
+                        key={index}
+                        to={link.to}
+                        className="mega-menu-link"
+                        onClick={() => setIsMegaOpen(null)}
+                      >
+                        <div className="mega-link-icon">{link.icon}</div>
+                        <div className="mega-link-text">
+                          <span className="mega-link-title">{link.label}</span>
+                          <span className="mega-link-desc">
+                            {link.description}
+                          </span>
+                        </div>
+                      </Link>
+                    ))}
+                  </div>
+                </div>
               </li>
               <li className="navbar-item">
                 <button
@@ -396,13 +456,39 @@ export default function Navbar() {
             </div>
           </div>
 
-          {/* Regular Links */}
-          <button
-            className="mobile-menu-link"
-            onClick={() => handleNavigateScroll("blog")}
-          >
-            Blog
-          </button>
+          {/* Infos */}
+          <div className="mobile-menu-section">
+            <button
+              className="mobile-section-title"
+              onClick={() => {
+                handleNavigateScroll("infos");
+                setIsMegaOpen(isMegaOpen === "infos" ? null : "infos");
+              }}
+            >
+              <span>Infos</span>
+              <FaChevronDown
+                className={`dropdown-icon ${isMegaOpen === "infos" ? "rotated" : ""}`}
+              />
+            </button>
+            <div
+              className={`mobile-submenu ${isMegaOpen === "infos" ? "active" : ""}`}
+            >
+              {infosLinks.map((link, index) => (
+                <Link
+                  key={index}
+                  to={link.to}
+                  className="mobile-submenu-link"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  <div className="mobile-link-icon">{link.icon}</div>
+                  <div className="mobile-link-text">
+                    <span className="mobile-link-title">{link.label}</span>
+                    <span className="mobile-link-desc">{link.description}</span>
+                  </div>
+                </Link>
+              ))}
+            </div>
+          </div>
           <button
             className="mobile-menu-link"
             onClick={() => handleNavigateScroll("approach")}

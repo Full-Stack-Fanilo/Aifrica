@@ -6,6 +6,7 @@
     padding: 90px 110px;
     background: #f5f5f5;
     position: relative;
+    margin-top: 80px;
 }
 
 /* TITRE */
@@ -31,6 +32,7 @@
 /* TITRE : uniquement les spans en gras */
 .data-title span {
     font-weight: 800;
+    color: #f4c430;
 }
 
 /* SOUS-TITRE / p : uniquement les spans en gras */
@@ -63,36 +65,51 @@
 
 /* LIEN STYLISÉ EN BOUTON */
 .data-link {
+    background: #1a3a52;
+    color: #f4c430;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    align-self: flex-start;
+    box-shadow: 0 4px 15px rgba(26, 58, 82, 0.2);
+    position: relative;
+    overflow: hidden;
+    margin-top: 30px;
+    text-decoration: none;
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    margin-top: 30px;
-    font-size: 16px;
-    font-weight: 600;
-    color: #0a1f68;
-    text-decoration: none;
-    border: none;
-    background: none;
-    cursor: pointer;
-    padding: 0;
-    transition: gap 0.3s ease, opacity 0.3s ease;
     letter-spacing: 0.2px;
 }
 
-.data-link::after {
-    content: '→';
-    display: inline-block;
-    transition: transform 0.3s ease;
-    font-size: 18px;
+.data-link::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s ease;
+}
+
+.data-link:hover::before {
+    left: 100%;
 }
 
 .data-link:hover {
-    opacity: 0.75;
+    background: #0f2537;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(26, 58, 82, 0.3);
     gap: 14px;
 }
 
-.data-link:hover::after {
-    transform: translateX(4px);
+.data-link:active {
+    transform: translateY(0);
 }
 
 /* ========================= */
@@ -114,7 +131,8 @@
     }
 
     .data-link {
-        font-size: 15px;
+        font-size: 0.85rem;
+        padding: 12px 24px;
     }
 }
 
@@ -138,7 +156,8 @@
     }
 
     .data-link {
-        font-size: 15px;
+        font-size: 0.85rem;
+        padding: 12px 24px;
         text-align: center;
         margin: 30px auto 0;
         display: flex;
@@ -167,7 +186,8 @@
     }
 
     .data-link {
-        font-size: 14px;
+        font-size: 0.85rem;
+        padding: 12px 24px;
     }
 }
 
@@ -190,6 +210,7 @@
     }
 
     .data-link {
-        font-size: 13px;
+        font-size: 12px;
+        padding: 10px 20px;
     }
 }

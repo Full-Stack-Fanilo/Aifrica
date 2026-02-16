@@ -35,15 +35,17 @@
 .navbar-container {
     max-width: 1440px;
     margin: 0 auto;
-    padding: 0;
+    padding: 8px 32px;
     display: flex;
     align-items: center;
     justify-content: space-between;
     transition: padding 0.3s ease;
+    height: 80px;
 }
 
 .modern-navbar.scrolled .navbar-container {
-    padding: 14px 32px;
+    padding: 6px 32px;
+    height: 70px;
 }
 
 /* ============================================
@@ -61,15 +63,15 @@
 }
 
 .navbar-logo-img {
-    height: 100px;
-    width: auto;
+    height: 140px;
+    width: 170px;
     transition: all 0.4s var(--transition-smooth);
     filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
-    margin-left: 30px;
 }
 
 .modern-navbar.scrolled .navbar-logo-img {
-    height: 46px;
+    height: 140px;
+    width: 170px;
 }
 
 .navbar-logo-link:hover .navbar-logo-img {
@@ -86,7 +88,7 @@
     gap: 56px;
     flex: 1;
     justify-content: space-between;
-    margin-left: 300px;
+    margin-left: 230px;
 }
 
 .navbar-menu {
@@ -186,17 +188,17 @@
 
 .mega-menu {
     position: absolute;
-    top: calc(100% + 20px);
+    top: calc(100% + 15px);
     left: 50%;
     transform: translateX(-50%);
     background: rgba(255, 255, 255, 0.98);
     backdrop-filter: blur(24px) saturate(180%);
-    border-radius: 20px;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15),
-        0 8px 24px rgba(0, 0, 0, 0.1),
+    border-radius: 16px;
+    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.15),
+        0 6px 20px rgba(0, 0, 0, 0.1),
         0 0 0 1px rgba(26, 58, 82, 0.08);
-    padding: 28px;
-    min-width: 380px;
+    padding: 20px;
+    min-width: 320px;
     opacity: 0;
     visibility: hidden;
     transform: translateX(-50%) translateY(-12px) scale(0.96);
@@ -225,8 +227,8 @@
 }
 
 .mega-menu-header {
-    margin-bottom: 20px;
-    padding-bottom: 16px;
+    margin-bottom: 16px;
+    padding-bottom: 12px;
     border-bottom: 2px solid rgba(26, 58, 82, 0.08);
 }
 
@@ -246,17 +248,17 @@
 
 .mega-menu-content {
     display: grid;
-    gap: 6px;
+    gap: 3px;
 }
 
 .mega-menu-link {
     display: flex;
     align-items: flex-start;
-    gap: 14px;
-    padding: 14px 16px;
+    gap: 10px;
+    padding: 10px 12px;
     color: var(--primary-navy);
     text-decoration: none;
-    border-radius: 12px;
+    border-radius: 8px;
     transition: all 0.3s var(--transition-smooth);
     background: transparent;
     position: relative;
@@ -284,17 +286,17 @@
 }
 
 .mega-link-icon {
-    width: 42px;
-    height: 42px;
+    width: 36px;
+    height: 36px;
     display: flex;
     align-items: center;
     justify-content: center;
     background: linear-gradient(135deg, var(--accent-gold), var(--accent-yellow));
     color: var(--white);
-    border-radius: 10px;
-    font-size: 17px;
+    border-radius: 8px;
+    font-size: 15px;
     flex-shrink: 0;
-    box-shadow: 0 4px 12px rgba(212, 160, 23, 0.25);
+    box-shadow: 0 3px 10px rgba(212, 160, 23, 0.25);
     transition: all 0.3s ease;
 }
 
@@ -306,19 +308,19 @@
 .mega-link-text {
     display: flex;
     flex-direction: column;
-    gap: 4px;
+    gap: 2px;
     flex: 1;
 }
 
 .mega-link-title {
-    font-size: 15px;
+    font-size: 14px;
     font-weight: 600;
     color: var(--primary-navy);
     line-height: 1.3;
 }
 
 .mega-link-desc {
-    font-size: 13px;
+    font-size: 12px;
     color: rgba(26, 58, 82, 0.6);
     line-height: 1.4;
     font-weight: 400;
@@ -334,12 +336,12 @@
 }
 
 .language-selector {
-    padding: 10px 18px;
+    padding: 8px 14px;
     background: rgba(255, 255, 255, 0.1);
     border: 1.5px solid rgba(255, 255, 255, 0.2);
-    border-radius: 10px;
+    border-radius: 8px;
     color: var(--white);
-    font-size: 14.5px;
+    font-size: 13px;
     font-weight: 500;
     cursor: pointer;
     transition: all 0.3s var(--transition-smooth);
@@ -365,17 +367,17 @@
 }
 
 .btn-contact {
-    padding: 12px 28px;
+    padding: 8px 20px;
     background: linear-gradient(135deg, var(--accent-gold), var(--accent-yellow));
     color: var(--primary-dark);
     border: none;
-    border-radius: 10px;
-    font-size: 15.5px;
+    border-radius: 8px;
+    font-size: 14px;
     font-weight: 600;
     cursor: pointer;
     transition: all 0.4s var(--transition-smooth);
-    box-shadow: 0 6px 20px rgba(212, 160, 23, 0.35);
-    letter-spacing: 0.3px;
+    box-shadow: 0 4px 16px rgba(212, 160, 23, 0.35);
+    letter-spacing: 0.2px;
     position: relative;
     overflow: hidden;
 }
@@ -399,12 +401,12 @@
 }
 
 .btn-contact:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 8px 24px rgba(212, 160, 23, 0.45);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(212, 160, 23, 0.45);
 }
 
 .btn-contact:active {
-    transform: translateY(-1px);
+    transform: translateY(0px);
 }
 
 /* ============================================
@@ -666,11 +668,11 @@
     }
 
     .navbar-logo-img {
-        height: 44px;
+        height: 52px;
     }
 
     .modern-navbar.scrolled .navbar-logo-img {
-        height: 40px;
+        height: 48px;
     }
 }
 

@@ -65,7 +65,7 @@ export default function BlogAccueil() {
       {/* === EN-TÊTE === */}
       <header className="blog-header">
         <h1 className="blog-title">
-          Nos <span>blogs</span>
+          LES <span>INFOS</span>
         </h1>
         <p className="blog-sub">
           Les actualités récentes de la Data et l'IA en Afrique

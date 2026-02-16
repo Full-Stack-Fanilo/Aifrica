@@ -10,26 +10,21 @@ const IAAgentique = () => {
       <div className="ia-content">
         {/* TEXTE DROITE */}
         <div className="ia-right">
-          <h1 className="ia-title1">
-            IA <span>Agentique</span>
+          <h1 className="ia-title">
+            IA <span>AGENTIQUE</span>
           </h1>
-          <p className="ia-text">
-            Nous vous aidons à concevoir votre agent IA sur mesure. Aifrica
-            transforme vos processus métiers grâce à la puissance de l’IA
-            agentique.
-          </p>
+          <h2 className="ia-subtitle">
+            <span className="ia-strong">L'IA agentique</span> :{" "}
+            <span className="ia-strong">l'automatisation</span> au cœur de
+            votre entreprise
+          </h2>
 
           <p className="ia-text">
-            Notre solution permet de concevoir des agents IA personnalisés,
-            capables d’automatiser efficacement toutes vos activités ou
-            processus, quels que soient vos besoins spécifiques.
-          </p>
-
-          <p className="ia-text mt-3">
-            Profitez d’une automatisation rapide et personnalisée, évolutive et
-            adaptée à votre entreprise : nos agents IA s’intègrent facilement à
-            vos applications existantes et optimisent en continu vos
-            performances
+            L'IA agentique révolutionne la manière dont les entreprises automatisent 
+            leurs processus. Capable de créer des agents intelligents qui travaillent 
+            de manière autonome, elle offre une automatisation poussée et une optimisation 
+            continue des opérations. Nos agents IA s'intègrent parfaitement à vos systèmes 
+            existants pour transformer votre efficacité opérationnelle.
           </p>
 
           <button className="ia-link" onClick={() => navigate("/IA-Agentique")}>

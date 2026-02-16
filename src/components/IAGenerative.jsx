@@ -16,7 +16,7 @@ export default function IAGenerative() {
         {/* TEXTE DROITE */}
         <div className="ia-right">
           <h1 className="ia-title">
-            IA <span>Générative</span>
+            IA <span>GÉNÉRATIVE</span>
           </h1>
           <h2 className="ia-subtitle">
             <span className="ia-strong">L'IA générative</span> : une{" "}

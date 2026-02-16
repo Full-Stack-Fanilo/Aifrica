@@ -121,11 +121,11 @@
    ============================================ */
 .ia-link {
     background: #1a3a52;
-    color: #ffffff;
+    color: #f4c430;
     border: none;
-    padding: 14px 30px;
+    padding: 12px 24px;
     border-radius: 8px;
-    font-size: 0.95rem;
+    font-size: 0.85rem;
     font-weight: 600;
     cursor: pointer;
     transition: all 0.3s ease;

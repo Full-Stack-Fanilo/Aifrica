@@ -3,7 +3,7 @@
 ================================ */
 .contact-section {
     background: white;
-    padding: 90px 24px;
+    padding: 60px 24px;
     color: black;
     display: flex;
     flex-direction: column;
@@ -16,20 +16,20 @@
 .contact-header {
     text-align: center;
     max-width: 640px;
-    margin-bottom: 48px;
+    margin-bottom: 32px;
 }
 
 .contact-header h3 {
-    font-size: clamp(1.75rem, 4vw, 2.25rem);
-    font-weight: 800;
-    margin-bottom: 14px;
+    font-size: clamp(1.5rem, 3.5vw, 2rem);
+    font-weight: 700;
+    margin-bottom: 12px;
     line-height: 1.2;
     letter-spacing: -0.02em;
     color: #1a1a1a;
 }
 
 .contact-header .highlighted {
-    color: #ffda2b;
+    color: #f4c430;
 }
 
 .contact-header p {
@@ -79,8 +79,8 @@
 ================================ */
 .contact-form-container {
     background: #ffffff;
-    border-radius: 20px;
-    padding: 48px 40px;
+    border-radius: 16px;
+    padding: 32px 30px;
     width: 100%;
     max-width: 750px;
     box-shadow: 0 4px 40px rgba(0, 0, 0, 0.08), 0 1px 4px rgba(0, 0, 0, 0.04);
@@ -94,7 +94,7 @@
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
-    margin-bottom: 36px;
+    margin-bottom: 24px;
     position: relative;
     padding: 0 8px;
 }
@@ -108,8 +108,8 @@
 }
 
 .stepper-circle {
-    width: 36px;
-    height: 36px;
+    width: 32px;
+    height: 32px;
     border-radius: 50%;
     background: #e5e7eb;
     color: #6b7280;
@@ -117,7 +117,7 @@
     align-items: center;
     justify-content: center;
     font-weight: 700;
-    font-size: 0.85rem;
+    font-size: 0.8rem;
     transition: all 0.3s ease;
     border: 2px solid transparent;
 }
@@ -136,12 +136,12 @@
 }
 
 .stepper-label {
-    font-size: 0.7rem;
+    font-size: 0.65rem;
     color: #9ca3af;
-    margin-top: 6px;
+    margin-top: 4px;
     text-align: center;
-    max-width: 80px;
     line-height: 1.2;
+    max-width: 80px;
     transition: color 0.3s ease;
 }
 
@@ -176,11 +176,11 @@
    STEP TITLE
 ================================ */
 .step-title {
-    font-size: 1.25rem;
+    font-size: 1.1rem;
     font-weight: 700;
     color: #1a1a1a;
-    margin-bottom: 28px;
-    padding-bottom: 14px;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
     border-bottom: 2px solid #f3f4f6;
 }
 
@@ -190,13 +190,13 @@
 .contact-form {
     display: flex;
     flex-direction: column;
-    gap: 1.5rem;
+    gap: 1.2rem;
 }
 
 .form-row {
     display: flex;
     flex-wrap: wrap;
-    gap: 1.25rem;
+    gap: 1rem;
 }
 
 .form-group {
@@ -216,9 +216,9 @@
 ================================ */
 .contact-form label {
     font-weight: 600;
-    margin-bottom: 6px;
+    margin-bottom: 4px;
     color: #1a1a1a;
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     letter-spacing: 0.1px;
 }
 
@@ -234,17 +234,17 @@
 .contact-form input[type="text"],
 .contact-form input[type="email"],
 .contact-form input[type="tel"],
-.contact-form textarea,
+.contact-form input,
 .contact-form select {
-    background: #f9fafb;
+    background: white;
     border: 1.5px solid #e5e7eb;
-    border-radius: 10px;
+    border-radius: 8px;
     color: #1a1a1a;
-    padding: 12px 16px;
-    font-size: 0.95rem;
+    padding: 10px 14px;
+    font-size: 0.9rem;
     font-family: inherit;
     outline: none;
-    transition: border-color 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+    transition: all 0.3s ease;
     width: 100%;
     box-sizing: border-box;
 }
@@ -295,14 +295,13 @@
     display: flex;
     align-items: center;
     gap: 8px;
-    padding: 10px 16px;
+    padding: 8px 14px;
     background: #f9fafb;
     border: 1.5px solid #e5e7eb;
-    border-radius: 10px;
+    border-radius: 8px;
     cursor: pointer;
-    transition: all 0.2s ease;
-    font-weight: 400 !important;
-    margin-bottom: 0;
+    transition: all 0.3s ease;
+    font-size: 0.85rem;
 }
 
 .radio-option:hover {

@@ -1,7 +1,7 @@
 import React from "react";
 import { FaArrowRight } from "react-icons/fa";
 import "../css/Header.css";
-import headerImage from "../assets/images/NewAifrica.png";
+import headerImage from "../assets/images/NouvelleAifrica.png";
 
 function Header() {
   const scrollToSection = (sectionId) => {
@@ -31,23 +31,6 @@ function Header() {
               et déployez-les en toute confiance avec l'accompagnement de
               Aifrica.
             </p>
-
-            <div className="hero-metrics">
-              <div className="metric">
-                <h3>500+</h3>
-                <p>Clients</p>
-              </div>
-              <div className="metric-divider"></div>
-              <div className="metric">
-                <h3>95%</h3>
-                <p>Satisfaction</p>
-              </div>
-              <div className="metric-divider"></div>
-              <div className="metric">
-                <h3>50+</h3>
-                <p>Solutions</p>
-              </div>
-            </div>
 
             <div className="hero-actions">
               <button

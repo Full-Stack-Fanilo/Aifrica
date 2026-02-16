@@ -150,22 +150,11 @@ export default function Footer() {
                 </li>
                 <li className="contact-item">
                   <div className="contact-icon">
-                    <FaPhone />
-                  </div>
-                  <div className="contact-details">
-                    <span className="contact-label">Téléphone</span>
-                    <a href="tel:+33672857741" className="contact-value">
-                      +33 6 72 85 77 41
-                    </a>
-                  </div>
-                </li>
-                <li className="contact-item">
-                  <div className="contact-icon">
                     <FaMapMarkerAlt />
                   </div>
                   <div className="contact-details">
                     <span className="contact-label">Localisation</span>
-                    <span className="contact-value">Paris, France</span>
+                    <span className="contact-value">Cyber Cité Ebène, Ile Maurice</span>
                   </div>
                 </li>
               </ul>

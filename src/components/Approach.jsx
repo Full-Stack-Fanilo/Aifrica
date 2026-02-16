@@ -1,6 +1,6 @@
 import React from "react";
 import "../css/Approach.css";
-import poIcon from "../assets/images/approach.jpg";
+import poIcon from "../assets/images/Aifrica (6).png";
 
 export default function Approach() {
   return (
