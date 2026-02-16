@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "../css/BlogAccueil.css";
 import blog1 from "../assets/images/ia.png";
@@ -8,13 +8,16 @@ import blog4 from "../assets/images/agricultur.jpg";
 import blog5 from "../assets/images/automatisatio.png";
 import blog6 from "../assets/images/automatisation.png";
 
-// Données des blogs pour faciliter la maintenance
-const mainBlogs = [
+const categories = ["Afrique", "Entreprise", "Métier", "Technologie"];
+
+// Données des blogs avec catégories
+const allBlogs = [
   {
     id: 1,
     image: blog1,
     title: "Baromètre européen de l'IA : les tendances pour 2025",
-    tag: "Africa",
+    tag: "Afrique",
+    category: "Afrique",
     date: "19/03/2025",
     description:
       "Le Baromètre européen de l'IA dévoile les tendances majeures attendues en 2025.",
@@ -24,42 +27,78 @@ const mainBlogs = [
     id: 2,
     image: blog2,
     title: "Comment l'IA transforme les entreprises africaines",
-    tag: "Africa",
+    tag: "Afrique",
+    category: "Afrique",
     date: "20/02/2025",
     description:
       "L'impact de l'intelligence artificielle dans les PME en Afrique.",
     link: "#",
   },
-];
-
-const sideBlogs = [
   {
     id: 3,
-    title: "L'IA dans le secteur de la finance",
     image: blog3,
+    title: "L'IA dans le secteur de la finance",
+    tag: "Entreprise",
+    category: "Entreprise",
+    date: "15/03/2025",
+    description:
+      "Comment les entreprises financières utilisent l'IA pour optimiser leurs opérations.",
     link: "#",
   },
   {
     id: 4,
-    title: "L'essor du Big Data dans l'agriculture",
     image: blog4,
+    title: "L'essor du Big Data dans l'agriculture",
+    tag: "Technologie",
+    category: "Technologie",
+    date: "10/03/2025",
+    description:
+      "Le Big Data révolutionne l'agriculture avec des solutions innovantes.",
     link: "#",
   },
   {
     id: 5,
-    title: "L'avenir du travail avec l'automatisation",
     image: blog5,
+    title: "L'avenir du travail avec l'automatisation",
+    tag: "Métier",
+    category: "Métier",
+    date: "05/03/2025",
+    description:
+      "L'automatisation transforme les métiers et crée de nouvelles opportunités.",
     link: "#",
   },
   {
     id: 6,
-    title: "Cybersécurité et protection des données",
     image: blog6,
+    title: "Cybersécurité et protection des données",
+    tag: "Technologie",
+    category: "Technologie",
+    date: "01/03/2025",
+    description:
+      "Les enjeux de la cybersécurité à l'ère de l'intelligence artificielle.",
     link: "#",
   },
 ];
 
 export default function BlogAccueil() {
+  const [activeCategory, setActiveCategory] = useState("Afrique");
+
+  const filteredBlogs = allBlogs.filter(
+    (blog) => blog.category === activeCategory
+  );
+
+  // Prendre les 2 premiers comme blogs principaux, le reste en sidebar
+  const mainBlogs = filteredBlogs.slice(0, 2);
+  const sideBlogs = filteredBlogs.length > 2 ? filteredBlogs.slice(2) : [];
+
+  // Si pas assez de blogs dans la catégorie, afficher les autres catégories en sidebar
+  const otherBlogs =
+    sideBlogs.length === 0
+      ? allBlogs
+          .filter((blog) => blog.category !== activeCategory)
+          .slice(0, 4)
+      : sideBlogs;
+
   return (
     <section id="blog" className="blog-section">
       {/* === EN-TÊTE === */}
@@ -67,13 +106,24 @@ export default function BlogAccueil() {
         <h1 className="blog-title">
           LES <span>INFOS</span>
         </h1>
-        <p className="blog-sub">
-          Les actualités récentes de la Data et l'IA en Afrique
-        </p>
+
+        {/* === BOUTONS DE CATÉGORIE === */}
+        <div className="blog-categories">
+          {categories.map((cat) => (
+            <button
+              key={cat}
+              className={`blog-cat-btn ${activeCategory === cat ? "active" : ""}`}
+              onMouseEnter={() => setActiveCategory(cat)}
+              onClick={() => setActiveCategory(cat)}
+            >
+              {cat}
+            </button>
+          ))}
+        </div>
       </header>
 
       {/* === CONTAINER GLOBAL === */}
-      <div className="blog-container">
+      <div className="blog-container" key={activeCategory}>
         {/* === CARDS PRINCIPALES === */}
         {mainBlogs.map((blog) => (
           <article key={blog.id} className="blog-card large">
@@ -105,9 +155,10 @@ export default function BlogAccueil() {
 
         {/* === LISTE LATÉRALE === */}
         <aside className="blog-list">
-          {sideBlogs.map((blog) => (
+          {otherBlogs.map((blog) => (
             <article key={blog.id} className="blog-item">
               <div>
+                <span className="blog-item-tag">{blog.tag}</span>
                 <h3>{blog.title}</h3>
                 <Link to={blog.link} className="blog-item-link">
                   Découvrir plus
