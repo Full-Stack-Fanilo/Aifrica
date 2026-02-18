@@ -102,7 +102,7 @@ export default function Navbar() {
 
   const yoAfricaLinks = [
     {
-      to: "/pateforme-aifrica",
+      to: "/plateforme-aifrica",
       icon: <FaGlobe />,
       label: "Plateforme Aifrica",
       description: "Découvrez notre écosystème",

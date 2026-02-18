@@ -10,7 +10,7 @@
 /* === TITRE === */
 .blog-title {
     text-align: center;
-    font-size: clamp(2.5rem, 5vw, 3.5rem);
+    font-size: clamp(1.6rem, 3vw, 2.2rem);
     font-weight: 800;
     color: var(--primary-navy);
     margin-bottom: 30px;
@@ -239,7 +239,7 @@
     }
 
     .blog-title {
-        font-size: 2rem;
+        font-size: 1.4rem;
     }
 
     .blog-card-img {
