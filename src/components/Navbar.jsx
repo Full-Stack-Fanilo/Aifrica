@@ -365,7 +365,7 @@ export default function Navbar() {
                 className="btn-contact"
                 onClick={() => handleNavigateScroll("contact")}
               >
-                Contactez-nous
+                Contact
               </button>
             </div>
           </div>

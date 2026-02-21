@@ -11,7 +11,7 @@ const IAAgentique = () => {
         {/* TEXTE DROITE */}
         <div className="ia-right">
           <h1 className="ia-title">
-            IA <span>AGENTIQUE</span>
+            IA <span>Agentique</span>
           </h1>
           <h2 className="ia-subtitle">
             <span className="ia-strong">L'IA agentique</span> :{" "}

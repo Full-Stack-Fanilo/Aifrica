@@ -7,6 +7,9 @@ export default function IAGenerative() {
   const navigate = useNavigate();
   return (
     <section className="ia-gen-section1">
+      <div className="ia-header-title">
+        <h2 className="ia-main-title">Découvrons ensemble cette révolution</h2>
+      </div>
       <div className="ia-content">
         {/* IMAGE GAUCHE */}
         <div className="ia-left">
@@ -16,7 +19,7 @@ export default function IAGenerative() {
         {/* TEXTE DROITE */}
         <div className="ia-right">
           <h1 className="ia-title">
-            IA <span>GÉNÉRATIVE</span>
+            IA <span>Générative</span>
           </h1>
           <h2 className="ia-subtitle">
             <span className="ia-strong">L'IA générative</span> : une{" "}

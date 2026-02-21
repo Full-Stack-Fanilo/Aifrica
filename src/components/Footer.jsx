@@ -140,7 +140,7 @@ export default function Footer() {
                   <div className="contact-details">
                     <span className="contact-label">Email</span>
                     <a
-                      href="mailto:contact@aifrica.com"
+                      href="mailto:contact@aifrica.tech"
                       className="contact-value"
                     >
                       contact@aifrica.com

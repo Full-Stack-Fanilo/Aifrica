@@ -88,7 +88,7 @@
     gap: 56px;
     flex: 1;
     justify-content: space-between;
-    margin-left: 230px;
+    margin-left: 130px;
 }
 
 .navbar-menu {
@@ -333,6 +333,7 @@
     display: flex;
     align-items: center;
     gap: 18px;
+    margin-right: 100px;
 }
 
 .language-selector {

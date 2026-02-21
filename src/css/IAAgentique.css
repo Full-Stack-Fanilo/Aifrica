@@ -1,13 +1,13 @@
 /* ============================================
-   SECTION IA GÉNÉRATIVE - Design Premium
+   SECTION IA AGENTIQUE - Design Premium
    ============================================ */
-.ia-gen-section1 {
-    padding: 80px 20px;
+.ia-gen-section {
+    padding: 50px 20px;
     background: linear-gradient(180deg, #f8f9fa 0%, #ffffff 100%);
     position: relative;
 }
 
-.ia-gen-section1::before {
+.ia-gen-section::before {
     content: '';
     position: absolute;
     top: 0;
@@ -185,7 +185,7 @@
 }
 
 @media (max-width: 768px) {
-    .ia-gen-section1 {
+    .ia-gen-section {
         padding: 60px 20px;
     }
 
@@ -207,7 +207,7 @@
 }
 
 @media (max-width: 480px) {
-    .ia-gen-section1 {
+    .ia-gen-section {
         padding: 50px 15px;
     }
 

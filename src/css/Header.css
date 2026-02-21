@@ -193,7 +193,7 @@ body {
 
 .btn-hero-primary,
 .btn-hero-outline {
-    padding: 16px 32px;
+    padding: 12px 24px;
     border-radius: 10px;
     font-size: 16px;
     font-weight: 600;
@@ -203,6 +203,7 @@ body {
     gap: 10px;
     transition: all 0.3s ease;
     border: none;
+    margin-top: 30px;
 }
 
 .btn-hero-primary {

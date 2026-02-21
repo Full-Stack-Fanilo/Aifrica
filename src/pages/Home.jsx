@@ -17,8 +17,14 @@ function HomeV3() {
         <Header />
       </section>
       <section>
-        <Actualite />
+        <Service />
       </section>
+      <section>
+        <Approach />
+      </section>
+      {/* <section>
+        <Actualite />
+      </section> */}
       <section>
         <IAGenerative />
       </section>
@@ -27,12 +33,6 @@ function HomeV3() {
       </section>
       <section>
         <DataAnalytique />
-      </section>
-      <section>
-        <Service />
-      </section>
-      <section>
-        <Approach />
       </section>
       <section>
         <MaturiteIa />

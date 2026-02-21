@@ -96,7 +96,7 @@ export default function BlogAccueil() {
       {/* === EN-TÊTE === */}
       <header className="blog-header">
         <h1 className="blog-title">
-          LES <span>INFOS</span>
+          LES <span>Infos</span>
         </h1>
 
         {/* === BOUTONS DE CATÉGORIE === */}
