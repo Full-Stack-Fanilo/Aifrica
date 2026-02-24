@@ -143,8 +143,8 @@ export default function Navbar() {
     {
       to: "/entreprise",
       icon: <FaHandsHelping />,
-      label: "Entreprise",
-      description: "Vie de l'entreprise",
+      label: "Industrie/Economie",
+      description: "Secteurs économiques",
     },
     {
       to: "/metier",
