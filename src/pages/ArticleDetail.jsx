@@ -26,6 +26,14 @@ import article10 from "../assets/images/article 10.jpg";
 import article11 from "../assets/images/article 11.jpg";
 import article12 from "../assets/images/article 12.avif";
 
+// Imports des images pour Technologie.jsx
+import afriqueImage from "../assets/images/Aifrica1.jpeg";
+import afriqueImage2 from "../assets/images/Aifrica2.webp";
+import afriqueImage3 from "../assets/images/Aifrica3.webp";
+import afriqueImage4 from "../assets/images/Aifrica4.jpeg";
+import afriqueImage5 from "../assets/images/Aifrica5.jpg";
+import afriqueImage6 from "../assets/images/Aifrica6.jpg";
+
 /* ─────────────────────────────────────────
    STYLES — Editorial Magazine / Light Theme
    Palette: Blanc ivoire + Vert forêt profond + Terre ocre
@@ -1013,6 +1021,144 @@ Pour l'Afrique, OPIT a adapté son offre en proposant des bourses d'études, des
     title: "En Côte d'Ivoire, l'IA soutient la réussite scolaire : l'exemple de Schoolap",
     image: article12,
     text: "En Afrique francophone, où les systèmes éducatifs doivent faire face à une forte croissance démographique et à un manque de ressources pédagogiques, l'intelligence artificielle commence à jouer un rôle déterminant."
+  },
+  // Articles de Technologie.jsx
+  {
+    id: 'T301', date: "Février 2025", location: "Global",
+    category: "Data Architecture",
+    tags: ["Gouvernance", "Data", "Management"],
+    readTime: 7,
+    title: "Gouvernance data : pourquoi ça échoue (et comment vraiment réussir)",
+    image: afriqueImage,
+    text: `La gouvernance data est l'un des chantiers les plus ambitieux — et les plus mal exécutés — des organisations modernes. Voici un diagnostic lucide et des pistes actionnables pour y remédier. Février 2025 • Lecture : 7 min
+
+Depuis plus d'une décennie, la gouvernance data est présentée comme le Saint-Graal de toute stratégie data. Pourtant, les faits sont sans appel : la majorité des initiatives échouent ou n'atteignent pas leurs objectifs. Les silos de données persistent, la qualité reste médiocre, et les équipes métier continuent de ne pas faire confiance aux chiffres produits par la DSI.
+
+Les vraies raisons de l'échec
+
+Traiter la gouvernance comme un projet IT
+
+C'est l'erreur originelle, et la plus fréquente. Dans de nombreuses organisations, la data est encore perçue comme un actif technique, relevant exclusivement de la DSI. Or, la gouvernance data touche directement à la responsabilité métier : qui décide qu'un client est « actif » ? Quelle est la source de vérité pour le chiffre d'affaires ?
+
+Vouloir tout gouverner d'un coup
+
+Un autre classique : lancer un programme de gouvernance pan-organisationnel qui vise à couvrir l'intégralité du patrimoine data en une seule vague. Le résultat est invariablement le même : des mois de cartographie, des ateliers sans fin, et une mise en œuvre partielle qui s'essouffle avant de produire de la valeur.
+
+Comment réussir : les principes fondateurs
+
+Partir des cas d'usage métier, pas des données
+
+La bonne question n'est pas « Quelles données devons-nous gouverner ? », mais « Quelles décisions métier sont aujourd'hui bloquées ou dégradées par un problème de données ? ». C'est ce point de départ qui créé l'urgence, la légitimité et l'engagement métier nécessaires.`
+  },
+  {
+    id: 'T302', date: "Février 2025", location: "Global",
+    category: "LLMs en entreprise",
+    tags: ["LLMs", "RAG", "Fine-tuning", "Agents"],
+    readTime: 15,
+    title: "RAG, Fine-tuning, Agents : Comment choisir le bon pattern pour votre use case",
+    image: afriqueImage2,
+    text: `Les LLMs sont devenus accessibles. Le vrai défi n'est plus de choisir un modèle, mais de choisir la bonne architecture d'intégration. RAG, fine-tuning, agents : trois paradigmes distincts, trois logiques d'emploi, trois niveaux de complexité opérationnelle. Voici le guide technique et stratégique pour décideurs. Février 2025 • Lecture : 15 min • Niveau : Technique avancé
+
+En 2023, la question était « Devons-nous intégrer des LLMs dans nos systèmes ? ». En 2025, cette question est réglée : la quasi-totalité des organisations a lancé au moins un POC. La question est désormais plus exigeante : « Quelle architecture LLM choisir pour ce cas d'usage spécifique, avec ces contraintes de production, ce niveau de maturité data, et ce budget ? »
+
+Les trois paradigmes : comprendre avant de choisir
+
+RAG — Retrieval-Augmented Generation
+
+Le RAG est aujourd'hui le pattern le plus déployé en entreprise pour une raison simple : il permet d'enrichir les réponses d'un LLM avec des données propriétaires sans modifier le modèle sous-jacent. L'idée est élégante : plutôt que d'essayer d'enseigner tout votre corpus documentaire au modèle via l'entraînement, vous lui fournissez les passages pertinents au moment de la requête, dans le contexte.
+
+Fine-tuning — Adapter le modèle lui-même
+
+Le fine-tuning consiste à reprendre l'entraînement d'un modèle fondation sur un corpus spécifique pour modifier ses poids. L'objectif est différent du RAG : il ne s'agit pas d'injecter de la connaissance contextualisable à la volée, mais d'intégrer une expertise profonde dans le comportement du modèle lui-même.
+
+Agents LLM — L'IA qui agit
+
+Les agents LLM représentent un changement de paradigme fondamental par rapport aux deux approches précédentes. Là où le RAG et le fine-tuning améliorent la qualité des réponses d'un LLM, les agents lui donnent la capacité d'agir : exécuter du code, appeler des APIs, interagir avec des systèmes tiers, mémoriser un état sur plusieurs échanges.`
+  },
+  {
+    id: 'T303', date: "Février 2025", location: "Global",
+    category: "Data Science",
+    tags: ["Data Science", "IA", "Carrière"],
+    readTime: 8,
+    title: "Data Science en 2026 : le métier a-t-il résisté à l'IA générative ?",
+    image: afriqueImage3,
+    text: `En deux ans, l'IA générative a automatiquement produit des analyses, rédigé du code Python et généré des visualisations. Alors, le Data Scientist est-il en voie de disparition ? La réponse est non — mais le métier s'est profondément transformé, et ceux qui n'ont pas compris ce basculement risquent d'être laissés pour compte. Février 2025 • Lecture : 8 min
+
+Il y a trois ans, le Data Scientist était encore surnommé « le métier le plus sexy du XXIème siècle ». Puis sont arrivés ChatGPT, Copilot, et une salve d'outils capables de générer du code, d'analyser des datasets et de rédiger des insights en quelques secondes.
+
+Ce que l'IA générative a effectivement automatisé
+
+La génération de code exploratoire : pandas, matplotlib, seaborn, sklearn — GitHub Copilot et les LLMs produisent du code fonctionnel pour la majorité des analyses standard en quelques secondes.
+
+Le nettoyage de données répétitif : détection des valeurs manquantes, normalisation de formats, dédoublonnage — des tâches autrefois chronophages sont désormais automatisées par des agents codé.
+
+Ce que l'IA ne peut pas (encore) faire
+
+La pensée statistique et le sens critique des résultats
+
+Un LLM peut générer une régression logistique et en afficher les coefficients. Il ne peut pas déterminer si le modèle souffre de data leakage, si la variable cible est correctement définie métier, ou si les résultats sont biaisés.
+
+La définition du problème
+
+C'est l'étape la plus critique et la plus mal évaluée. Transformer une question métier vague en un problème data précis, mésurable et résolvable requiert une intelligence de situation qu'aucun LLM ne possède.`
+  },
+  {
+    id: 'T304', date: "Février 2025", location: "Global",
+    category: "Data Architecture & Cloud",
+    tags: ["Snowflake", "BigQuery", "Cloud", "Data Warehouse"],
+    readTime: 12,
+    title: "Snowflake vs BigQuery en 2026 : Le guide de choix pour décideurs techniques",
+    image: afriqueImage4,
+    text: `Architecture, modèles de pricing, écosystème, TCO, stratégie cloud : un comparatif sans concession des deux plateformes qui dominent le marché du cloud data warehouse en 2025.
+
+Snowflake et BigQuery se disputent depuis plusieurs années le podium des cloud data warehouses enterprise. En 2025, ils restent les deux références incontournables du marché, loin devant Amazon Redshift en termes d'innovation et d'adoption dans les nouvelles architectures data.
+
+Architecture : deux philosophies opposées
+
+Snowflake : le contrôle découplé
+
+L'architecture de Snowflake repose sur trois couches strictement séparées : le stockage (délégué au cloud provider), le compute (des « virtual warehouses » que l'utilisateur configure, dimensionne et achète), et la couche de services cloud. Ce découplage est l'ADN de Snowflake : plusieurs virtual warehouses peuvent interroger les mêmes données simultanément, sans interférence.
+
+BigQuery : le serverless absolu
+
+BigQuery part d'un postulat inverse : vous ne devriez jamais avoir à penser à l'infrastructure. Bâtie sur Dremel et Colossus, BigQuery est une boîte noire qui alloue automatiquement des « slots » à chaque requête sans que l'utilisateur intervienne.
+
+Modèles de pricing et TCO réel
+
+Snowflake : facturation au temps actif
+
+Snowflake facture le compute à la seconde d'utilisation effective du virtual warehouse, en crédits. Un XS-warehouse consomme 1 crédit/heure. Le stockage est facturé séparément : environ 23 USD/TB/mois.
+
+BigQuery : facturation à la donnée scannée
+
+BigQuery propose deux modes de facturation compute. En on-demand, le prix est de 5 USD par téraoctet de données effectivement scanné par les requêtes (premier To gratuit par mois).`
+  },
+  {
+    id: 'T305', date: "Février 2025", location: "Global",
+    category: "LLMs en entreprise • Agents IA",
+    tags: ["MCP", "Agents", "Anthropic", "IA"],
+    readTime: 10,
+    title: "MCP en entreprise : Comment intégrer le Model Context Protocol dans votre stack data & IA",
+    image: afriqueImage5,
+    text: `Lancé par Anthropic en novembre 2024 et adopté en moins d'un an par OpenAI, Google, Microsoft et des milliers d'équipes en production, le MCP est en train de devenir le standard universel de l'intégration agentique. Ce qu'il est, pourquoi ça compte, et comment l'intégrer intelligemment.
+
+En novembre 2024, Anthropic publiait discrètement une spécification open source baptisée Model Context Protocol, ou MCP. Douze mois plus tard, le constat est sans appel : MCP est devenu l'infrastructure de connexion de facto de l'écosystème IA enterprise.
+
+Le problème que MCP résout
+
+Avant MCP, connecter un agent IA à vos systèmes d'entreprise était un problème de type M×N : si vous avez M applications IA et N outils ou sources de données, vous êtes potentiellement face à M×N intégrations custom à développer, maintenir et faire évoluer.
+
+MCP résout ce problème en introduisant une couche d'abstraction standardisée. Plutôt que M×N intégrations, vous n'en avez plus que M+N : chaque application IA implémente une fois le client MCP, chaque outil expose une fois un serveur MCP.
+
+Comment ça fonctionne : les concepts clés
+
+MCP repose sur une architecture client-serveur simple, construite sur JSON-RPC 2.0. Trois composants structurent le protocole :
+
+Le Host (l'application IA) : C'est l'application qui héberge le LLM et orchestre les interactions.
+
+Le Client MCP : Composant interne au host, le client maintient une session stateful avec chaque serveur MCP.
+
+Le Serveur MCP : C'est l'adaptateur qui expose les capacités d'un système tiers au monde IA.`
   }
 ];
 
@@ -1082,7 +1228,7 @@ export default function ArticleDetail() {
         <div className="mag-notfound-big">404</div>
         <h2>Introuvable</h2>
         <p>Cet article n'existe pas ou a été supprimé.</p>
-        <Link to="/afrique" className="mag-back">
+        <Link to={id && (id.toString().startsWith('T') || id.toString().includes('301') || id.toString().includes('302') || id.toString().includes('303') || id.toString().includes('304') || id.toString().includes('305')) ? "/technologie" : "/afrique"} className="mag-back">
           <ChevLeft s={12} /> Retour
         </Link>
       </div>
@@ -1107,7 +1253,7 @@ export default function ArticleDetail() {
       {/* ── HEADER ── */}
       <header className="mag-header">
         <div className="mag-header-left">
-          <Link to="/afrique" className="mag-back">
+          <Link to={article.category.includes('Data') || article.category.includes('LLMs') || article.category.includes('Data Science') ? "/technologie" : "/afrique"} className="mag-back">
             <ChevLeft s={11} /> Articles
           </Link>
         </div>

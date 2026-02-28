@@ -77,7 +77,6 @@
 }
 
 .navbar-logo-link:hover .navbar-logo-img {
-    transform: scale(1.05) rotate(-2deg);
     filter: drop-shadow(0 4px 8px rgba(212, 160, 23, 0.3));
 }
 

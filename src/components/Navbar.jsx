@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { animateScroll as scroll } from "react-scroll";
-import logo from "../assets/images/new logo.png";
+import logo from "../assets/images/NewLogo.png";
 
 import {
   FaGlobe,

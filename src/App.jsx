@@ -10,6 +10,11 @@ import Entreprise from "./pages/Entreprise";
 import Metier from "./pages/Metier";
 import Afrique from "./pages/Afrique";
 import ArticleDetail from "./pages/ArticleDetail";
+import DiagnosticDataIA from "./pages/DiagnosticDataIA";
+import ConsultingIAData from "./pages/ConsultingIAData";
+import SolutionIAAvancee from "./pages/SolutionIAAvancee";
+import AcculturationIA from "./pages/AcculturationIA";
+import Technologie from "./pages/Technologie";
 import Navbar from "./components/Navbar";
 
 function App() {
@@ -27,6 +32,11 @@ function App() {
         <Route path="/metier" element={<Metier />} />
         <Route path="/afrique" element={<Afrique />} />
         <Route path="/article/:id" element={<ArticleDetail />} />
+        <Route path="/diagnosticDataIA" element={<DiagnosticDataIA />} />
+        <Route path="/consultingIaData" element={<ConsultingIAData />} />
+        <Route path="/solutionIASurMesure" element={<SolutionIAAvancee />} />
+        <Route path="/acculturationIA" element={<AcculturationIA />} />
+        <Route path="/technologie" element={<Technologie />} />
         {/* Ajoute d'autres routes ici */}
       </Routes>
     </>
