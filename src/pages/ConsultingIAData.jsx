@@ -420,7 +420,8 @@ html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
 .ai-dur-card.light p { color: var(--muted); }
 .ai-dur-card.dark p { color: rgba(255,255,255,0.45); }
 .ai-dur-list { list-style: none; display: flex; flex-direction: column; gap: 16px; }
-.ai-dur-list li { display: flex; align-items: flex-start; gap: 14px; font-size: 14px; color: rgba(255,255,255,0.5); line-height: 1.55; }
+.ai-dur-list li { display: flex; align-items: flex-start; gap: 14px; font-size: 14px; color: var(--ink); line-height: 1.55; }
+.ai-dur-card.dark .ai-dur-list li { color: rgba(255,255,255,0.85); }
 .ai-dur-check { font-size: 14px; color: var(--amber); flex-shrink: 0; font-weight: 700; }
 
 /* ─── FOR WHO ─── */

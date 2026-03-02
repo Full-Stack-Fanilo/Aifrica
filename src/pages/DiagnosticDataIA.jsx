@@ -1046,7 +1046,7 @@ export default function DiagnosticDataIA() {
               </div>
             </div>
             <div className="ai-brand">
-              <div className="ai-brand-wordmark">Ai<span>rica</span></div>
+              <div className="ai-brand-wordmark">Ai<span>frica</span></div>
               <div className="ai-brand-sub">Data & IA pour l'Afrique</div>
               <div className="ai-brand-divider" />
               <div className="ai-brand-vals">
