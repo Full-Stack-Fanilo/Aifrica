@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
+import { useLanguage } from "../contexts/LanguageContext";
 
 const CSS = `
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
@@ -579,6 +580,8 @@ html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
 `;
 
 export default function AcculturationIA() {
+  const { t } = useLanguage();
+  
   useEffect(() => {
     const style = document.createElement("style");
     style.textContent = CSS;
@@ -586,71 +589,20 @@ export default function AcculturationIA() {
     return () => document.head.removeChild(style);
   }, []);
 
-  const problems = [
-    { ico: "🔄", t: "Manque de coordination", sub: "Entre métier, IT et data, silos communication." },
-    { ico: "🎯", t: "Objectifs mal définis", sub: "Vision floue, attentes non alignées, priorités confuses." },
-    { ico: "⏰", t: "Délais non maîtrisés", sub: "Planning irréaliste, dépendances mal gérées." },
-    { ico: "🏛️", t: "Absence de gouvernance", sub: "Décisions non structurées, responsabilités floues." },
-    { ico: "👥", t: "Faible adoption", sub: "Équipes non engagées, résistance au changement." },
-    { ico: "🖼️", t: "Projets vitrine", sub: "Technologie pour la technologie, sans valeur business." },
-  ];
+  // Fonction helper pour s'assurer que nous avons un tableau
+  const safeArray = (value) => {
+    return Array.isArray(value) ? value : [];
+  };
 
-  const methodology = [
-    { 
-      n: "1", 
-      title: "Cadrage stratégique", 
-      desc: "Fondations du projet",
-      items: ["Définition objectifs mesurables", "Clarification périmètre", "Identification parties prenantes", "Définition indicateurs clés"]
-    },
-    { 
-      n: "2", 
-      title: "Gouvernance & planification", 
-      desc: "Structure organisationnelle",
-      items: ["RACI (rôles & responsabilités)", "Planification détaillée", "Jalons & livrables", "Gestion dépendances"]
-    },
-    { 
-      n: "3", 
-      title: "Coordination opérationnelle", 
-      desc: "Pilotage au quotidien",
-      items: ["Réunions de pilotage", "Suivi avancement", "Gestion risques", "Arbitrage stratégique"]
-    },
-    { 
-      n: "4", 
-      title: "Gestion du changement", 
-      desc: "Adoption et accompagnement",
-      items: ["Communication interne", "Formation équipes", "Adoption progressive", "Alignement stratégique continu"]
-    },
-    { 
-      n: "5", 
-      title: "Reporting & capitalisation", 
-      desc: "Mesure et amélioration",
-      items: ["Reporting exécutif", "Synthèse performances", "Retour expérience", "Plan amélioration continue"]
-    },
-  ];
+  const problems = safeArray(t("acculturationIA.problem.items"));
 
-  const deliverables = [
-    { ico: "🏛️", txt: "Gouvernance structurée" },
-    { ico: "🎯", txt: "Pilotage rigoureux" },
-    { ico: "🛡️", txt: "Gestion des risques maîtrisée" },
-    { ico: "🔄", txt: "Alignement stratégique constant" },
-    { ico: "👥", txt: "Adoption facilitée" },
-    { ico: "📊", txt: "Résultats mesurables" },
-  ];
+  const methodology = safeArray(t("acculturationIA.methodology.steps"));
 
-  const targets = [
-    { ico: "🏢", label: "Grandes entreprises" },
-    { ico: "🏛️", label: "Administrations" },
-    { ico: "🔗", label: "Organisations multi-départements" },
-    { ico: "🤝", label: "Projets multi-partenaires" },
-  ];
+  const deliverables = safeArray(t("acculturationIA.deliverables.items"));
 
-  const whyItems = [
-    { bold: "Vision stratégique + expertise technique", rest: " — double compétence rare et précieuse." },
-    { bold: "Compréhension des réalités africaines", rest: " — adapté aux contextes locaux." },
-    { bold: "Approche structurée et progressive", rest: " — méthode éprouvée et flexible." },
-    { bold: "Focus sur adoption et impact", rest: " — technologie au service du business." },
-    { bold: "Accompagnement exécutif", rest: " — soutien au plus haut niveau." },
-  ];
+  const targets = safeArray(t("acculturationIA.targets.items"));
+
+  const whyItems = safeArray(t("acculturationIA.why.items"));
 
   return (
     <div className="ai">
@@ -663,34 +615,28 @@ export default function AcculturationIA() {
           <div>
             <div className="ai-hero-tag">
               <span className="ai-hero-tag-line" />
-              ORCHESTRATION IA
+              {t("acculturationIA.hero.tag")}
             </div>
             <h1 className="ai-hero-h1">
-              Sécurisez et pilotez vos projets IA <span className="italic-gold">de bout en bout</span>
+              {t("acculturationIA.hero.title")}<span className="italic-gold">{t("acculturationIA.hero.title_highlight")}</span>
             </h1>
             <p className="ai-hero-desc">
-              Un projet IA ne réussit pas uniquement grâce à la technologie. Il réussit grâce à une coordination efficace, une gouvernance claire et un alignement stratégique constant.
-              Aifrica orchestre vos projets Data & IA pour garantir impact, adoption et résultats mesurables.
+              {t("acculturationIA.hero.description")}
             </p>
             <div className="ai-hero-actions">
               <button className="ai-btn-hero">
-                Discuter de votre projet IA <span>→</span>
+                {t("acculturationIA.hero.request_discussion")} <span>→</span>
               </button>
               <button className="ai-btn-ghost">
-                <span>▶</span> Découvrir notre méthode
+                <span>▶</span> {t("acculturationIA.hero.discover_method")}
               </button>
             </div>
           </div>
 
           <div className="ai-hero-panel">
-            <div className="ai-hero-panel-head">NOTRE RÔLE</div>
+            <div className="ai-hero-panel-head">{t("acculturationIA.hero.role_title")}</div>
             <div className="ai-hero-steps">
-              {[
-                { n: "🎯", t: "Alignement métier", d: "Objectifs & stratégie" },
-                { n: "👥", t: "Coordination équipes", d: "Technique & opérationnel" },
-                { n: "🤝", t: "Partenaires externes", d: "Intégration & synergie" },
-                { n: "⚖️", t: "Conformité", d: "Réglementaire & éthique" },
-              ].map((s, i) => (
+              {safeArray(t("acculturationIA.hero.steps")).map((s, i) => (
                 <div key={i} className="ai-hero-step">
                   <div className="ai-step-num">{s.n}</div>
                   <div className="ai-step-info">
@@ -701,8 +647,8 @@ export default function AcculturationIA() {
               ))}
             </div>
             <div className="ai-hero-panel-foot">
-              <span className="label">Approche</span>
-              <span className="value">Chef d'orchestre</span>
+              <span className="label">{t("acculturationIA.hero.approach_label")}</span>
+              <span className="value">{t("acculturationIA.hero.approach_value")}</span>
             </div>
           </div>
         </div>
@@ -716,13 +662,13 @@ export default function AcculturationIA() {
               <div className="ai-problem-header">
                 <div className="ai-eyebrow">
                   <span className="ai-eyebrow-bar" />
-                  LE PROBLÈME
+                  {t("acculturationIA.problem.eyebrow")}
                 </div>
                 <h2 className="ai-h2">
-                  De nombreux projets IA <em>échouent à cause de</em>
+                  {t("acculturationIA.problem.title")}<em>{t("acculturationIA.problem.title_highlight")}</em>
                 </h2>
                 <p className="ai-sub">
-                  L'IA nécessite une orchestration structurée pour réussir.
+                  {t("acculturationIA.problem.subtitle")}
                 </p>
               </div>
               <div className="ai-problem-list">
@@ -739,17 +685,12 @@ export default function AcculturationIA() {
             </div>
 
             <div className="ai-role-panel">
-              <h3>NOTRE RÔLE</h3>
-              <p>
-                Aifrica agit comme <strong>chef d'orchestre stratégique</strong>.
-                Nous alignons :
-              </p>
+              <h3>{t("acculturationIA.problem.role_title")}</h3>
+              <p dangerouslySetInnerHTML={{ __html: t("acculturationIA.problem.role_description") }} />
               <div className="ai-role-aligns">
-                <div className="ai-role-align">Les objectifs métiers</div>
-                <div className="ai-role-align">Les équipes techniques</div>
-                <div className="ai-role-align">Les partenaires externes</div>
-                <div className="ai-role-align">Les contraintes réglementaires</div>
-                <div className="ai-role-align">Les délais et budgets</div>
+                {safeArray(t("acculturationIA.problem.role_aligns")).map((align, i) => (
+                  <div key={i} className="ai-role-align">{align}</div>
+                ))}
               </div>
             </div>
           </div>
@@ -762,13 +703,13 @@ export default function AcculturationIA() {
           <div className="text-center">
             <div className="ai-eyebrow dark">
               <span className="ai-eyebrow-bar" />
-              NOTRE MÉTHODOLOGIE
+              {t("acculturationIA.methodology.eyebrow")}
             </div>
             <h2 className="ai-h2 dark">
-              Une orchestration <em>structurée</em> en 5 phases
+              {t("acculturationIA.methodology.title")}<em>{t("acculturationIA.methodology.title_highlight")}</em>{t("acculturationIA.methodology.title_end")}
             </h2>
             <p className="ai-sub dark" style={{ margin: '0 auto' }}>
-              De l'initialisation à la capitalisation, nous garantissons la réussite de vos projets IA.
+              {t("acculturationIA.methodology.subtitle")}
             </p>
           </div>
 
@@ -779,7 +720,7 @@ export default function AcculturationIA() {
                 <h3 className="ai-mstep-title">{step.title}</h3>
                 <p className="ai-mstep-desc">{step.desc}</p>
                 <ul className="ai-mstep-list">
-                  {step.items.map((item, j) => (
+                  {safeArray(step.items).map((item, j) => (
                     <li key={j}>{item}</li>
                   ))}
                 </ul>
@@ -796,13 +737,13 @@ export default function AcculturationIA() {
             <div>
               <div className="ai-eyebrow">
                 <span className="ai-eyebrow-bar" />
-                CE QUE VOUS OBTENEZ
+                {t("acculturationIA.deliverables.eyebrow")}
               </div>
               <h2 className="ai-h2">
-                Des garanties <em>mesurables</em> de succès
+                {t("acculturationIA.deliverables.title")}<em>{t("acculturationIA.deliverables.title_highlight")}</em>{t("acculturationIA.deliverables.title_end")}
               </h2>
               <p className="ai-sub">
-                Notre orchestration vous assure une maîtrise complète de vos projets IA.
+                {t("acculturationIA.deliverables.subtitle")}
               </p>
               <div className="ai-deliv-list" style={{ marginTop: '44px' }}>
                 {deliverables.map((item, i) => (
@@ -825,7 +766,7 @@ export default function AcculturationIA() {
               </div>
               <div className="ai-deliv-center">
                 <div className="ai-deliv-big">6+</div>
-                <div className="ai-deliv-label">Garanties de succès</div>
+                <div className="ai-deliv-label">{t("acculturationIA.deliverables.count_label")}</div>
               </div>
             </div>
           </div>
@@ -838,52 +779,51 @@ export default function AcculturationIA() {
           <div className="text-center">
             <div className="ai-eyebrow">
               <span className="ai-eyebrow-bar" />
-              CAS D'USAGE AFRIQUE
+              {t("acculturationIA.caseStudies.eyebrow")}
             </div>
             <h2 className="ai-h2">
-              Des orchestrations <em>complexes</em> menées avec succès
+              {t("acculturationIA.caseStudies.title")}<em>{t("acculturationIA.caseStudies.title_highlight")}</em>{t("acculturationIA.caseStudies.title_end")}
             </h2>
             <p className="ai-sub" style={{ margin: '0 auto' }}>
-              Découvrez comment nous coordonnons des projets multi-acteurs dans des contextes exigeants.
+              {t("acculturationIA.caseStudies.subtitle")}
             </p>
           </div>
 
           <div className="ai-case" style={{ marginTop: '64px' }}>
             <div className="ai-case-head">
               <div className="ai-case-head-left">
-                <h2>Projet logistique multi-équipes</h2>
-                <p>Contexte : Optimisation des itinéraires dans un environnement terrain complexe.</p>
+                <h2>{t("acculturationIA.caseStudies.logistics.title")}</h2>
+                <p>{t("acculturationIA.caseStudies.logistics.problem")}</p>
               </div>
-              <div className="ai-case-badge">Coordination</div>
+              <div className="ai-case-badge">{t("acculturationIA.caseStudies.logistics.type")}</div>
             </div>
             <div className="ai-case-cols">
               <div className="ai-case-col">
-                <div className="ai-case-col-tag">Défi</div>
+                <div className="ai-case-col-tag">{t("acculturationIA.caseStudies.logistics.challenge.tag")}</div>
                 <p>
-                  Coordination entre opérationnel, IT, data et direction avec des intérêts divergents et des contraintes terrain fortes.
+                  {t("acculturationIA.caseStudies.logistics.challenge.description")}
                 </p>
               </div>
               <div className="ai-case-col">
-                <div className="ai-case-col-tag">Orchestration Aifrica</div>
+                <div className="ai-case-col-tag">{t("acculturationIA.caseStudies.logistics.orchestration.tag")}</div>
                 <ul>
-                  <li>Cadrage clair avec toutes parties prenantes</li>
-                  <li>Planification progressive par sprints</li>
-                  <li>Reporting stratégique hebdomadaire</li>
-                  <li>Gestion active des dépendances</li>
+                  {safeArray(t("acculturationIA.caseStudies.logistics.orchestration.items")).map((item, i) => (
+                    <li key={i}>{item}</li>
+                  ))}
                 </ul>
               </div>
               <div className="ai-case-col">
-                <div className="ai-case-col-tag">Méthode</div>
+                <div className="ai-case-col-tag">{t("acculturationIA.caseStudies.logistics.method.tag")}</div>
                 <p>
-                  Comité de pilotage mensuel, réunions techniques hebdomadaires, communication transparente, gestion proactive des risques.
+                  {t("acculturationIA.caseStudies.logistics.method.description")}
                 </p>
               </div>
               <div className="ai-case-col">
-                <div className="ai-case-col-tag">Résultat attendu</div>
+                <div className="ai-case-col-tag">{t("acculturationIA.caseStudies.logistics.results.tag")}</div>
                 <ul>
-                  <li className="ai-case-result">Projet livré dans les délais</li>
-                  <li className="ai-case-result">Adoption terrain facilitée</li>
-                  <li className="ai-case-result">ROI atteint à 6 mois</li>
+                  {safeArray(t("acculturationIA.caseStudies.logistics.results.items")).map((item, i) => (
+                    <li key={i} className="ai-case-result">{item}</li>
+                  ))}
                 </ul>
               </div>
             </div>
@@ -892,39 +832,38 @@ export default function AcculturationIA() {
           <div className="ai-case" style={{ marginTop: '40px' }}>
             <div className="ai-case-head">
               <div className="ai-case-head-left">
-                <h2>Projet télécom</h2>
-                <p>Coordination entre service client, équipe data, IT et direction.</p>
+                <h2>{t("acculturationIA.caseStudies.telecom.title")}</h2>
+                <p>{t("acculturationIA.caseStudies.telecom.problem")}</p>
               </div>
-              <div className="ai-case-badge">Réduction churn</div>
+              <div className="ai-case-badge">{t("acculturationIA.caseStudies.telecom.type")}</div>
             </div>
             <div className="ai-case-cols">
               <div className="ai-case-col">
-                <div className="ai-case-col-tag">Objectif</div>
+                <div className="ai-case-col-tag">{t("acculturationIA.caseStudies.telecom.objective.tag")}</div>
                 <p>
-                  Réduction du churn client avec suivi KPI précis et adoption par les équipes commerciales et support.
+                  {t("acculturationIA.caseStudies.telecom.objective.description")}
                 </p>
               </div>
               <div className="ai-case-col">
-                <div className="ai-case-col-tag">Coordination</div>
+                <div className="ai-case-col-tag">{t("acculturationIA.caseStudies.telecom.coordination.tag")}</div>
                 <ul>
-                  <li>Alignement objectifs métiers-techniques</li>
-                  <li>Gestion intégration systèmes existants</li>
-                  <li>Formation progressive des équipes</li>
-                  <li>Monitoring continu des performances</li>
+                  {safeArray(t("acculturationIA.caseStudies.telecom.coordination.items")).map((item, i) => (
+                    <li key={i}>{item}</li>
+                  ))}
                 </ul>
               </div>
               <div className="ai-case-col">
-                <div className="ai-case-col-tag">Gouvernance</div>
+                <div className="ai-case-col-tag">{t("acculturationIA.caseStudies.telecom.governance.tag")}</div>
                 <p>
-                  RACI clarifié, comité de suivi hebdomadaire, reporting exécutif mensuel, gestion des changements anticipée.
+                  {t("acculturationIA.caseStudies.telecom.governance.description")}
                 </p>
               </div>
               <div className="ai-case-col">
-                <div className="ai-case-col-tag">Impact</div>
+                <div className="ai-case-col-tag">{t("acculturationIA.caseStudies.telecom.impact.tag")}</div>
                 <ul>
-                  <li className="ai-case-result">−25% taux de churn</li>
-                  <li className="ai-case-result">+40% satisfaction client</li>
-                  <li className="ai-case-result">Adoption 95% équipes</li>
+                  {safeArray(t("acculturationIA.caseStudies.telecom.impact.items")).map((item, i) => (
+                    <li key={i} className="ai-case-result">{item}</li>
+                  ))}
                 </ul>
               </div>
             </div>
@@ -938,13 +877,13 @@ export default function AcculturationIA() {
           <div className="text-center">
             <div className="ai-eyebrow dark">
               <span className="ai-eyebrow-bar" />
-              POUR QUI ?
+              {t("acculturationIA.targets.eyebrow")}
             </div>
             <h2 className="ai-h2 dark">
-              Nous orchestrons <em>les projets complexes</em> nécessitant coordination
+              {t("acculturationIA.targets.title")}<em>{t("acculturationIA.targets.title_highlight")}</em>{t("acculturationIA.targets.title_end")}
             </h2>
             <p className="ai-sub dark" style={{ margin: '0 auto' }}>
-              Notre expertise est particulièrement précieuse pour les projets multi-acteurs et stratégiques.
+              {t("acculturationIA.targets.subtitle")}
             </p>
           </div>
 
@@ -966,13 +905,13 @@ export default function AcculturationIA() {
             <div>
               <div className="ai-eyebrow">
                 <span className="ai-eyebrow-bar" />
-                POURQUOI AIFRICA ?
+                {t("acculturationIA.why.eyebrow")}
               </div>
               <h2 className="ai-h2">
-                L'orchestration <em>africaine</em> qui garantit le succès
+                {t("acculturationIA.why.title")}<em>{t("acculturationIA.why.title_highlight")}</em>{t("acculturationIA.why.title_end")}
               </h2>
               <p className="ai-sub">
-                Nous combinons vision stratégique et expertise terrain pour piloter vos projets IA vers l'excellence.
+                {t("acculturationIA.why.subtitle")}
               </p>
               <div className="ai-why-list">
                 {whyItems.map((item, i) => (
@@ -988,15 +927,14 @@ export default function AcculturationIA() {
 
             <div className="ai-brand">
               <div className="ai-brand-wordmark">
-                AIF<span>RICA</span>
+                {t("acculturationIA.why.brand_wordmark")}<span>{t("acculturationIA.why.brand_wordmark_end")}</span>
               </div>
-              <div className="ai-brand-sub">ORCHESTRATION IA</div>
+              <div className="ai-brand-sub">{t("acculturationIA.why.brand_sub")}</div>
               <div className="ai-brand-divider" />
               <div className="ai-brand-vals">
-                <div className="ai-brand-val">Vision stratégique</div>
-                <div className="ai-brand-val">Coordination experte</div>
-                <div className="ai-brand-val">Résultats garantis</div>
-                <div className="ai-brand-val">Excellence opérationnelle</div>
+                {safeArray(t("acculturationIA.why.values")).map((v, i) => (
+                  <div key={i} className="ai-brand-val">{v}</div>
+                ))}
               </div>
             </div>
           </div>
@@ -1009,23 +947,21 @@ export default function AcculturationIA() {
           <div className="text-center">
             <div className="ai-eyebrow">
               <span className="ai-eyebrow-bar" />
-              DURÉE
+              {t("acculturationIA.duration.eyebrow")}
             </div>
             <h2 className="ai-h2">
-              Engagement <em>flexible</em> selon vos besoins
+              {t("acculturationIA.duration.title")}<em>{t("acculturationIA.duration.title_highlight")}</em>{t("acculturationIA.duration.title_end")}
             </h2>
             <p className="ai-sub" style={{ margin: '0 auto' }}>
-              De quelques semaines à plusieurs mois, nous nous adaptons à la complexité de vos projets.
+              {t("acculturationIA.duration.subtitle")}
             </p>
           </div>
 
           <div className="ai-dur-card">
-            <div className="ai-dur-ico">⏱️</div>
-            <h3>Engagement variable selon le projet</h3>
+            <div className="ai-dur-ico">{t("acculturationIA.duration.description.ico")}</div>
+            <h3>{t("acculturationIA.duration.description.title")}</h3>
             <p>
-              Notre durée d'intervention s'adapte à la complexité, la taille et les enjeux de votre projet IA. 
-              De l'accompagnement ponctuel au pilotage long terme, nous trouvons le bon équilibre entre 
-              expertise transférée et autonomie préservée.
+              {t("acculturationIA.duration.description.content")}
             </p>
           </div>
         </div>
@@ -1035,15 +971,15 @@ export default function AcculturationIA() {
       <section className="ai-cta">
         <div className="ai-cta-glow" />
         <div className="ai-cta-inner">
-          <div className="ai-cta-eyebrow">PRÊT À RÉUSSIR ?</div>
+          <div className="ai-cta-eyebrow">{t("acculturationIA.cta.eyebrow")}</div>
           <h2 className="ai-cta-title">
-            Transformez vos projets IA en <span className="gold">succès opérationnel</span> <span className="italic">durable</span>
+            {t("acculturationIA.cta.title")}<span className="gold">{t("acculturationIA.cta.title_highlight")}</span>{t("acculturationIA.cta.title_end")} <span className="italic">{t("acculturationIA.cta.title_italic")}</span>
           </h2>
           <p className="ai-cta-sub">
-            Confiez vos projets Data & IA à notre expertise en orchestration pour garantir impact, adoption et résultats mesurables.
+            {t("acculturationIA.cta.description")}
           </p>
           <button className="ai-cta-btn">
-            Planifier un échange stratégique <span>→</span>
+            {t("acculturationIA.cta.button")} <span>→</span>
           </button>
         </div>
       </section>
@@ -1051,10 +987,10 @@ export default function AcculturationIA() {
       {/* ── FOOTER ── */}
       <footer className="ai-footer">
         <div className="ai-footer-logo">
-          AIF<span>RICA</span>
+          {t("acculturationIA.footer.logo")}<span>{t("acculturationIA.footer.logo_end")}</span>
         </div>
         <div className="ai-footer-text">
-          © 2024 Aifrica - Orchestration IA pour l'Afrique
+          {t("acculturationIA.footer.copyright")}
         </div>
       </footer>
     </div>

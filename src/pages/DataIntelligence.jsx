@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useLanguage } from "../contexts/LanguageContext";
 import { 
   FaChevronDown, 
   FaArrowRight, 
@@ -496,36 +497,37 @@ const styles = `
 `;
 
 const services = [
-  { icon: <FaDatabase />, cls: "ic-blue", title: "Collecte & Stockage", desc: "Infrastructure de données robuste et sécurisée pour collecter, stocker et gérer vos volumes de données." },
-  { icon: <FaChartBar />, cls: "ic-gold", title: "Analyse & Visualisation", desc: "Tableaux de bord interactifs et outils d'analyse pour transformer vos données en insights actionnables." },
-  { icon: <FaSearch />, cls: "ic-green", title: "Data Mining", desc: "Exploration avancée de vos données pour découvrir des tendances cachées et des opportunités." },
-  { icon: <FaCog />, cls: "ic-indigo", title: "Machine Learning", desc: "Modèles prédictifs et algorithmes d'apprentissage pour automatiser vos processus décisionnels." },
-  { icon: <FaShieldAlt />, cls: "ic-orange", title: "Gouvernance & Sécurité", desc: "Conformité RGPD, anonymisation et protection des données pour garantir la confiance." },
-  { icon: <FaRocket />, cls: "ic-red", title: "Industrialisation", desc: "Déploiement à l'échelle et monitoring pour assurer la performance et la fiabilité." },
+  { icon: <FaDatabase />, cls: "ic-blue", titleKey: "dataIntelligence.services.items.0.title", descKey: "dataIntelligence.services.items.0.description" },
+  { icon: <FaChartBar />, cls: "ic-gold", titleKey: "dataIntelligence.services.items.1.title", descKey: "dataIntelligence.services.items.1.description" },
+  { icon: <FaSearch />, cls: "ic-green", titleKey: "dataIntelligence.services.items.2.title", descKey: "dataIntelligence.services.items.2.description" },
+  { icon: <FaCog />, cls: "ic-indigo", titleKey: "dataIntelligence.services.items.3.title", descKey: "dataIntelligence.services.items.3.description" },
+  { icon: <FaShieldAlt />, cls: "ic-orange", titleKey: "dataIntelligence.services.items.4.title", descKey: "dataIntelligence.services.items.4.description" },
+  { icon: <FaRocket />, cls: "ic-red", titleKey: "dataIntelligence.services.items.5.title", descKey: "dataIntelligence.services.items.5.description" },
 ];
 
 const benefits = [
-  { icon: <FaChartLine />, title: "Performance Opérationnelle", desc: "Optimisez vos processus et réduisez vos coûts grâce à l'analyse prédictive." },
-  { icon: <FaBrain />, title: "Prise de Décision", desc: "Basez vos stratégies sur des données fiables et des prédictions précises." },
-  { icon: <FaUsers />, title: "Avantage Concurrentiel", desc: "Anticipez les tendances du marché et devancez vos concurrents." },
+  { icon: <FaChartLine />, titleKey: "dataIntelligence.benefits.items.0.title", descKey: "dataIntelligence.benefits.items.0.description" },
+  { icon: <FaBrain />, titleKey: "dataIntelligence.benefits.items.1.title", descKey: "dataIntelligence.benefits.items.1.description" },
+  { icon: <FaUsers />, titleKey: "dataIntelligence.benefits.items.2.title", descKey: "dataIntelligence.benefits.items.2.description" },
 ];
 
 const process = [
-  { n: "1", title: "Audit Data", desc: "Évaluation complète de votre patrimoine de données et de vos infrastructures." },
-  { n: "2", title: "Stratégie", desc: "Définition d'une feuille de route data alignée avec vos objectifs business." },
-  { n: "3", title: "Déploiement", desc: "Mise en œuvre des solutions d'analyse et de machine learning." },
-  { n: "4", title: "Optimisation", desc: "Monitoring continu et amélioration itérative de vos performances." },
+  { n: "1", titleKey: "dataIntelligence.process.items.0.title", descKey: "dataIntelligence.process.items.0.description" },
+  { n: "2", titleKey: "dataIntelligence.process.items.1.title", descKey: "dataIntelligence.process.items.1.description" },
+  { n: "3", titleKey: "dataIntelligence.process.items.2.title", descKey: "dataIntelligence.process.items.2.description" },
+  { n: "4", titleKey: "dataIntelligence.process.items.3.title", descKey: "dataIntelligence.process.items.3.description" },
 ];
 
 const faqs = [
-  { q: "Qu'est-ce que la Data Intelligence ?", a: "La Data Intelligence est l'ensemble des processus et technologies qui permettent de transformer les données brutes en informations pertinentes pour prendre de meilleures décisions business." },
-  { q: "Comment garantir la sécurité de mes données ?", a: "Nous mettons en place des protocoles de sécurité avancés, respectons les normes RGPD et assurons la confidentialité totale de vos informations." },
-  { q: "Quel ROI attendre de la Data Intelligence ?", a: "Nos clients observent en moyenne une réduction de 30% des coûts opérationnels et une augmentation de 25% de leur chiffre d'affaires grâce aux insights data." },
-  { q: "Faut-il des compétences techniques en interne ?", a: "Nous accompagnons vos équipes et assurons la montée en compétences. Une équipe data minimale est suffisante pour démarrer." },
+  { qKey: "dataIntelligence.faq.items.0.question", aKey: "dataIntelligence.faq.items.0.answer" },
+  { qKey: "dataIntelligence.faq.items.1.question", aKey: "dataIntelligence.faq.items.1.answer" },
+  { qKey: "dataIntelligence.faq.items.2.question", aKey: "dataIntelligence.faq.items.2.answer" },
+  { qKey: "dataIntelligence.faq.items.3.question", aKey: "dataIntelligence.faq.items.3.answer" },
 ];
 
 export default function DataIntelligence() {
   const [activeIndex, setActiveIndex] = useState(null);
+  const { t } = useLanguage();
   const toggle = (i) => setActiveIndex(activeIndex === i ? null : i);
 
   return (
@@ -536,19 +538,19 @@ export default function DataIntelligence() {
       <section className="data-hero" id="services">
         <div className="data-hero-inner">
           <div className="data-hero-badge">
-            <FaDatabase /> Data Intelligence
+            <FaDatabase /> {t('dataIntelligence.hero.badge')}
           </div>
           <h1>
-            Valorisez vos données avec <span className="gold">intelligence</span>
+            {t('dataIntelligence.hero.title')} <span className="gold">{t('dataIntelligence.hero.title_highlight')}</span>
           </h1>
           <div className="data-hero-quote">
-            "Les données sont le pétrole du 21ème siècle, mais l'intelligence est le raffinage."
+            "{t('dataIntelligence.hero.quote')}"
           </div>
           <p className="data-hero-desc">
-            Transformez vos données en avantage concurrentiel. Aifrica vous accompagne dans la mise en place d'une stratégie data complète, de la collecte à l'industrialisation.
+            {t('dataIntelligence.hero.description')}
           </p>
           <a href="#contact" className="data-hero-cta">
-            Démarrer la transformation <FaArrowRight />
+            {t('dataIntelligence.hero.cta')} <FaArrowRight />
           </a>
         </div>
       </section>
@@ -556,17 +558,17 @@ export default function DataIntelligence() {
       {/* SERVICES */}
       <section className="data-services">
         <div className="data-section-inner">
-          <p className="data-section-label">Nos services</p>
-          <h2 className="data-section-title">Une approche complète de la Data</h2>
+          <p className="data-section-label">{t('dataIntelligence.services.label')}</p>
+          <h2 className="data-section-title">{t('dataIntelligence.services.title')}</h2>
           <p className="data-section-sub">
-            De la collecte à l'industrialisation, nous couvrons toute la chaîne de valeur de vos données.
+            {t('dataIntelligence.services.subtitle')}
           </p>
           <div className="data-services-grid">
             {services.map((service, i) => (
               <div className="data-service-card" key={i}>
                 <div className={`data-service-icon ${service.cls}`}>{service.icon}</div>
-                <h4>{service.title}</h4>
-                <p>{service.desc}</p>
+                <h4>{t(service.titleKey)}</h4>
+                <p>{t(service.descKey)}</p>
               </div>
             ))}
           </div>
@@ -576,17 +578,17 @@ export default function DataIntelligence() {
       {/* BENEFITS */}
       <section className="data-benefits">
         <div className="data-section-inner">
-          <p className="data-section-label">Bénéfices</p>
-          <h2 className="data-section-title">Pourquoi la Data Intelligence ?</h2>
+          <p className="data-section-label">{t('dataIntelligence.benefits.label')}</p>
+          <h2 className="data-section-title">{t('dataIntelligence.benefits.title')}</h2>
           <p className="data-section-sub">
-            Les avantages concrets pour votre entreprise africaine.
+            {t('dataIntelligence.benefits.subtitle')}
           </p>
           <div className="data-benefits-grid">
             {benefits.map((benefit, i) => (
               <div className="data-benefit-card" key={i}>
                 <div className="data-benefit-icon">{benefit.icon}</div>
-                <h3>{benefit.title}</h3>
-                <p>{benefit.desc}</p>
+                <h3>{t(benefit.titleKey)}</h3>
+                <p>{t(benefit.descKey)}</p>
               </div>
             ))}
           </div>
@@ -596,17 +598,17 @@ export default function DataIntelligence() {
       {/* PROCESS */}
       <section className="data-process">
         <div className="data-section-inner">
-          <p className="data-section-label">Processus</p>
-          <h2 className="data-section-title">Notre méthodologie</h2>
+          <p className="data-section-label">{t('dataIntelligence.process.label')}</p>
+          <h2 className="data-section-title">{t('dataIntelligence.process.title')}</h2>
           <p className="data-section-sub">
-            Une approche structurée pour garantir le succès de votre transformation data.
+            {t('dataIntelligence.process.subtitle')}
           </p>
           <div className="data-process-grid">
             {process.map((step, i) => (
               <div className="data-process-step" key={i}>
                 <div className="data-step-num">{step.n}</div>
-                <h3>{step.title}</h3>
-                <p>{step.desc}</p>
+                <h3>{t(step.titleKey)}</h3>
+                <p>{t(step.descKey)}</p>
               </div>
             ))}
           </div>
@@ -616,10 +618,10 @@ export default function DataIntelligence() {
       {/* FAQ */}
       <section className="data-faq">
         <div className="data-section-inner" style={{ textAlign: "center" }}>
-          <p className="data-section-label">FAQ</p>
-          <h2 className="data-section-title">Questions fréquentes</h2>
+          <p className="data-section-label">{t('dataIntelligence.faq.label')}</p>
+          <h2 className="data-section-title">{t('dataIntelligence.faq.title')}</h2>
           <p className="data-section-sub" style={{ margin: "0 auto 0" }}>
-            Tout ce que vous devez savoir sur la Data Intelligence
+            {t('dataIntelligence.faq.subtitle')}
           </p>
         </div>
         <div className="data-faq-list">
@@ -630,11 +632,11 @@ export default function DataIntelligence() {
               onClick={() => toggle(i)}
             >
               <div className="data-faq-q">
-                <h3>{faq.q}</h3>
+                <h3>{t(faq.qKey)}</h3>
                 <FaChevronDown className={`data-faq-chevron ${activeIndex === i ? "open" : ""}`} />
               </div>
               {activeIndex === i && (
-                <div className="data-faq-a">{faq.a}</div>
+                <div className="data-faq-a">{t(faq.aKey)}</div>
               )}
             </div>
           ))}
@@ -644,12 +646,12 @@ export default function DataIntelligence() {
       {/* CTA */}
       <section className="data-cta">
         <div className="data-cta-inner">
-          <h2>Prêt à transformer vos <span className="gold">données en valeur</span> ?</h2>
+          <h2>{t('dataIntelligence.cta.title')} <span className="gold">{t('dataIntelligence.cta.title_highlight')}</span>{t('dataIntelligence.cta.title_end')}</h2>
           <p>
-            Rejoignez les entreprises africaines qui accélèrent leur croissance grâce à l'intelligence de leurs données.
+            {t('dataIntelligence.cta.description')}
           </p>
           <a href="#contact" className="data-cta-btn">
-            Nous contacter <FaArrowRight />
+            {t('dataIntelligence.cta.button')} <FaArrowRight />
           </a>
         </div>
       </section>

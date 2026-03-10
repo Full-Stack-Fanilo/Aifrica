@@ -2,6 +2,8 @@ import { useState } from "react";
 
 import { Link } from "react-router-dom";
 
+import { useLanguage } from "../contexts/LanguageContext";
+
 import "../css/BlogAccueil.css";
 
 import blog1 from "../assets/images/ia.png";
@@ -18,139 +20,28 @@ import blog6 from "../assets/images/automatisation.png";
 
 
 
-const categories = ["Afrique", "Entreprise", "Métier", "Technologie"];
-
-
-
-const allBlogs = [
-
-  {
-
-    id: 1,
-
-    image: blog1,
-
-    title: "Baromètre européen de l'IA : les tendances pour 2025",
-
-    category: "Afrique",
-
-    date: "19/03/2025",
-
-    description:
-
-      "Le Baromètre européen de l'IA dévoile les tendances majeures attendues en 2025.",
-
-    link: "#",
-
-  },
-
-  {
-
-    id: 2,
-
-    image: blog2,
-
-    title: "Comment l'IA transforme les entreprises africaines",
-
-    category: "Afrique",
-
-    date: "20/02/2025",
-
-    description:
-
-      "L'impact de l'intelligence artificielle dans les PME en Afrique.",
-
-    link: "#",
-
-  },
-
-  {
-
-    id: 3,
-
-    image: blog3,
-
-    title: "L'IA dans le secteur de la finance",
-
-    category: "Entreprise",
-
-    date: "15/03/2025",
-
-    description:
-
-      "Comment les entreprises financières utilisent l'IA pour optimiser leurs opérations.",
-
-    link: "#",
-
-  },
-
-  {
-
-    id: 4,
-
-    image: blog4,
-
-    title: "L'essor du Big Data dans l'agriculture",
-
-    category: "Technologie",
-
-    date: "10/03/2025",
-
-    description:
-
-      "Le Big Data révolutionne l'agriculture avec des solutions innovantes.",
-
-    link: "#",
-
-  },
-
-  {
-
-    id: 5,
-
-    image: blog5,
-
-    title: "L'avenir du travail avec l'automatisation",
-
-    category: "Métier",
-
-    date: "05/03/2025",
-
-    description:
-
-      "L'automatisation transforme les métiers et crée de nouvelles opportunités.",
-
-    link: "#",
-
-  },
-
-  {
-
-    id: 6,
-
-    image: blog6,
-
-    title: "Cybersécurité et protection des données",
-
-    category: "Technologie",
-
-    date: "01/03/2025",
-
-    description:
-
-      "Les enjeux de la cybersécurité à l'ère de l'intelligence artificielle.",
-
-    link: "#",
-
-  },
-
-];
 
 
 
 export default function BlogAccueil() {
 
-  const [activeCategory, setActiveCategory] = useState("Afrique");
+  const { t } = useLanguage();
+
+  const [activeCategory, setActiveCategory] = useState(t('blogAccueil.categories')[0]);
+
+  const blogImages = [blog1, blog2, blog3, blog4, blog5, blog6];
+
+  const allBlogs = t('blogAccueil.blogs').map((blog, index) => ({
+
+    ...blog,
+
+    id: index + 1,
+
+    image: blogImages[index],
+
+    link: "#"
+
+  }));
 
 
 
@@ -192,11 +83,11 @@ export default function BlogAccueil() {
 
       <header className="blog-header">
 
-        <h1 className="blog-title">
+        <h1 className="blog-title"
 
-          LES <span>Infos</span>
+          dangerouslySetInnerHTML={{ __html: t('blogAccueil.title') }}
 
-        </h1>
+        />
 
 
 
@@ -204,7 +95,7 @@ export default function BlogAccueil() {
 
         <div className="blog-categories">
 
-          {categories.map((cat) => (
+          {t('blogAccueil.categories').map((cat) => (
 
             <button
 
@@ -256,7 +147,7 @@ export default function BlogAccueil() {
 
               <Link to={blog.link} className="blog-card-link">
 
-                Lire plus
+                {t('blogAccueil.readMore')}
 
                 <svg
 

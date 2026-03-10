@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
+import { useLanguage } from "../contexts/LanguageContext";
 
 const CSS = `
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
@@ -671,6 +672,7 @@ function AnimCounter({ target, suffix = "" }) {
 
 export default function DiagnosticDataIA() {
   const [activeStep, setActiveStep] = useState(null);
+  const { t, language } = useLanguage();
 
   useEffect(() => {
     const style = document.createElement("style");
@@ -679,52 +681,22 @@ export default function DiagnosticDataIA() {
     return () => document.head.removeChild(style);
   }, []);
 
-  const steps = [
-    { n: "1", title: "Audit", desc: "Analyse complète de vos flux de données, systèmes et processus opérationnels.", chips: ["Flux data", "Systèmes"] },
-    { n: "2", title: "Évaluation", desc: "Diagnostic approfondi de maturité technique et organisationnelle.", chips: ["Technique", "Organisation"] },
-    { n: "3", title: "Opportunités", desc: "Qualification des cas d'usage IA par impact, faisabilité et ROI estimé.", chips: ["Impact", "ROI", "Coût"] },
-    { n: "4", title: "Roadmap", desc: "Feuille de route stratégique priorisée sur 3, 6 et 12 mois.", chips: ["0–3m", "3–6m", "6–12m"] },
-  ];
+  // Fonction helper pour s'assurer que nous avons un tableau
+  const safeArray = (value) => {
+    return Array.isArray(value) ? value : [];
+  };
 
-  const analysisCards = [
-    { ico: "🗃️", n: "01", title: "Vos données", items: ["Sources existantes", "Formats & structures", "Qualité & cohérence", "Accessibilité"] },
-    { ico: "⚙️", n: "02", title: "Vos outils", items: ["ERP & CRM", "Logiciels métiers", "Tableurs & fichiers", "Infrastructure IT"] },
-    { ico: "🛡️", n: "03", title: "Maturité Data & IA", items: ["Gouvernance", "Sécurité des données", "Compétences internes", "Processus décisionnels"] },
-    { ico: "💡", n: "04", title: "Opportunités IA", items: ["Cas d'usage clés", "Quick wins identifiés", "ROI potentiel chiffré", "Risques & contraintes"] },
-  ];
+  const steps = safeArray(t("diagnosticDataIA.methodology.steps"));
 
-  const deliverables = [
-    { ico: "📋", txt: "Rapport de diagnostic détaillé" },
-    { ico: "🗺️", txt: "Cartographie complète de vos données" },
-    { ico: "📌", txt: "Plan d'action priorisé" },
-    { ico: "⚡", txt: "Identification des quick wins" },
-    { ico: "🔧", txt: "Recommandations technologiques réalistes" },
-    { ico: "🎯", txt: "Vision stratégique alignée business" },
-  ];
+  const analysisCards = safeArray(t("diagnosticDataIA.analysis.cards"));
 
-  const challenges = [
-    { ico: "📊", t: "Données dispersées", sub: "Entre Excel, ERP, CRM et papier, sans synchronisation." },
-    { ico: "📋", t: "Reporting inexistant", sub: "Absence de tableaux de bord et d'indicateurs fiables." },
-    { ico: "🎯", t: "Décisions sans données", sub: "Pilotage à vue, sans KPIs de performance clairs." },
-    { ico: "🤖", t: "IA : par où commencer ?", sub: "Ambition d'IA sans feuille de route ni méthode." },
-    { ico: "💸", t: "Investissements mal ciblés", sub: "Outils achetés sans stratégie ni mesure de retour." },
-  ];
+  const deliverables = safeArray(t("diagnosticDataIA.deliverables.items"));
 
-  const targets = [
-    { ico: "🏢", label: "PME en croissance" },
-    { ico: "🚀", label: "Startups ambitieuses" },
-    { ico: "🏛️", label: "Grandes entreprises" },
-    { ico: "🏗️", label: "Administrations publiques" },
-    { ico: "🔗", label: "Organisations data-first" },
-  ];
+  const challenges = safeArray(t("diagnosticDataIA.challenges.items"));
 
-  const whyItems = [
-    { bold: "Approche africaine", rest: " — adaptée aux réalités locales et aux contextes spécifiques du continent." },
-    { bold: "Stratégie + opérationnel", rest: " — vision long terme combinée à un pragmatisme terrain immédiat." },
-    { bold: "Impact mesurable", rest: " — chaque recommandation est orientée vers un résultat concret et quantifié." },
-    { bold: "Honnêteté radicale", rest: " — aucune promesse irréaliste, aucun effet de mode technologique." },
-    { bold: "Trajectoire maîtrisée", rest: " — progression progressive et sécurisée, sans rupture brutale." },
-  ];
+  const targets = safeArray(t("diagnosticDataIA.targets.items"));
+
+  const whyItems = safeArray(t("diagnosticDataIA.why.items"));
 
   return (
     <div className="ai">
@@ -737,45 +709,40 @@ export default function DiagnosticDataIA() {
           <div>
             <div className="ai-hero-tag">
               <span className="ai-hero-tag-line" />
-              Porte d'entrée stratégique d'Aifrica
+              {t("diagnosticDataIA.hero.tag")}
             </div>
             <h1 className="ai-hero-h1">
-              Clarifiez votre potentiel <span className="italic-gold">Data & IA</span> avant d'investir.
+              {t("diagnosticDataIA.hero.title")}<span className="italic-gold">{t("diagnosticDataIA.hero.title_highlight")}</span>{t("diagnosticDataIA.hero.title_end")}
             </h1>
             <p className="ai-hero-desc">
-              Le Diagnostic Aifrica identifie vos opportunités concrètes, vos risques réels et votre trajectoire réaliste de transformation — en 2 à 4 semaines, sans jargon.
+              {t("diagnosticDataIA.hero.description")}
             </p>
             <div className="ai-hero-actions">
               <button className="ai-btn-hero">
-                Demander mon diagnostic <span>→</span>
+                {t("diagnosticDataIA.hero.request_diagnostic")} <span>→</span>
               </button>
               <button className="ai-btn-ghost">
-                <span>▶</span> Découvrir la méthode
+                <span>▶</span> {t("diagnosticDataIA.hero.discover_method")}
               </button>
             </div>
           </div>
 
           <div className="ai-hero-panel">
-            <div className="ai-hero-panel-head">Notre approche en 4 étapes</div>
+            <div className="ai-hero-panel-head">{t("diagnosticDataIA.hero.approach_title")}</div>
             <div className="ai-hero-steps">
-              {[
-                { n: "1", t: "Audit complet", d: "Données, outils et processus" },
-                { n: "2", t: "Évaluation de maturité", d: "Technique & organisationnelle" },
-                { n: "3", t: "Cas d'usage IA", d: "Priorisés par impact et ROI" },
-                { n: "4", t: "Roadmap stratégique", d: "0 à 12 mois, actionnable" },
-              ].map((s, i) => (
+              {safeArray(t("diagnosticDataIA.hero.steps")).map((s, i) => (
                 <div key={i} className="ai-hero-step">
                   <div className="ai-step-num">{s.n}</div>
                   <div className="ai-step-info">
-                    <h5>{s.t}</h5>
-                    <p>{s.d}</p>
+                    <h5>{s.title}</h5>
+                    <p>{s.desc}</p>
                   </div>
                 </div>
               ))}
             </div>
             <div className="ai-hero-panel-foot">
-              <span className="label">Durée indicative</span>
-              <span className="value">2 – 4 semaines</span>
+              <span className="label">{t("diagnosticDataIA.hero.duration_label")}</span>
+              <span className="value">{t("diagnosticDataIA.hero.duration_value")}</span>
             </div>
           </div>
         </div>
@@ -784,15 +751,10 @@ export default function DiagnosticDataIA() {
       {/* ── STATS ── */}
       <div className="ai-stats">
         <div className="ai-stats-inner">
-          {[
-            { num: 4, suf: "", label: "axes d'analyse couverts" },
-            { num: 6, suf: "", label: "livrables stratégiques inclus" },
-            { num: 12, suf: " mois", label: "de roadmap opérationnelle" },
-            { num: 100, suf: "%", label: "orienté impact mesurable" },
-          ].map((s, i) => (
+          {safeArray(t("diagnosticDataIA.stats")).map((s, i) => (
             <div key={i} className="ai-stat">
               <div className="ai-stat-num">
-                <AnimCounter target={s.num} /><sub>{s.suf}</sub>
+                <AnimCounter target={s.num} /><sub>{s.suffix}</sub>
               </div>
               <div className="ai-stat-label">{s.label}</div>
               <div className="ai-stat-bar" />
@@ -809,18 +771,18 @@ export default function DiagnosticDataIA() {
               <div className="ai-chal-header">
                 <div className="ai-eyebrow">
                   <span className="ai-eyebrow-bar" />
-                  Pourquoi un diagnostic d'abord
+                  {t("diagnosticDataIA.challenges.eyebrow")}
                 </div>
-                <h2 className="ai-h2">Les défis courants<br />des organisations<br /><em>en Afrique</em></h2>
-                <p className="ai-sub">La majorité des entreprises africaines partagent ces obstacles avant de lancer un projet IA ou data.</p>
+                <h2 className="ai-h2">{t("diagnosticDataIA.challenges.title")}<br />{t("diagnosticDataIA.challenges.title_line2")}<br />{t("diagnosticDataIA.challenges.title_line3")}<em>{t("diagnosticDataIA.challenges.title_highlight")}</em></h2>
+                <p className="ai-sub">{t("diagnosticDataIA.challenges.subtitle")}</p>
               </div>
               <div className="ai-chal-list">
-                {challenges.map((c, i) => (
+                {safeArray(challenges).map((c, i) => (
                   <div key={i} className="ai-chal-item">
                     <div className="ai-chal-ico">{c.ico}</div>
                     <div className="ai-chal-text">
-                      <h5>{c.t}</h5>
-                      <p>{c.sub}</p>
+                      <h5>{c.title}</h5>
+                      <p>{c.desc}</p>
                     </div>
                   </div>
                 ))}
@@ -829,13 +791,13 @@ export default function DiagnosticDataIA() {
 
             <div>
               <div className="ai-risk-panel">
-                <h3>Sans diagnostic,<br />quel est le vrai risque ?</h3>
+                <h3>{t("diagnosticDataIA.challenges.risk_title")}<br />{t("diagnosticDataIA.challenges.risk_title_line2")}</h3>
                 <p>
-                  Budgets gaspillés sur des outils inadaptés. Projets IA sans suite. Équipes démotivées face à des promesses non tenues. Le diagnostic vous donne une vision claire <strong>avant</strong> d'investir quoi que ce soit.
+                  {t("diagnosticDataIA.challenges.risk_description")}
                 </p>
                 <div className="ai-risk-tags">
-                  {["Temps économisé", "Budget optimisé", "Risques maîtrisés", "Décisions éclairées"].map(t => (
-                    <span key={t} className="ai-tag">{t}</span>
+                  {safeArray(t("diagnosticDataIA.challenges.risk_tags")).map(tag => (
+                    <span key={tag} className="ai-tag">{tag}</span>
                   ))}
                 </div>
               </div>
@@ -849,12 +811,12 @@ export default function DiagnosticDataIA() {
         <div className="ai-container">
           <div className="ai-eyebrow dark">
             <span className="ai-eyebrow-bar" />
-            Notre périmètre d'analyse
+            {t("diagnosticDataIA.analysis.eyebrow")}
           </div>
-          <h2 className="ai-h2 dark">Ce que nous <em>analysons</em></h2>
-          <p className="ai-sub dark">Quatre dimensions clés pour une vision complète et honnête de votre potentiel data et IA.</p>
+          <h2 className="ai-h2 dark">{t("diagnosticDataIA.analysis.title")}<em>{t("diagnosticDataIA.analysis.title_highlight")}</em></h2>
+          <p className="ai-sub dark">{t("diagnosticDataIA.analysis.subtitle")}</p>
           <div className="ai-analysis-grid">
-            {analysisCards.map((c, i) => (
+            {safeArray(analysisCards).map((c, i) => (
               <div key={i} className="ai-acard" data-n={c.n}>
                 <div className="ai-acard-ico">{c.ico}</div>
                 <div className="ai-acard-title">{c.title}</div>
@@ -872,10 +834,10 @@ export default function DiagnosticDataIA() {
         <div className="ai-container">
           <div className="ai-eyebrow">
             <span className="ai-eyebrow-bar" />
-            Notre approche
+            {t("diagnosticDataIA.methodology.eyebrow")}
           </div>
-          <h2 className="ai-h2">Une méthodologie <em>éprouvée</em></h2>
-          <p className="ai-sub">Structurée, rigoureuse et profondément adaptée aux réalités africaines. Cliquez sur chaque étape.</p>
+          <h2 className="ai-h2">{t("diagnosticDataIA.methodology.title")}<em>{t("diagnosticDataIA.methodology.title_highlight")}</em></h2>
+          <p className="ai-sub">{t("diagnosticDataIA.methodology.subtitle")}</p>
           <div className="ai-method-grid">
             {steps.map((s, i) => (
               <div
@@ -887,7 +849,7 @@ export default function DiagnosticDataIA() {
                 <div className="ai-mstep-title">{s.title}</div>
                 <div className="ai-mstep-desc">{s.desc}</div>
                 <div className="ai-mchips">
-                  {s.chips.map((c, j) => <span key={j} className="ai-mchip">{c}</span>)}
+                  {s.chips?.map((c, j) => <span key={j} className="ai-mchip">{c}</span>)}
                 </div>
               </div>
             ))}
@@ -900,15 +862,15 @@ export default function DiagnosticDataIA() {
         <div className="ai-container">
           <div className="ai-eyebrow">
             <span className="ai-eyebrow-bar" />
-            Vos livrables
+            {t("diagnosticDataIA.deliverables.eyebrow")}
           </div>
-          <h2 className="ai-h2">Ce que vous <em>obtenez</em></h2>
+          <h2 className="ai-h2">{t("diagnosticDataIA.deliverables.title")}<em>{t("diagnosticDataIA.deliverables.title_highlight")}</em></h2>
           <div className="ai-deliv-layout">
             <div className="ai-deliv-list">
-              {deliverables.map((d, i) => (
+              {safeArray(deliverables).map((d, i) => (
                 <div key={i} className="ai-deliv-item">
                   <div className="ai-deliv-ico">{d.ico}</div>
-                  <span className="ai-deliv-text">{d.txt}</span>
+                  <span className="ai-deliv-text">{d.text}</span>
                 </div>
               ))}
             </div>
@@ -922,7 +884,7 @@ export default function DiagnosticDataIA() {
               </div>
               <div className="ai-deliv-center">
                 <div className="ai-deliv-big">6</div>
-                <div className="ai-deliv-label">livrables inclus</div>
+                <div className="ai-deliv-label">{t("diagnosticDataIA.deliverables.count_label")}</div>
               </div>
             </div>
           </div>
@@ -934,41 +896,41 @@ export default function DiagnosticDataIA() {
         <div className="ai-container">
           <div className="ai-eyebrow">
             <span className="ai-eyebrow-bar" />
-            Terrain africain
+            {t("diagnosticDataIA.caseStudy.eyebrow")}
           </div>
-          <h2 className="ai-h2" style={{ marginBottom: 48 }}>Un cas <em>concret</em></h2>
+          <h2 className="ai-h2" style={{ marginBottom: 48 }}>{t("diagnosticDataIA.caseStudy.title")}<em>{t("diagnosticDataIA.caseStudy.title_highlight")}</em></h2>
           <div className="ai-case">
             <div className="ai-case-head">
               <div className="ai-case-head-left">
-                <h2>PME de distribution</h2>
-                <p>Commerce de gros · Afrique de l'Ouest</p>
+                <h2>{t("diagnosticDataIA.caseStudy.company")}</h2>
+                <p>{t("diagnosticDataIA.caseStudy.sector")}</p>
               </div>
-              <span className="ai-case-badge">Cas réel</span>
+              <span className="ai-case-badge">{t("diagnosticDataIA.caseStudy.badge")}</span>
             </div>
             <div className="ai-case-cols">
               <div className="ai-case-col">
-                <div className="ai-case-col-tag">Problème</div>
-                <p>Données de ventes et stocks dispersées entre Excel et logiciel de caisse, sans synchronisation ni visibilité en temps réel.</p>
+                <div className="ai-case-col-tag">{t("diagnosticDataIA.caseStudy.problem.tag")}</div>
+                <p>{t("diagnosticDataIA.caseStudy.problem.description")}</p>
               </div>
               <div className="ai-case-col">
-                <div className="ai-case-col-tag">Diagnostic</div>
+                <div className="ai-case-col-tag">{t("diagnosticDataIA.caseStudy.diagnostic.tag")}</div>
                 <ul>
-                  <li>Absence d'indicateurs fiables</li>
-                  <li>Ruptures de stock fréquentes</li>
-                  <li>Surstocks en basse saison</li>
+                  {safeArray(t("diagnosticDataIA.caseStudy.diagnostic.items")).map((item, i) => (
+                    <li key={i}>{item}</li>
+                  ))}
                 </ul>
               </div>
               <div className="ai-case-col">
-                <div className="ai-case-col-tag">Recommandation</div>
+                <div className="ai-case-col-tag">{t("diagnosticDataIA.caseStudy.recommendation.tag")}</div>
                 <ol>
-                  <li>Structuration des données historiques</li>
-                  <li>Création de KPIs simples et actionnables</li>
-                  <li>Modèle de prévision progressif</li>
+                  {safeArray(t("diagnosticDataIA.caseStudy.recommendation.items")).map((item, i) => (
+                    <li key={i}>{item}</li>
+                  ))}
                 </ol>
               </div>
               <div className="ai-case-col">
-                <div className="ai-case-col-tag">Résultat attendu</div>
-                <p className="ai-case-result">Réduction des ruptures, meilleure gestion de trésorerie, ROI mesurable dès 3 mois d'implémentation.</p>
+                <div className="ai-case-col-tag">{t("diagnosticDataIA.caseStudy.result.tag")}</div>
+                <p className="ai-case-result">{t("diagnosticDataIA.caseStudy.result.description")}</p>
               </div>
             </div>
           </div>
@@ -980,25 +942,20 @@ export default function DiagnosticDataIA() {
         <div className="ai-container">
           <div className="ai-eyebrow">
             <span className="ai-eyebrow-bar" />
-            Format & durée
+            {t("diagnosticDataIA.duration.eyebrow")}
           </div>
-          <h2 className="ai-h2">Comment <em>ça se passe</em></h2>
+          <h2 className="ai-h2">{t("diagnosticDataIA.duration.title")}<em>{t("diagnosticDataIA.duration.title_highlight")}</em></h2>
           <div className="ai-dur-layout">
             <div className="ai-dur-card light">
-              <span className="ai-dur-ico">⏱️</span>
-              <h3>Durée indicative</h3>
-              <p>2 à 4 semaines selon la taille de votre organisation et la disponibilité des données. Nous nous adaptons entièrement à votre rythme opérationnel.</p>
+              <span className="ai-dur-ico">{t("diagnosticDataIA.duration.indicative.ico")}</span>
+              <h3>{t("diagnosticDataIA.duration.indicative.title")}</h3>
+              <p>{t("diagnosticDataIA.duration.indicative.description")}</p>
             </div>
             <div className="ai-dur-card dark">
-              <span className="ai-dur-ico">📌</span>
-              <h3>Format du diagnostic</h3>
+              <span className="ai-dur-ico">{t("diagnosticDataIA.duration.format.ico")}</span>
+              <h3>{t("diagnosticDataIA.duration.format.title")}</h3>
               <ul className="ai-dur-list">
-                {[
-                  "Entretiens stratégiques avec vos décideurs clés",
-                  "Analyse documentaire et revue des systèmes en place",
-                  "Synthèse exécutive et rapport de maturité complet",
-                  "Restitution claire et actionnée aux équipes dirigeantes",
-                ].map((item, i) => (
+                {safeArray(t("diagnosticDataIA.duration.format.items")).map((item, i) => (
                   <li key={i}><span className="ai-dur-check">✓</span>{item}</li>
                 ))}
               </ul>
@@ -1012,14 +969,14 @@ export default function DiagnosticDataIA() {
         <div className="ai-container">
           <div className="ai-eyebrow dark">
             <span className="ai-eyebrow-bar" />
-            Pour qui
+            {t("diagnosticDataIA.targets.eyebrow")}
           </div>
-          <h2 className="ai-h2 dark">Ce diagnostic est fait <em>pour vous</em></h2>
+          <h2 className="ai-h2 dark">{t("diagnosticDataIA.targets.title")}<em>{t("diagnosticDataIA.targets.title_highlight")}</em></h2>
           <div className="ai-target-grid">
-            {targets.map((t, i) => (
+            {safeArray(targets).map((target, i) => (
               <div key={i} className="ai-target-card">
-                <span className="ai-tcard-ico">{t.ico}</span>
-                <span className="ai-tcard-label">{t.label}</span>
+                <span className="ai-tcard-ico">{target.ico}</span>
+                <span className="ai-tcard-label">{target.label}</span>
               </div>
             ))}
           </div>
@@ -1033,11 +990,11 @@ export default function DiagnosticDataIA() {
             <div>
               <div className="ai-eyebrow">
                 <span className="ai-eyebrow-bar" />
-                Notre différence
+                {t("diagnosticDataIA.why.eyebrow")}
               </div>
-              <h2 className="ai-h2">Pourquoi <em>Aifrica</em> ?</h2>
+              <h2 className="ai-h2">{t("diagnosticDataIA.why.title")}<em>{t("diagnosticDataIA.why.title_highlight")}</em>{t("diagnosticDataIA.why.title_end")}</h2>
               <div className="ai-why-list">
-                {whyItems.map((w, i) => (
+                {safeArray(whyItems).map((w, i) => (
                   <div key={i} className="ai-why-row">
                     <div className="ai-why-check">✓</div>
                     <span className="ai-why-text"><strong>{w.bold}</strong>{w.rest}</span>
@@ -1046,11 +1003,11 @@ export default function DiagnosticDataIA() {
               </div>
             </div>
             <div className="ai-brand">
-              <div className="ai-brand-wordmark">Ai<span>frica</span></div>
-              <div className="ai-brand-sub">Data & IA pour l'Afrique</div>
+              <div className="ai-brand-wordmark">{t("diagnosticDataIA.why.brand_wordmark")}<span>{t("diagnosticDataIA.why.brand_wordmark_end")}</span></div>
+              <div className="ai-brand-sub">{t("diagnosticDataIA.why.brand_sub")}</div>
               <div className="ai-brand-divider" />
               <div className="ai-brand-vals">
-                {["Expertise locale", "Vision stratégique", "Pragmatisme opérationnel", "Impact mesurable"].map((v, i) => (
+                {safeArray(t("diagnosticDataIA.why.values")).map((v, i) => (
                   <div key={i} className="ai-brand-val">{v}</div>
                 ))}
               </div>
@@ -1063,22 +1020,22 @@ export default function DiagnosticDataIA() {
       <section className="ai-cta">
         <div className="ai-cta-glow" />
         <div className="ai-cta-inner">
-          <div className="ai-cta-eyebrow">Passez à l'action</div>
+          <div className="ai-cta-eyebrow">{t("diagnosticDataIA.cta.eyebrow")}</div>
           <h2 className="ai-cta-title">
-            Évitez les<br />
-            <span className="gold italic">erreurs coûteuses.</span>
+            {t("diagnosticDataIA.cta.title")}<br />
+            <span className="gold italic">{t("diagnosticDataIA.cta.title_highlight")}</span>
           </h2>
-          <p className="ai-cta-sub">Démarrez votre transformation data sur des bases solides, réalistes et adaptées à votre contexte.</p>
+          <p className="ai-cta-sub">{t("diagnosticDataIA.cta.description")}</p>
           <button className="ai-cta-btn">
-            Planifier mon diagnostic <span>→</span>
+            {t("diagnosticDataIA.cta.button")} <span>→</span>
           </button>
         </div>
       </section>
 
       {/* ── FOOTER ── */}
       <footer className="ai-footer">
-        <div className="ai-footer-logo">Ai<span>·</span>frica</div>
-        <div className="ai-footer-text">© 2025 Aifrica · Data & IA pour l'Afrique</div>
+        <div className="ai-footer-logo">{t("diagnosticDataIA.footer.logo")}</div>
+        <div className="ai-footer-text">{t("diagnosticDataIA.footer.copyright")}</div>
       </footer>
     </div>
   );

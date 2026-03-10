@@ -1,7 +1,9 @@
 import React from "react";
+import { useLanguage } from "../contexts/LanguageContext";
 
 const Service = () => {
-  return <div>Service</div>;
+  const { t } = useLanguage();
+  return <div>{t('services.title', 'Service')}</div>;
 };
 
 export default Service;

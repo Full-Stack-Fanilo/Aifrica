@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { useLanguage } from "../contexts/LanguageContext";
 import afriqueImage from "../assets/images/Aifrica1.jpeg";
 import afriqueImage2 from "../assets/images/Aifrica2.webp";
 import afriqueImage3 from "../assets/images/Aifrica3.webp";
@@ -689,12 +690,6 @@ const articles = [
   }
 ];
 
-const tickerItems = [
-  "Data Architecture", "LLMs", "Data Science", "Cloud Computing", 
-  "Agents IA", "MCP", "Gouvernance Data", "Snowflake", "BigQuery", 
-  "RAG", "Fine-tuning", "Intelligence Artificielle"
-];
-
 const ArrowRight = () => (
   <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
     <path d="M5 12h14M12 5l7 7-7 7"/>
@@ -707,7 +702,10 @@ const PinIcon = () => (
 );
 
 export default function Technologie() {
+  const { t } = useLanguage();
   const [featured] = articles;
+
+  const tickerItems = Array.isArray(t("technologie.ticker.items")) ? t("technologie.ticker.items") : [];
 
   return (
     <div className="tech-root">
@@ -715,40 +713,39 @@ export default function Technologie() {
 
       {/* TOP BAND */}
       <div className="tech-topband">
-        <span className="tech-topband-label">Dossier Spécial · Technologie &amp; IA</span>
+        <span className="tech-topband-label">{t("technologie.topband.label")}</span>
         <div className="tech-topband-right">
-          <span className="tech-topband-date">Février 2025</span>
-          <Link to="/" className="tech-topband-back">← Accueil</Link>
+          <span className="tech-topband-date">{t("technologie.topband.date")}</span>
+          <Link to="/" className="tech-topband-back">{t("technologie.topband.back")}</Link>
         </div>
       </div>
 
       {/* HERO */}
       <section className="tech-hero">
         <div className="tech-hero-left">
-          <div className="tech-hero-tag">Dossier Spécial</div>
+          <div className="tech-hero-tag">{t("technologie.hero.tag")}</div>
           <div className="tech-hero-heading">
             <h1 className="tech-hero-h1">
-              <em>Technologie</em><br />
-              &amp; Inno-va-tion<br />
-              IA
+              <em>{t("technologie.hero.title")}</em><br />
+              &amp; {t("technologie.hero.title_highlight")}<br />
+              {t("technologie.hero.title_end")}
             </h1>
             <p className="tech-hero-sub">
-              Analyses, comparatifs et guides techniques sur les dernières
-              avancées en intelligence artificielle, data architecture et cloud computing.
+              {t("technologie.hero.subtitle")}
             </p>
           </div>
           <div className="tech-hero-stats">
             <div className="tech-stat">
               <div className="tech-stat-num">5</div>
-              <div className="tech-stat-label">Articles</div>
+              <div className="tech-stat-label">{t("technologie.hero.stats.articles")}</div>
             </div>
             <div className="tech-stat">
               <div className="tech-stat-num">12+</div>
-              <div className="tech-stat-label">Sujets</div>
+              <div className="tech-stat-label">{t("technologie.hero.stats.topics")}</div>
             </div>
             <div className="tech-stat">
               <div className="tech-stat-num">2025</div>
-              <div className="tech-stat-label">Veille</div>
+              <div className="tech-stat-label">{t("technologie.hero.stats.watch")}</div>
             </div>
           </div>
         </div>
@@ -757,14 +754,14 @@ export default function Technologie() {
           <img src={featured.image} alt={featured.title} />
           <div className="tech-hero-overlay" />
           <div className="tech-hero-caption">
-            <span className="tech-caption-tag">⭐ À la une</span>
+            <span className="tech-caption-tag">{t("technologie.hero.featured.tag")}</span>
             <h2 className="tech-caption-title">{featured.title}</h2>
             <div className="tech-caption-meta">
               <span className="tech-caption-date">{featured.date}</span>
               <span className="tech-caption-dot" />
               <span className="tech-caption-loc">{featured.location}</span>
             </div>
-            <Link to={`/article/${featured.id}`} className="tech-cta">Lire l'article <ArrowRight /></Link>
+            <Link to={`/article/${featured.id}`} className="tech-cta">{t("technologie.hero.featured.read_article")} <ArrowRight /></Link>
           </div>
         </div>
       </section>
@@ -783,10 +780,10 @@ export default function Technologie() {
       {/* BODY */}
       <div className="tech-body">
         <div className="tech-section-hd">
-          <span className="tech-section-hd-label">Veille Technologique</span>
-          <h2 className="tech-section-hd-title">Dernières analyses</h2>
+          <span className="tech-section-hd-label">{t("technologie.body.section.label")}</span>
+          <h2 className="tech-section-hd-title">{t("technologie.body.section.title")}</h2>
           <div className="tech-section-hd-line" />
-          <span className="tech-section-hd-count">{articles.length} articles</span>
+          <span className="tech-section-hd-count">{articles.length} {t("technologie.body.section.count")}</span>
         </div>
 
         <div className="tech-layout">
@@ -811,7 +808,7 @@ export default function Technologie() {
                       <PinIcon /> {article.location}
                     </span>
                     <span className="tech-article-link">
-                      Lire l'article <ArrowRight />
+                      {t("technologie.body.article.read_article")} <ArrowRight />
                     </span>
                   </div>
                 </div>
@@ -824,7 +821,7 @@ export default function Technologie() {
             {/* Highlights */}
             <div className="tech-sb-block">
               <div className="tech-sb-hd">
-                <span className="tech-sb-hd-title">À retenir</span>
+                <span className="tech-sb-hd-title">{t("technologie.body.sidebar.highlights.title")}</span>
                 <div className="tech-sb-hd-line" />
               </div>
               <div className="tech-hi-list">
@@ -842,17 +839,18 @@ export default function Technologie() {
 
             {/* About */}
             <div className="tech-about">
-              <div className="tech-about-tag">À propos du dossier</div>
-              <div className="tech-about-title">Technologie & IA au cœur de l'innovation</div>
+              <div className="tech-about-tag">{t("technologie.body.sidebar.about.tag")}</div>
+              <div className="tech-about-title">{t("technologie.body.sidebar.about.title")}</div>
               <p className="tech-about-text">
-                Ce dossier compile les analyses techniques, comparatifs et guides
-                sur les dernières avancées en intelligence artificielle, data architecture 
-                et cloud computing pour les décideurs technologiques.
+                {t("technologie.body.sidebar.about.text")}
               </p>
               <div className="tech-topics">
-                {["Data Governance", "LLMs", "RAG", "Fine-tuning", "Agents", "Cloud", "MCP", "Data Science"].map(topic => (
-                  <span key={topic} className="tech-topic">{topic}</span>
-                ))}
+                {Array.isArray(t("technologie.body.sidebar.about.topics"))
+                  ? t("technologie.body.sidebar.about.topics").map(topic => (
+                      <span key={topic} className="tech-topic">{topic}</span>
+                    ))
+                  : null
+                }
               </div>
             </div>
           </aside>
@@ -862,9 +860,9 @@ export default function Technologie() {
       {/* FOOTER */}
       <footer className="tech-footer">
         <div className="tech-footer-brand">
-          Dossier <span>Technologie &amp; IA</span> — 2025
+          {t("technologie.footer.brand")}
         </div>
-        <Link to="/" className="tech-footer-back">← Retour à l'accueil</Link>
+        <Link to="/" className="tech-footer-back">{t("technologie.footer.back")}</Link>
       </footer>
     </div>
   );

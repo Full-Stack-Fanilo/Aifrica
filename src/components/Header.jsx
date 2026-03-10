@@ -2,8 +2,11 @@ import React from "react";
 import { FaArrowRight } from "react-icons/fa";
 import "../css/Header.css";
 import headerImage from "../assets/images/NouvelleAifrica.png";
+import { useLanguage } from "../contexts/LanguageContext";
 
 function Header() {
+  const { t } = useLanguage();
+  
   const scrollToSection = (sectionId) => {
     const element = document.getElementById(sectionId);
     if (element) {
@@ -20,16 +23,14 @@ function Header() {
         <div className="hero-wrapper-v3">
           <div className="hero-content-v3">
             <h1 className="hero-headline">
-              Concevez, contruisez et déployez l’
+              {t('header.title')}
               <span className="text-accent">
-                IA au sein de votre entreprise en Afrique
+                {t('header.title_highlight')}
               </span>
             </h1>
 
             <p className="hero-lead">
-              Construisez des applications intelligentes adaptées à vos besoins,
-              et déployez-les en toute confiance avec l'accompagnement de
-              Aifrica.
+              {t('header.description')}
             </p>
 
             <div className="hero-actions">
@@ -37,14 +38,14 @@ function Header() {
                 className="btn-hero-primary"
                 onClick={() => scrollToSection("contact")}
               >
-                Démarrer un projet
+                {t('header.start_project')}
                 <FaArrowRight />
               </button>
               <button
                 className="btn-hero-outline"
                 onClick={() => scrollToSection("services")}
               >
-                Explorer les solutions
+                {t('header.explore_solutions')}
               </button>
             </div>
           </div>

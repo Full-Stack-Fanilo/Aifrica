@@ -16,6 +16,7 @@ import {
   FaUsers,
   FaChevronDown,
 } from "react-icons/fa";
+import { useLanguage } from "../contexts/LanguageContext";
 
 const styles = `
   :root {
@@ -548,44 +549,40 @@ const styles = `
   }
 `;
 
-const applications = [
-  { icon: <FaPen />, cls: "ic-blue", title: "Génération de Texte", desc: "Création de contenu, rédaction, traduction et optimisation de textes avec IA générative." },
-  { icon: <FaImage />, cls: "ic-gold", title: "Création d'Images", desc: "Génération d'images, illustrations et visuels personnalisés avec l'IA." },
-  { icon: <FaCode />, cls: "ic-green", title: "Génération de Code", desc: "Assistance au développement, génération de code et optimisation algorithmique." },
-  { icon: <FaComments />, cls: "ic-indigo", title: "Chatbots & Conversation", desc: "Agents conversationnels intelligents pour le service client et l'engagement." },
-  { icon: <FaBrain />, cls: "ic-orange", title: "Créativité & Design", desc: "Soutien à la création artistique, design thinking et brainstorming IA." },
-  { icon: <FaChartLine />, cls: "ic-red", title: "Analyse Prédictive", desc: "Prédictions et analyses basées sur des modèles génératifs avancés." },
-];
-
-const solutions = [
-  { icon: <FaRocket />, title: "Déploiement Rapide", desc: "Mise en production rapide de solutions IA génératives adaptées à vos besoins." },
-  { icon: <FaShieldAlt />, title: "Sécurité & Conformité", desc: "Déploiement sécurisé respectant les normes RGPD et l'éthique de l'IA." },
-  { icon: <FaUsers />, title: "Formation & Accompagnement", desc: "Montée en compétences de vos équipes pour maîtriser l'IA générative." },
-];
-
-const benefits = [
-  { icon: <FaChartLine />, cls: "ic-blue", title: "Productivité x3", desc: "Augmentation significative de la productivité grâce à l'automatisation des tâches créatives." },
-  { icon: <FaLightbulb />, cls: "ic-gold", title: "Innovation Continue", desc: "Accélération de l'innovation et génération d'idées nouvelles constamment." },
-  { icon: <FaUsers />, cls: "ic-green", title: "Avantage Concurrentiel", desc: "Différenciation sur le marché grâce à des contenus et services uniques." },
-];
-
-const process = [
-  { n: "1", title: "Audit & Use Cases", desc: "Identification des cas d'usage pertinents pour l'IA générative dans votre entreprise." },
-  { n: "2", title: "PoC & Validation", desc: "Développement de preuves de concept pour valider la pertinence des solutions." },
-  { n: "3", title: "Industrialisation", desc: "Déploiement à l'échelle des solutions validées avec monitoring continu." },
-  { n: "4", title: "Optimisation", desc: "Amélioration continue des modèles et des processus pour maximiser la valeur." },
-];
-
-const faqs = [
-  { q: "Qu'est-ce que l'IA générative ?", a: "L'IA générative est une technologie capable de créer du contenu original (texte, images, code, etc.) à partir de modèles entraînés sur de vastes données." },
-  { q: "L'IA générative est-elle sûre pour mon entreprise ?", a: "Oui, nous mettons en place des garde-fous, des filtres de sécurité et assurons la conformité avec les régulations en vigueur." },
-  { q: "Quel ROI attendre de l'IA générative ?", a: "Nos clients observent en moyenne une réduction de 60% du temps de création et une augmentation de 40% de la qualité des contenus produits." },
-  { q: "Faut-il des compétences techniques en interne ?", a: "Nous fournissons des solutions clé en main et formons vos équipes. Des compétences de base sont suffisantes pour démarrer." },
-];
-
 export default function IAGenerative() {
+  const { t } = useLanguage();
   const [activeIndex, setActiveIndex] = useState(null);
   const toggle = (i) => setActiveIndex(activeIndex === i ? null : i);
+
+  const applications = [
+    { icon: <FaPen />, cls: "ic-blue", title: t('iaGenerative.sections.applications.items.text_generation.title'), desc: t('iaGenerative.sections.applications.items.text_generation.description') },
+    { icon: <FaImage />, cls: "ic-gold", title: t('iaGenerative.sections.applications.items.image_creation.title'), desc: t('iaGenerative.sections.applications.items.image_creation.description') },
+    { icon: <FaCode />, cls: "ic-green", title: t('iaGenerative.sections.applications.items.code_generation.title'), desc: t('iaGenerative.sections.applications.items.code_generation.description') },
+    { icon: <FaComments />, cls: "ic-indigo", title: t('iaGenerative.sections.applications.items.chatbots.title'), desc: t('iaGenerative.sections.applications.items.chatbots.description') },
+    { icon: <FaBrain />, cls: "ic-orange", title: t('iaGenerative.sections.applications.items.creativity.title'), desc: t('iaGenerative.sections.applications.items.creativity.description') },
+    { icon: <FaChartLine />, cls: "ic-red", title: t('iaGenerative.sections.applications.items.predictive_analysis.title'), desc: t('iaGenerative.sections.applications.items.predictive_analysis.description') },
+  ];
+
+  const solutions = [
+    { icon: <FaRocket />, title: t('iaGenerative.sections.solutions.items.rapid_deployment.title'), desc: t('iaGenerative.sections.solutions.items.rapid_deployment.description') },
+    { icon: <FaShieldAlt />, title: t('iaGenerative.sections.solutions.items.security.title'), desc: t('iaGenerative.sections.solutions.items.security.description') },
+    { icon: <FaUsers />, title: t('iaGenerative.sections.solutions.items.training.title'), desc: t('iaGenerative.sections.solutions.items.training.description') },
+  ];
+
+  const benefits = [
+    { icon: <FaChartLine />, cls: "ic-blue", title: t('iaGenerative.sections.benefits.items.productivity.title'), desc: t('iaGenerative.sections.benefits.items.productivity.description') },
+    { icon: <FaLightbulb />, cls: "ic-gold", title: t('iaGenerative.sections.benefits.items.innovation.title'), desc: t('iaGenerative.sections.benefits.items.innovation.description') },
+    { icon: <FaUsers />, cls: "ic-green", title: t('iaGenerative.sections.benefits.items.competitive_advantage.title'), desc: t('iaGenerative.sections.benefits.items.competitive_advantage.description') },
+  ];
+
+  const process = [
+    { n: "1", title: t('iaGenerative.sections.process.items.audit.title'), desc: t('iaGenerative.sections.process.items.audit.description') },
+    { n: "2", title: t('iaGenerative.sections.process.items.poc.title'), desc: t('iaGenerative.sections.process.items.poc.description') },
+    { n: "3", title: t('iaGenerative.sections.process.items.industrialization.title'), desc: t('iaGenerative.sections.process.items.industrialization.description') },
+    { n: "4", title: t('iaGenerative.sections.process.items.optimization.title'), desc: t('iaGenerative.sections.process.items.optimization.description') },
+  ];
+
+  const faqs = t('iaGenerative.sections.faq.items');
 
   return (
     <div className="ia-gen-page">
@@ -595,19 +592,19 @@ export default function IAGenerative() {
       <section className="ia-gen-hero" id="services">
         <div className="ia-gen-hero-inner">
           <div className="ia-gen-hero-badge">
-            <FaRobot /> IA Générative
+            <FaRobot /> {t('iaGenerative.badge')}
           </div>
           <h1>
-            Libérez la créativité avec <span className="gold">l'IA générative</span>
+            {t('iaGenerative.title')}<span className="gold">{t('iaGenerative.title_highlight')}</span>
           </h1>
           <div className="ia-gen-hero-quote">
-            "La créativité est l'intelligence qui s'amuse."
+            "{t('iaGenerative.quote')}"
           </div>
           <p className="ia-gen-hero-desc">
-            Transformez votre manière de créer, innover et communiquer. Aifrica vous accompagne dans l'adoption de l'IA générative pour révolutionner vos processus créatifs et opérationnels.
+            {t('iaGenerative.description')}
           </p>
           <a href="#contact" className="ia-gen-hero-cta">
-            Explorer les possibilités <FaArrowRight />
+            {t('iaGenerative.explore_possibilities')} <FaArrowRight />
           </a>
         </div>
       </section>
@@ -615,10 +612,10 @@ export default function IAGenerative() {
       {/* APPLICATIONS */}
       <section className="ia-gen-applications">
         <div className="ia-gen-section-inner">
-          <p className="ia-gen-section-label">Applications</p>
-          <h2 className="ia-gen-section-title">Cas d'usage variés</h2>
+          <p className="ia-gen-section-label">{t('iaGenerative.sections.applications.label')}</p>
+          <h2 className="ia-gen-section-title">{t('iaGenerative.sections.applications.title')}</h2>
           <p className="ia-gen-section-sub">
-            Découvrez comment l'IA générative peut transformer vos activités.
+            {t('iaGenerative.sections.applications.subtitle')}
           </p>
           <div className="ia-gen-applications-grid">
             {applications.map((app, i) => (
@@ -635,10 +632,10 @@ export default function IAGenerative() {
       {/* SOLUTIONS */}
       <section className="ia-gen-solutions">
         <div className="ia-gen-section-inner">
-          <p className="ia-gen-section-label">Nos solutions</p>
-          <h2 className="ia-gen-section-title">Déploiement complet</h2>
+          <p className="ia-gen-section-label">{t('iaGenerative.sections.solutions.label')}</p>
+          <h2 className="ia-gen-section-title">{t('iaGenerative.sections.solutions.title')}</h2>
           <p className="ia-gen-section-sub">
-            De la stratégie à l'industrialisation, nous vous accompagnons à chaque étape.
+            {t('iaGenerative.sections.solutions.subtitle')}
           </p>
           <div className="ia-gen-solutions-grid">
             {solutions.map((solution, i) => (
@@ -655,10 +652,10 @@ export default function IAGenerative() {
       {/* BENEFITS */}
       <section className="ia-gen-benefits">
         <div className="ia-gen-section-inner">
-          <p className="ia-gen-section-label">Bénéfices</p>
-          <h2 className="ia-gen-section-title">Pourquoi l'IA générative ?</h2>
+          <p className="ia-gen-section-label">{t('iaGenerative.sections.benefits.label')}</p>
+          <h2 className="ia-gen-section-title">{t('iaGenerative.sections.benefits.title')}</h2>
           <p className="ia-gen-section-sub">
-            Les avantages concrets pour votre entreprise africaine.
+            {t('iaGenerative.sections.benefits.subtitle')}
           </p>
           <div className="ia-gen-benefits-grid">
             {benefits.map((benefit, i) => (
@@ -675,10 +672,10 @@ export default function IAGenerative() {
       {/* PROCESS */}
       <section className="ia-gen-process">
         <div className="ia-gen-section-inner">
-          <p className="ia-gen-section-label">Processus</p>
-          <h2 className="ia-gen-section-title">Notre approche</h2>
+          <p className="ia-gen-section-label">{t('iaGenerative.sections.process.label')}</p>
+          <h2 className="ia-gen-section-title">{t('iaGenerative.sections.process.title')}</h2>
           <p className="ia-gen-section-sub">
-            Une méthodologie éprouvée pour garantir le succès de vos projets IA générative.
+            {t('iaGenerative.sections.process.subtitle')}
           </p>
           <div className="ia-gen-process-grid">
             {process.map((step, i) => (
@@ -695,10 +692,10 @@ export default function IAGenerative() {
       {/* FAQ */}
       <section className="ia-gen-faq">
         <div className="ia-gen-section-inner" style={{ textAlign: "center" }}>
-          <p className="ia-gen-section-label">FAQ</p>
-          <h2 className="ia-gen-section-title">Questions fréquentes</h2>
+          <p className="ia-gen-section-label">{t('iaGenerative.sections.faq.label')}</p>
+          <h2 className="ia-gen-section-title">{t('iaGenerative.sections.faq.title')}</h2>
           <p className="ia-gen-section-sub" style={{ margin: "0 auto 0" }}>
-            Tout ce que vous devez savoir sur l'IA générative
+            {t('iaGenerative.sections.faq.subtitle')}
           </p>
         </div>
         <div className="ia-gen-faq-list">
@@ -723,12 +720,12 @@ export default function IAGenerative() {
       {/* CTA */}
       <section className="ia-gen-cta">
         <div className="ia-gen-cta-inner">
-          <h2>Prêt à <span className="gold">révolutionner</span> votre créativité ?</h2>
+          <h2>{t('iaGenerative.sections.cta.title')}<span className="gold">{t('iaGenerative.sections.cta.title_highlight')}</span>{t('iaGenerative.sections.cta.title_end')}</h2>
           <p>
-            Rejoignez les entreprises africaines qui transforment leur innovation avec l'IA générative.
+            {t('iaGenerative.sections.cta.description')}
           </p>
           <a href="#contact" className="ia-gen-cta-btn">
-            Démarrer maintenant <FaArrowRight />
+            {t('iaGenerative.sections.cta.button')} <FaArrowRight />
           </a>
         </div>
       </section>

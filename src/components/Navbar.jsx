@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { animateScroll as scroll } from "react-scroll";
 import logo from "../assets/images/NewLogo.png";
+import { useLanguage } from "../contexts/LanguageContext";
 
 import {
   FaGlobe,
@@ -19,10 +20,9 @@ import {
 } from "react-icons/fa";
 
 import "../css/Navbar.css";
-import { useTranslation } from "react-i18next";
 
 export default function Navbar() {
-  const { i18n } = useTranslation();
+  const { language, changeLanguage, t } = useLanguage();
   const [isMegaOpen, setIsMegaOpen] = useState(null);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
@@ -56,10 +56,10 @@ export default function Navbar() {
     };
   }, [isMobileMenuOpen]);
 
-  const currentLanguage = i18n.language ? i18n.language.toUpperCase() : "FR";
+  const currentLanguage = language ? language.toUpperCase() : "FR";
 
   const handleLanguageChange = (lang) => {
-    i18n.changeLanguage(lang.toLowerCase());
+    changeLanguage(lang.toLowerCase());
   };
 
   const handleNavigateScroll = (section) => {
@@ -104,32 +104,32 @@ export default function Navbar() {
     {
       to: "/plateforme-aifrica",
       icon: <FaGlobe />,
-      label: "Plateforme Aifrica",
-      description: "Découvrez notre écosystème",
+      label: t('navbar.yoafrica.links.plateforme'),
+      description: t('navbar.yoafrica.links.plateforme_desc'),
     },
     {
       to: "/accompagnement-IA",
       icon: <FaHandsHelping />,
-      label: "Accompagnement IA",
-      description: "Support personnalisé",
+      label: t('navbar.yoafrica.links.accompagnement'),
+      description: t('navbar.yoafrica.links.accompagnement_desc'),
     },
     {
       to: "/dataIntelligence",
       icon: <FaBrain />,
-      label: "Data Intelligence",
-      description: "Valorisez vos données",
+      label: t('navbar.yoafrica.links.data'),
+      description: t('navbar.yoafrica.links.data_desc'),
     },
     {
       to: "/IA-Générative",
       icon: <FaRobot />,
-      label: "IA Générative",
-      description: "Solutions créatives",
+      label: t('navbar.yoafrica.links.generative'),
+      description: t('navbar.yoafrica.links.generative_desc'),
     },
     {
       to: "/IA-Agentique",
       icon: <FaUsersCog />,
-      label: "IA Agentique",
-      description: "Automatisation intelligente",
+      label: t('navbar.yoafrica.links.agentique'),
+      description: t('navbar.yoafrica.links.agentique_desc'),
     },
   ];
 
@@ -137,26 +137,26 @@ export default function Navbar() {
     {
       to: "/afrique",
       icon: <FaGlobe />,
-      label: "Afrique",
-      description: "Actualités africaines",
+      label: t('navbar.infos.links.afrique'),
+      description: t('navbar.infos.links.afrique_desc'),
     },
     {
       to: "/entreprise",
       icon: <FaHandsHelping />,
-      label: "Industrie/Economie",
-      description: "Secteurs économiques",
+      label: t('navbar.infos.links.industrie'),
+      description: t('navbar.infos.links.industrie_desc'),
     },
     {
       to: "/metier",
       icon: <FaBrain />,
-      label: "Métier",
-      description: "Carrières et compétences",
+      label: t('navbar.infos.links.metier'),
+      description: t('navbar.infos.links.metier_desc'),
     },
     {
       to: "/technologie",
       icon: <FaRobot />,
-      label: "Technologie",
-      description: "Innovations tech",
+      label: t('navbar.infos.links.technologie'),
+      description: t('navbar.infos.links.technologie_desc'),
     },
   ];
 
@@ -164,26 +164,26 @@ export default function Navbar() {
     {
       to: "/diagnosticDataIA",
       icon: <FaClipboardCheck />,
-      label: "Diagnostic Data & IA",
-      description: "Audit complet",
+      label: t('navbar.services.links.diagnostic'),
+      description: t('navbar.services.links.diagnostic_desc'),
     },
     {
       to: "/consultingIaData",
       icon: <FaUserTie />,
-      label: "Consulting IA & Data",
-      description: "Expertise stratégique",
+      label: t('navbar.services.links.consulting'),
+      description: t('navbar.services.links.consulting_desc'),
     },
     {
       to: "/acculturationIA",
       icon: <FaLightbulb />,
-      label: "Acculturation IA",
-      description: "Formation & sensibilisation",
+      label: t('navbar.services.links.acculturation'),
+      description: t('navbar.services.links.acculturation_desc'),
     },
     {
       to: "/solutionIASurMesure",
       icon: <FaCogs />,
-      label: "Solution IA avancée",
-      description: "Développement sur mesure",
+      label: t('navbar.services.links.solution'),
+      description: t('navbar.services.links.solution_desc'),
     },
   ];
 
@@ -222,9 +222,9 @@ export default function Navbar() {
                 >
                   <div className="mega-menu-header">
                     <h3>
-                      <span className="yo-text">Yo!</span> Aifrica
+                      <span className="yo-text">Yo!</span> {t('navbar.yoafrica.title')}
                     </h3>
-                    <p>Découvrez notre univers d'innovation</p>
+                    <p>{t('navbar.yoafrica.subtitle')}</p>
                   </div>
                   <div className="mega-menu-content">
                     {yoAfricaLinks.map((link, index) => (
@@ -266,8 +266,8 @@ export default function Navbar() {
                   className={`mega-menu ${isMegaOpen === "services" ? "active" : ""}`}
                 >
                   <div className="mega-menu-header">
-                    <h3>Nos Services</h3>
-                    <p>Des solutions adaptées à vos besoins</p>
+                    <h3>{t('navbar.services.subtitle')}</h3>
+                    <p>{t('navbar.services.description')}</p>
                   </div>
                   <div className="mega-menu-content">
                     {servicesLinks.map((link, index) => (
@@ -309,8 +309,8 @@ export default function Navbar() {
                   className={`mega-menu ${isMegaOpen === "infos" ? "active" : ""}`}
                 >
                   <div className="mega-menu-header">
-                    <h3>Nos Infos</h3>
-                    <p>Découvrez nos actualités</p>
+                    <h3>{t('navbar.infos.subtitle')}</h3>
+                    <p>{t('navbar.infos.description')}</p>
                   </div>
                   <div className="mega-menu-content">
                     {infosLinks.map((link, index) => (
@@ -333,11 +333,11 @@ export default function Navbar() {
                 </div>
               </li>
               <li className="navbar-item">
-                <button
+                <button 
                   className="navbar-link"
                   onClick={() => handleNavigateScroll("approach")}
                 >
-                  Approche
+                  {t('navbar.approach')}
                 </button>
               </li>
               <li className="navbar-item">
@@ -345,7 +345,7 @@ export default function Navbar() {
                   className="navbar-link"
                   onClick={() => handleNavigateScroll("contact")}
                 >
-                  Partenaire
+                  {t('navbar.partner')}
                 </button>
               </li>
             </ul>
@@ -365,7 +365,7 @@ export default function Navbar() {
                 className="btn-contact"
                 onClick={() => handleNavigateScroll("contact")}
               >
-                Contact
+                {t('navbar.contact')}
               </button>
             </div>
           </div>
@@ -396,7 +396,7 @@ export default function Navbar() {
               }}
             >
               <span>
-                <span className="yo-text">Yo!</span> Aifrica
+                <span className="yo-text">Yo!</span> {t('navbar.yoafrica.title')}
               </span>
               <FaChevronDown
                 className={`dropdown-icon ${isMegaOpen === "yoafrica" ? "rotated" : ""}`}
@@ -431,7 +431,7 @@ export default function Navbar() {
                 setIsMegaOpen(isMegaOpen === "services" ? null : "services");
               }}
             >
-              <span>Services</span>
+              <span>{t('navbar.services.title')}</span>
               <FaChevronDown
                 className={`dropdown-icon ${isMegaOpen === "services" ? "rotated" : ""}`}
               />
@@ -465,7 +465,7 @@ export default function Navbar() {
                 setIsMegaOpen(isMegaOpen === "infos" ? null : "infos");
               }}
             >
-              <span>Infos</span>
+              <span>{t('navbar.infos.title')}</span>
               <FaChevronDown
                 className={`dropdown-icon ${isMegaOpen === "infos" ? "rotated" : ""}`}
               />
@@ -493,13 +493,13 @@ export default function Navbar() {
             className="mobile-menu-link"
             onClick={() => handleNavigateScroll("approach")}
           >
-            Approche
+            {t('navbar.approach')}
           </button>
           <button
             className="mobile-menu-link"
             onClick={() => handleNavigateScroll("contact")}
           >
-            Partenaire
+            {t('navbar.partner')}
           </button>
 
           {/* Mobile Actions */}
@@ -516,7 +516,7 @@ export default function Navbar() {
               className="btn-contact"
               onClick={() => handleNavigateScroll("contact")}
             >
-              Contactez-nous
+              {t('navbar.contact_mobile')}
             </button>
           </div>
         </div>

@@ -1,23 +1,25 @@
 import React from "react";
+import { useLanguage } from "../../contexts/LanguageContext";
 
 const Header_PlateformeAifrica = () => {
+  const { t } = useLanguage();
+
   return (
     <section className="header-section">
       <div className="container">
         <div className="header-content">
           <h1 className="header-title">
-            Plateforme AIFRICA
+            {t('plateformeAifrica.header.title')}
           </h1>
           <p className="header-subtitle">
-            L'intelligence artificielle au service de l'innovation africaine. 
-            Transformez vos idées en solutions intelligentes avec notre plateforme IA de pointe.
+            {t('plateformeAifrica.header.subtitle')}
           </p>
           <div className="header-buttons">
             <button className="btn btn-primary">
-              Commencer Gratuitement
+              {t('plateformeAifrica.header.start_free')}
             </button>
             <button className="btn btn-secondary">
-              Voir la Démo
+              {t('plateformeAifrica.header.see_demo')}
             </button>
           </div>
         </div>

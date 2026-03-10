@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useLanguage } from "../contexts/LanguageContext";
 import articleA from "../assets/images/ARTICLE A.webp";
 import articleB from "../assets/images/ARTICLEB.jpg";
 import articleC from "../assets/images/ARTICLEC.png";
@@ -764,18 +765,6 @@ const articles = [
   }
 ];
 
-const tickerItems = [
-  "Ressources Humaines", "Finance d'Entreprise", "Stratégie Marketing",
-  "Commerce & Ventes", "IA & Métiers", "Transformation Digitale", "Innovation Africaine"
-];
-
-const domains = [
-  { name: "Ressources Humaines", count: 2 },
-  { name: "Finance", count: 2 },
-  { name: "Marketing", count: 2 },
-  { name: "Commercial & Ventes", count: 2 },
-];
-
 const ArrowRight = () => (
   <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
     <path d="M5 12h14M12 5l7 7-7 7"/>
@@ -783,7 +772,16 @@ const ArrowRight = () => (
 );
 
 export default function Metier() {
+  const { t } = useLanguage();
   const [featured] = articles;
+
+  const tickerItems = Array.isArray(t("metier.ticker.items")) ? t("metier.ticker.items") : [];
+  const domains = [
+    { name: "Ressources Humaines", count: 2 },
+    { name: "Finance", count: 2 },
+    { name: "Marketing", count: 2 },
+    { name: "Commercial & Ventes", count: 2 },
+  ];
 
   return (
     <div className="mt-root">
@@ -791,40 +789,39 @@ export default function Metier() {
 
       {/* TOP BAND */}
       <div className="mt-topband">
-        <span className="mt-topband-label">Rubrique Métiers · IA &amp; Entreprise</span>
+        <span className="mt-topband-label">{t("metier.topband.label")}</span>
         <div className="mt-topband-right">
-          <span className="mt-topband-date">2026</span>
-          <Link to="/" className="mt-topband-back">← Accueil</Link>
+          <span className="mt-topband-date">{t("metier.topband.date")}</span>
+          <Link to="/" className="mt-topband-back">{t("metier.topband.back")}</Link>
         </div>
       </div>
 
       {/* HERO */}
       <section className="mt-hero">
         <div className="mt-hero-left">
-          <div className="mt-hero-tag">Rubrique Métiers</div>
+          <div className="mt-hero-tag">{t("metier.hero.tag")}</div>
           <div className="mt-hero-heading">
             <h1 className="mt-hero-h1">
-              L'IA &amp; les<br />
-              <em>Métiers</em> de<br />
-              l'Entreprise
+              {t("metier.hero.title")}<br />
+              <em>{t("metier.hero.title_highlight")}</em> de<br />
+              {t("metier.hero.title_end")}
             </h1>
             <p className="mt-hero-sub">
-              Comment l'intelligence artificielle transforme les ressources humaines,
-              la finance, le marketing et les fonctions commerciales — en Afrique et dans le monde.
+              {t("metier.hero.subtitle")}
             </p>
           </div>
           <div className="mt-hero-stats">
             <div className="mt-stat">
               <div className="mt-stat-num">8</div>
-              <div className="mt-stat-label">Articles</div>
+              <div className="mt-stat-label">{t("metier.hero.stats.articles")}</div>
             </div>
             <div className="mt-stat">
               <div className="mt-stat-num">4</div>
-              <div className="mt-stat-label">Domaines</div>
+              <div className="mt-stat-label">{t("metier.hero.stats.domains")}</div>
             </div>
             <div className="mt-stat">
               <div className="mt-stat-num">2</div>
-              <div className="mt-stat-label">Perspectives</div>
+              <div className="mt-stat-label">{t("metier.hero.stats.perspectives")}</div>
             </div>
           </div>
         </div>
@@ -833,14 +830,14 @@ export default function Metier() {
           <img src={featured.image} alt={featured.title} />
           <div className="mt-hero-overlay" />
           <div className="mt-hero-caption">
-            <span className="mt-caption-tag">⭐ À la une</span>
+            <span className="mt-caption-tag">{t("metier.hero.featured.tag")}</span>
             <h2 className="mt-caption-title">{featured.title}</h2>
             <div className="mt-caption-meta">
               <span className="mt-caption-cat">{featured.category}</span>
               <span className="mt-caption-dot" />
               <span className="mt-caption-sub">{featured.theme}</span>
             </div>
-            <Link to={`/article/${featured.id.replace('A', 'A201').replace('B', 'B202').replace('C', 'C203').replace('D', 'D204').replace('E', 'E205').replace('F', 'F206').replace('G', 'G207').replace('H', 'H208')}`} className="mt-cta">Lire l'article <ArrowRight /></Link>
+            <Link to={`/article/${featured.id.replace('A', 'A201').replace('B', 'B202').replace('C', 'C203').replace('D', 'D204').replace('E', 'E205').replace('F', 'F206').replace('G', 'G207').replace('H', 'H208')}`} className="mt-cta">{t("metier.hero.featured.read_article")} <ArrowRight /></Link>
           </div>
         </div>
       </section>
@@ -859,10 +856,10 @@ export default function Metier() {
       {/* BODY */}
       <div className="mt-body">
         <div className="mt-section-hd">
-          <span className="mt-section-hd-label">Analyses</span>
-          <h2 className="mt-section-hd-title">Tous les articles</h2>
+          <span className="mt-section-hd-label">{t("metier.body.section.label")}</span>
+          <h2 className="mt-section-hd-title">{t("metier.body.section.title")}</h2>
           <div className="mt-section-hd-line" />
-          <span className="mt-section-hd-count">{articles.length} articles</span>
+          <span className="mt-section-hd-count">{articles.length} {t("metier.body.section.count")}</span>
         </div>
 
         <div className="mt-layout">
@@ -890,7 +887,7 @@ export default function Metier() {
                       {article.theme}
                     </span>
                     <span className="mt-article-link">
-                      Lire l'article <ArrowRight />
+                      {t("metier.body.article.read_article")} <ArrowRight />
                     </span>
                   </div>
                 </div>
@@ -903,7 +900,7 @@ export default function Metier() {
             {/* Highlights */}
             <div className="mt-sb-block">
               <div className="mt-sb-hd">
-                <span className="mt-sb-hd-title">À retenir</span>
+                <span className="mt-sb-hd-title">{t("metier.body.sidebar.highlights.title")}</span>
                 <div className="mt-sb-hd-line" />
               </div>
               <div className="mt-hi-list">
@@ -922,7 +919,7 @@ export default function Metier() {
             {/* Domains */}
             <div className="mt-domains-block">
               <div className="mt-sb-hd">
-                <span className="mt-sb-hd-title">Domaines couverts</span>
+                <span className="mt-sb-hd-title">{t("metier.body.sidebar.domains.title")}</span>
                 <div className="mt-sb-hd-line" />
               </div>
               {domains.map(d => (
@@ -931,24 +928,25 @@ export default function Metier() {
                     <span className="mt-domain-dot" />
                     {d.name}
                   </span>
-                  <span className="mt-domain-count">{d.count} articles</span>
+                  <span className="mt-domain-count">{d.count} {t("metier.body.sidebar.domains.articles")}</span>
                 </a>
               ))}
             </div>
 
             {/* About */}
             <div className="mt-themes-block">
-              <div className="mt-themes-tag">À propos de la rubrique</div>
-              <div className="mt-themes-title">L'IA au cœur des métiers</div>
+              <div className="mt-themes-tag">{t("metier.body.sidebar.about.tag")}</div>
+              <div className="mt-themes-title">{t("metier.body.sidebar.about.title")}</div>
               <p className="mt-themes-text">
-                Chaque domaine est analysé sous deux angles complémentaires :
-                les tendances mondiales et les réalités africaines, pour une
-                vision complète de la transformation en cours.
+                {t("metier.body.sidebar.about.text")}
               </p>
               <div className="mt-theme-pills">
-                {["RH", "Finance", "Marketing", "Ventes", "IA Générative", "PME", "Afrique"].map(t => (
-                  <span key={t} className="mt-theme-pill">{t}</span>
-                ))}
+                {Array.isArray(t("metier.body.sidebar.about.tags")) 
+                  ? t("metier.body.sidebar.about.tags").map(tag => (
+                      <span key={tag} className="mt-theme-pill">{tag}</span>
+                    ))
+                  : null
+                }
               </div>
             </div>
           </aside>
@@ -958,9 +956,9 @@ export default function Metier() {
       {/* FOOTER */}
       <footer className="mt-footer">
         <div className="mt-footer-brand">
-          Rubrique <span>Métiers &amp; IA</span> — 2026
+          {t("metier.footer.brand")}
         </div>
-        <Link to="/" className="mt-footer-back">← Retour à l'accueil</Link>
+        <Link to="/" className="mt-footer-back">{t("metier.footer.back")}</Link>
       </footer>
     </div>
   );

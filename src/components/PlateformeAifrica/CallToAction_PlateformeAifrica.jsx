@@ -1,19 +1,21 @@
 import React from "react";
+import { useLanguage } from "../../contexts/LanguageContext";
 
 const CallToAction_PlateformeAifrica = () => {
+  const { t } = useLanguage();
+
   return (
     <section className="cta-section">
       <div className="container">
         <div className="cta-content">
           <h2 className="cta-title">
-            Prêt à Transformer Votre Entreprise avec l'IA ?
+            {t('plateformeAifrica.cta.title')}
           </h2>
           <p className="cta-description">
-            Rejoignez des centaines d'entreprises africaines qui utilisent déjà 
-            AIFRICA pour accélérer leur croissance et innover dans leur secteur.
+            {t('plateformeAifrica.cta.description')}
           </p>
           <button className="cta-button">
-            Demander une Démo Gratuite
+            {t('plateformeAifrica.cta.button')}
           </button>
         </div>
       </div>

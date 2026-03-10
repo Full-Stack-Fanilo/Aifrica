@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useLanguage } from "../contexts/LanguageContext";
 import article1 from "../assets/images/article1.jpg";
 import article2 from "../assets/images/article2.webp";
 import article3 from "../assets/images/article3.avif";
@@ -848,21 +849,6 @@ const articles = [
   }
 ];
 
-const tickerItems = [
-  "Commerce & Retail", "Transport & Logistique", "Santé Digitale",
-  "Banque & Assurance", "Agriculture Intelligente", "Tourisme", "Éducation", "Innovation Africaine"
-];
-
-const sectors = [
-  { name: "Commerce & Retail", count: 2 },
-  { name: "Transport & Logistique", count: 2 },
-  { name: "Santé", count: 2 },
-  { name: "Banque & Assurance", count: 2 },
-  { name: "Agriculture", count: 2 },
-  { name: "Tourisme", count: 2 },
-  { name: "Éducation", count: 2 },
-];
-
 const ArrowRight = () => (
   <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
     <path d="M5 12h14M12 5l7 7-7 7"/>
@@ -870,7 +856,19 @@ const ArrowRight = () => (
 );
 
 export default function Entreprise() {
+  const { t } = useLanguage();
   const [featured] = articles;
+
+  const tickerItems = Array.isArray(t("entreprise.ticker.items")) ? t("entreprise.ticker.items") : [];
+  const sectors = [
+    { name: "Commerce & Retail", count: 2 },
+    { name: "Transport & Logistique", count: 2 },
+    { name: "Santé", count: 2 },
+    { name: "Banque & Assurance", count: 2 },
+    { name: "Agriculture", count: 2 },
+    { name: "Tourisme", count: 2 },
+    { name: "Éducation", count: 2 },
+  ];
 
   return (
     <div className="en-root">
@@ -878,40 +876,39 @@ export default function Entreprise() {
 
       {/* TOP BAND */}
       <div className="en-topband">
-        <span className="en-topband-label">Industrie &amp; Économie · IA &amp; Secteurs</span>
+        <span className="en-topband-label">{t("entreprise.topband.label")}</span>
         <div className="en-topband-right">
-          <span className="en-topband-date">2026</span>
-          <Link to="/" className="en-topband-back">← Accueil</Link>
+          <span className="en-topband-date">{t("entreprise.topband.date")}</span>
+          <Link to="/" className="en-topband-back">{t("entreprise.topband.back")}</Link>
         </div>
       </div>
 
       {/* HERO */}
       <section className="en-hero">
         <div className="en-hero-left">
-          <div className="en-hero-tag">Industrie &amp; Économie</div>
+          <div className="en-hero-tag">{t("entreprise.hero.tag")}</div>
           <div className="en-hero-heading">
             <h1 className="en-hero-h1">
-              L'IA &amp; les<br />
-              <em>Secteurs</em><br />
-              Économiques
+              {t("entreprise.hero.title")}<br />
+              <em>{t("entreprise.hero.title_highlight")}</em><br />
+              {t("entreprise.hero.title_end")}
             </h1>
             <p className="en-hero-sub">
-              Commerce, transport, santé, finance, agriculture, tourisme, éducation —
-              comment l'intelligence artificielle redessine chaque industrie, en Afrique et dans le monde.
+              {t("entreprise.hero.subtitle")}
             </p>
           </div>
           <div className="en-hero-stats">
             <div className="en-stat">
               <div className="en-stat-num">14</div>
-              <div className="en-stat-label">Articles</div>
+              <div className="en-stat-label">{t("entreprise.hero.stats.articles")}</div>
             </div>
             <div className="en-stat">
               <div className="en-stat-num">7</div>
-              <div className="en-stat-label">Secteurs</div>
+              <div className="en-stat-label">{t("entreprise.hero.stats.sectors")}</div>
             </div>
             <div className="en-stat">
               <div className="en-stat-num">2</div>
-              <div className="en-stat-label">Perspectives</div>
+              <div className="en-stat-label">{t("entreprise.hero.stats.perspectives")}</div>
             </div>
           </div>
         </div>
@@ -920,14 +917,14 @@ export default function Entreprise() {
           <img src={featured.image} alt={featured.title} />
           <div className="en-hero-overlay" />
           <div className="en-hero-caption">
-            <span className="en-caption-tag">⭐ À la une</span>
+            <span className="en-caption-tag">{t("entreprise.hero.featured.tag")}</span>
             <h2 className="en-caption-title">{featured.title}</h2>
             <div className="en-caption-meta">
               <span className="en-caption-cat">{featured.category}</span>
               <span className="en-caption-dot" />
               <span className="en-caption-sub">{featured.scope}</span>
             </div>
-            <Link to={`/article/${featured.id + 100}`} className="en-cta">Lire l'article <ArrowRight /></Link>
+            <Link to={`/article/${featured.id + 100}`} className="en-cta">{t("entreprise.hero.featured.read_article")} <ArrowRight /></Link>
           </div>
         </div>
       </section>
@@ -946,10 +943,10 @@ export default function Entreprise() {
       {/* BODY */}
       <div className="en-body">
         <div className="en-section-hd">
-          <span className="en-section-hd-label">Analyses</span>
-          <h2 className="en-section-hd-title">Tous les articles</h2>
+          <span className="en-section-hd-label">{t("entreprise.body.section.label")}</span>
+          <h2 className="en-section-hd-title">{t("entreprise.body.section.title")}</h2>
           <div className="en-section-hd-line" />
-          <span className="en-section-hd-count">{articles.length} articles</span>
+          <span className="en-section-hd-count">{articles.length} {t("entreprise.body.section.count")}</span>
         </div>
 
         <div className="en-layout">
@@ -960,7 +957,7 @@ export default function Entreprise() {
                 <div className="en-img-wrap">
                   <img src={article.image} alt={article.title} />
                   <span className="en-img-badge">{article.number}</span>
-                  {article.africa && <span className="en-img-africa">Afrique</span>}
+                  {article.africa && <span className="en-img-africa">{t("entreprise.body.article.africa")}</span>}
                 </div>
                 <div className="en-article-body">
                   <div className="en-article-meta">
@@ -973,7 +970,7 @@ export default function Entreprise() {
                   <div className="en-article-foot">
                     <span className="en-article-num-label">{article.number}</span>
                     <span className="en-article-link">
-                      Lire l'article <ArrowRight />
+                      {t("entreprise.body.article.read_article")} <ArrowRight />
                     </span>
                   </div>
                 </div>
@@ -986,7 +983,7 @@ export default function Entreprise() {
             {/* Highlights */}
             <div className="en-sb-block">
               <div className="en-sb-hd">
-                <span className="en-sb-hd-title">À retenir</span>
+                <span className="en-sb-hd-title">{t("entreprise.body.sidebar.highlights.title")}</span>
                 <div className="en-sb-hd-line" />
               </div>
               <div className="en-hi-list">
@@ -1005,7 +1002,7 @@ export default function Entreprise() {
             {/* Sectors */}
             <div className="en-sectors-block">
               <div className="en-sb-hd">
-                <span className="en-sb-hd-title">Secteurs couverts</span>
+                <span className="en-sb-hd-title">{t("entreprise.body.sidebar.sectors.title")}</span>
                 <div className="en-sb-hd-line" />
               </div>
               {sectors.map(s => (
@@ -1014,24 +1011,25 @@ export default function Entreprise() {
                     <span className="en-sector-dot" />
                     {s.name}
                   </span>
-                  <span className="en-sector-count">{s.count} articles</span>
+                  <span className="en-sector-count">{s.count} {t("entreprise.body.sidebar.sectors.articles")}</span>
                 </a>
               ))}
             </div>
 
             {/* About */}
             <div className="en-about-block">
-              <div className="en-about-tag">À propos de la rubrique</div>
-              <div className="en-about-title">L'IA redessine l'économie mondiale</div>
+              <div className="en-about-tag">{t("entreprise.body.sidebar.about.tag")}</div>
+              <div className="en-about-title">{t("entreprise.body.sidebar.about.title")}</div>
               <p className="en-about-text">
-                Chaque secteur est analysé sous deux angles : les tendances mondiales
-                et les réalités africaines, pour une vision complète et nuancée
-                de la transformation en cours.
+                {t("entreprise.body.sidebar.about.text")}
               </p>
               <div className="en-about-pills">
-                {["Retail", "Logistique", "Santé", "Fintech", "AgriTech", "TourTech", "EdTech", "Afrique"].map(t => (
-                  <span key={t} className="en-about-pill">{t}</span>
-                ))}
+                {Array.isArray(t("entreprise.body.sidebar.about.tags")) 
+                  ? t("entreprise.body.sidebar.about.tags").map(tag => (
+                      <span key={tag} className="en-about-pill">{tag}</span>
+                    ))
+                  : null
+                }
               </div>
             </div>
           </aside>
@@ -1041,9 +1039,9 @@ export default function Entreprise() {
       {/* FOOTER */}
       <footer className="en-footer">
         <div className="en-footer-brand">
-          Rubrique <span>Industrie &amp; Économie</span> — 2026
+          {t("entreprise.footer.brand")}
         </div>
-        <Link to="/" className="en-footer-back">← Retour à l'accueil</Link>
+        <Link to="/" className="en-footer-back">{t("entreprise.footer.back")}</Link>
       </footer>
     </div>
   );

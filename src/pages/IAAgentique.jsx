@@ -17,6 +17,7 @@ import {
 } from "react-icons/fa";
 import FAQ_IAAgentique from "../components/IAAgentique/FAQ_IAAgentique";
 import CallToAction_IAAgentique from "../components/IAAgentique/CallToAction_IAAgentique";
+import { useLanguage } from "../contexts/LanguageContext";
 
 const styles = `
   :root {
@@ -549,44 +550,40 @@ const styles = `
   }
 `;
 
-const agents = [
-  { icon: <FaRobot />, cls: "ic-blue", title: "Agents Conversationnels", desc: "Chatbots intelligents pour le service client, support technique et engagement utilisateur." },
-  { icon: <FaCogs />, cls: "ic-gold", title: "Agents de Processus", desc: "Automatisation intelligente des workflows métier et optimisation des opérations." },
-  { icon: <FaBrain />, cls: "ic-green", title: "Agents d'Analyse", desc: "Agents spécialisés dans l'analyse de données et la génération d'insights." },
-  { icon: <FaHandshake />, cls: "ic-indigo", title: "Agents de Vente", desc: "Assistants virtuels pour la prospection, qualification et suivi commercial." },
-  { icon: <FaShieldAlt />, cls: "ic-orange", title: "Agents de Sécurité", desc: "Surveillance proactive et détection automatique des menaces de sécurité." },
-  { icon: <FaChartLine />, cls: "ic-red", title: "Agents de Monitoring", desc: "Supervision continue des systèmes et alertes intelligentes prédictives." },
-];
-
-const capabilities = [
-  { icon: <FaRocket />, title: "Autonomie Complète", desc: "Agents capables de prendre des décisions et d'agir de manière autonome selon les règles définies." },
-  { icon: <FaBrain />, title: "Apprentissage Continu", desc: "Agents qui s'améliorent avec le temps grâce au machine learning et à l'adaptation." },
-  { icon: <FaCogs />, title: "Intégration Multi-Source", desc: "Connexion avec vos systèmes existants pour une vue complète et des actions coordonnées." },
-];
-
-const benefits = [
-  { icon: <FaClock />, cls: "ic-blue", title: "24/7 Disponibilité", desc: "Vos agents travaillent sans interruption pour garantir une continuité de service parfaite." },
-  { icon: <FaChartLine />, cls: "ic-gold", title: "Efficacité x4", desc: "Réduction drastique des temps de traitement et augmentation de la productivité." },
-  { icon: <FaTrophy />, cls: "ic-green", title: "Qualité Consistante", desc: "Standardisation des processus et élimination des erreurs humaines." },
-];
-
-const process = [
-  { n: "1", title: "Analyse des Processus", desc: "Identification des tâches répétitives et des opportunités d'automatisation." },
-  { n: "2", title: "Conception des Agents", desc: "Définition des comportements, règles et intégrations nécessaires." },
-  { n: "3", title: "Développement & Tests", desc: "Création des agents avec validation en conditions réelles." },
-  { n: "4", title: "Déploiement & Monitoring", desc: "Mise en production avec supervision continue et optimisation." },
-];
-
-const faqs = [
-  { q: "Qu'est-ce que l'IA agentique ?", a: "L'IA agentique utilise des agents intelligents autonomes capables de percevoir leur environnement, prendre des décisions et exécuter des actions pour atteindre des objectifs spécifiques." },
-  { q: "Les agents IA sont-ils vraiment autonomes ?", a: "Oui, nos agents peuvent fonctionner de manière autonome dans le cadre de règles prédéfinies, avec supervision humaine pour les décisions critiques." },
-  { q: "Quel ROI peut-on attendre ?", a: "Nos clients observent en moyenne une réduction de 70% des coûts opérationnels et une amélioration de 80% de la rapidité de traitement." },
-  { q: "Comment garantir la sécurité des agents ?", a: "Nous mettons en place des protocoles de sécurité avancés, des sandboxs et des mécanismes de validation pour garantir des opérations sécurisées." },
-];
-
 export default function IAAgentique() {
+  const { t } = useLanguage();
   const [activeIndex, setActiveIndex] = React.useState(null);
   const toggle = (i) => setActiveIndex(activeIndex === i ? null : i);
+
+  const agents = [
+    { icon: <FaRobot />, cls: "ic-blue", title: t('iaAgentique.sections.agents.items.conversational.title'), desc: t('iaAgentique.sections.agents.items.conversational.description') },
+    { icon: <FaCogs />, cls: "ic-gold", title: t('iaAgentique.sections.agents.items.process.title'), desc: t('iaAgentique.sections.agents.items.process.description') },
+    { icon: <FaBrain />, cls: "ic-green", title: t('iaAgentique.sections.agents.items.analysis.title'), desc: t('iaAgentique.sections.agents.items.analysis.description') },
+    { icon: <FaHandshake />, cls: "ic-indigo", title: t('iaAgentique.sections.agents.items.sales.title'), desc: t('iaAgentique.sections.agents.items.sales.description') },
+    { icon: <FaShieldAlt />, cls: "ic-orange", title: t('iaAgentique.sections.agents.items.security.title'), desc: t('iaAgentique.sections.agents.items.security.description') },
+    { icon: <FaChartLine />, cls: "ic-red", title: t('iaAgentique.sections.agents.items.monitoring.title'), desc: t('iaAgentique.sections.agents.items.monitoring.description') },
+  ];
+
+  const capabilities = [
+    { icon: <FaRocket />, title: t('iaAgentique.sections.capabilities.items.autonomy.title'), desc: t('iaAgentique.sections.capabilities.items.autonomy.description') },
+    { icon: <FaBrain />, title: t('iaAgentique.sections.capabilities.items.learning.title'), desc: t('iaAgentique.sections.capabilities.items.learning.description') },
+    { icon: <FaCogs />, title: t('iaAgentique.sections.capabilities.items.integration.title'), desc: t('iaAgentique.sections.capabilities.items.integration.description') },
+  ];
+
+  const benefits = [
+    { icon: <FaClock />, cls: "ic-blue", title: t('iaAgentique.sections.benefits.items.availability.title'), desc: t('iaAgentique.sections.benefits.items.availability.description') },
+    { icon: <FaChartLine />, cls: "ic-gold", title: t('iaAgentique.sections.benefits.items.efficiency.title'), desc: t('iaAgentique.sections.benefits.items.efficiency.description') },
+    { icon: <FaTrophy />, cls: "ic-green", title: t('iaAgentique.sections.benefits.items.quality.title'), desc: t('iaAgentique.sections.benefits.items.quality.description') },
+  ];
+
+  const process = [
+    { n: "1", title: t('iaAgentique.sections.process.items.analysis.title'), desc: t('iaAgentique.sections.process.items.analysis.description') },
+    { n: "2", title: t('iaAgentique.sections.process.items.design.title'), desc: t('iaAgentique.sections.process.items.design.description') },
+    { n: "3", title: t('iaAgentique.sections.process.items.development.title'), desc: t('iaAgentique.sections.process.items.development.description') },
+    { n: "4", title: t('iaAgentique.sections.process.items.deployment.title'), desc: t('iaAgentique.sections.process.items.deployment.description') },
+  ];
+
+  const faqs = t('iaAgentique.sections.faq.items');
 
   return (
     <div className="ia-agent-page">
@@ -596,19 +593,19 @@ export default function IAAgentique() {
       <section className="ia-agent-hero" id="services">
         <div className="ia-agent-hero-inner">
           <div className="ia-agent-hero-badge">
-            <FaUsersCog /> IA Agentique
+            <FaUsersCog /> {t('iaAgentique.badge')}
           </div>
           <h1>
-            Automatisez l'intelligence avec <span className="gold">les agents IA</span>
+            {t('iaAgentique.title')}<span className="gold">{t('iaAgentique.title_highlight')}</span>
           </h1>
           <div className="ia-agent-hero-quote">
-            "Le meilleur agent est celui qui agit sans qu'on lui demande."
+            "{t('iaAgentique.quote')}"
           </div>
           <p className="ia-agent-hero-desc">
-            Révolutionnez votre opérationnel avec des agents IA autonomes qui travaillent 24/7 pour optimiser vos processus, servir vos clients et prendre des décisions intelligentes.
+            {t('iaAgentique.description')}
           </p>
           <a href="#contact" className="ia-agent-hero-cta">
-            Démarrer l'automatisation <FaArrowRight />
+            {t('iaAgentique.start_automation')} <FaArrowRight />
           </a>
         </div>
       </section>
@@ -616,10 +613,10 @@ export default function IAAgentique() {
       {/* AGENTS */}
       <section className="ia-agent-agents">
         <div className="ia-agent-section-inner">
-          <p className="ia-agent-section-label">Nos agents</p>
-          <h2 className="ia-agent-section-title">Agents spécialisés</h2>
+          <p className="ia-agent-section-label">{t('iaAgentique.sections.agents.label')}</p>
+          <h2 className="ia-agent-section-title">{t('iaAgentique.sections.agents.title')}</h2>
           <p className="ia-agent-section-sub">
-            Découvrez notre gamme d'agents IA pour transformer vos activités.
+            {t('iaAgentique.sections.agents.subtitle')}
           </p>
           <div className="ia-agent-agents-grid">
             {agents.map((agent, i) => (
@@ -636,10 +633,10 @@ export default function IAAgentique() {
       {/* CAPABILITIES */}
       <section className="ia-agent-capabilities">
         <div className="ia-agent-section-inner">
-          <p className="ia-agent-section-label">Capacités</p>
-          <h2 className="ia-agent-section-title">Puissance et autonomie</h2>
+          <p className="ia-agent-section-label">{t('iaAgentique.sections.capabilities.label')}</p>
+          <h2 className="ia-agent-section-title">{t('iaAgentique.sections.capabilities.title')}</h2>
           <p className="ia-agent-section-sub">
-            Les caractéristiques qui font la force de nos agents IA.
+            {t('iaAgentique.sections.capabilities.subtitle')}
           </p>
           <div className="ia-agent-capabilities-grid">
             {capabilities.map((capability, i) => (
@@ -656,10 +653,10 @@ export default function IAAgentique() {
       {/* BENEFITS */}
       <section className="ia-agent-benefits">
         <div className="ia-agent-section-inner">
-          <p className="ia-agent-section-label">Bénéfices</p>
-          <h2 className="ia-agent-section-title">Pourquoi l'IA agentique ?</h2>
+          <p className="ia-agent-section-label">{t('iaAgentique.sections.benefits.label')}</p>
+          <h2 className="ia-agent-section-title">{t('iaAgentique.sections.benefits.title')}</h2>
           <p className="ia-agent-section-sub">
-            Les avantages concrets pour votre entreprise africaine.
+            {t('iaAgentique.sections.benefits.subtitle')}
           </p>
           <div className="ia-agent-benefits-grid">
             {benefits.map((benefit, i) => (
@@ -676,10 +673,10 @@ export default function IAAgentique() {
       {/* PROCESS */}
       <section className="ia-agent-process">
         <div className="ia-agent-section-inner">
-          <p className="ia-agent-section-label">Processus</p>
-          <h2 className="ia-agent-section-title">Notre méthodologie</h2>
+          <p className="ia-agent-section-label">{t('iaAgentique.sections.process.label')}</p>
+          <h2 className="ia-agent-section-title">{t('iaAgentique.sections.process.title')}</h2>
           <p className="ia-agent-section-sub">
-            Une approche structurée pour déployer vos agents IA avec succès.
+            {t('iaAgentique.sections.process.subtitle')}
           </p>
           <div className="ia-agent-process-grid">
             {process.map((step, i) => (
@@ -696,10 +693,10 @@ export default function IAAgentique() {
       {/* FAQ */}
       <section className="ia-agent-faq">
         <div className="ia-agent-section-inner" style={{ textAlign: "center" }}>
-          <p className="ia-agent-section-label">FAQ</p>
-          <h2 className="ia-agent-section-title">Questions fréquentes</h2>
+          <p className="ia-agent-section-label">{t('iaAgentique.sections.faq.label')}</p>
+          <h2 className="ia-agent-section-title">{t('iaAgentique.sections.faq.title')}</h2>
           <p className="ia-agent-section-sub" style={{ margin: "0 auto 0" }}>
-            Tout ce que vous devez savoir sur l'IA agentique
+            {t('iaAgentique.sections.faq.subtitle')}
           </p>
         </div>
         <div className="ia-agent-faq-list">
@@ -724,12 +721,12 @@ export default function IAAgentique() {
       {/* CTA */}
       <section className="ia-agent-cta">
         <div className="ia-agent-cta-inner">
-          <h2>Prêt à <span className="gold">automatiser</span> votre excellence ?</h2>
+          <h2>{t('iaAgentique.sections.cta.title')}<span className="gold">{t('iaAgentique.sections.cta.title_highlight')}</span>{t('iaAgentique.sections.cta.title_end')}</h2>
           <p>
-            Rejoignez les entreprises africaines qui transforment leur opérationnel avec des agents IA autonomes.
+            {t('iaAgentique.sections.cta.description')}
           </p>
           <a href="#contact" className="ia-agent-cta-btn">
-            Démarrer maintenant <FaArrowRight />
+            {t('iaAgentique.sections.cta.button')} <FaArrowRight />
           </a>
         </div>
       </section>

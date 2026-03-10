@@ -10,6 +10,7 @@ import MaturiteIa from "../components/MaturiteIa";
 import BlogAccueil from "../components/BlogAccueil";
 import Contact from "../components/Contact";
 import Footer from "../components/Footer";
+import FloatingChatbot from "../components/FloatingChatbot";
 function HomeV3() {
   return (
     <div>
@@ -46,6 +47,7 @@ function HomeV3() {
       <section>
         <Footer />
       </section>
+      <FloatingChatbot />
     </div>
   );
 }

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { useLanguage } from "../contexts/LanguageContext";
 import afriqueImage from "../assets/images/Aifrica1.jpeg";
 import afriqueImage2 from "../assets/images/Aifrica2.webp";
 import afriqueImage3 from "../assets/images/Aifrica3.webp";
@@ -698,11 +699,6 @@ const articles = [
   }
 ];
 
-const tickerItems = [
-  "Intelligence Artificielle", "Innovation Africaine", "Souveraineté Numérique",
-  "Talents & Formation", "Infrastructures IA", "Partenariats Stratégiques", "Transformation Digitale"
-];
-
 const ArrowRight = () => (
   <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
     <path d="M5 12h14M12 5l7 7-7 7"/>
@@ -715,7 +711,10 @@ const PinIcon = () => (
 );
 
 export default function Afrique() {
+  const { t } = useLanguage();
   const [featured] = articles;
+  
+  const tickerItems = t("afrique.ticker.items");
 
   return (
     <div className="af-root">
@@ -723,40 +722,40 @@ export default function Afrique() {
 
       {/* TOP BAND */}
       <div className="af-topband">
-        <span className="af-topband-label">Dossier Spécial · Afrique &amp; IA</span>
+        <span className="af-topband-label">{t("afrique.topBand.label")}</span>
         <div className="af-topband-right">
-          <span className="af-topband-date">Février 2026</span>
-          <Link to="/" className="af-topband-back">← Accueil</Link>
+          <span className="af-topband-date">{t("afrique.topBand.date")}</span>
+          <Link to="/" className="af-topband-back">{t("afrique.topBand.back")}</Link>
         </div>
       </div>
 
       {/* HERO */}
       <section className="af-hero">
         <div className="af-hero-left">
-          <div className="af-hero-tag">Dossier Spécial</div>
+          <div className="af-hero-tag">{t("afrique.hero.tag")}</div>
           <div className="af-hero-heading">
             <h1 className="af-hero-h1">
-              L'<em>Afrique</em><br />
-              &amp; l'Intel&shy;ligence<br />
-              Artificielle
+              {t("afrique.hero.title")}<em>{t("afrique.hero.title_highlight")}</em><br />
+              {t("afrique.hero.title_part1")}<br />
+              {t("afrique.hero.title_part2")}<br />
+              {t("afrique.hero.title_part3")}
             </h1>
             <p className="af-hero-sub">
-              Analyses, initiatives et décryptages sur la transformation
-              numérique du continent africain — au cœur de l'actualité mondiale.
+              {t("afrique.hero.subtitle")}
             </p>
           </div>
           <div className="af-hero-stats">
             <div className="af-stat">
               <div className="af-stat-num">6</div>
-              <div className="af-stat-label">Articles</div>
+              <div className="af-stat-label">{t("afrique.hero.stats.articles")}</div>
             </div>
             <div className="af-stat">
               <div className="af-stat-num">5+</div>
-              <div className="af-stat-label">Pays</div>
+              <div className="af-stat-label">{t("afrique.hero.stats.countries")}</div>
             </div>
             <div className="af-stat">
               <div className="af-stat-num">2026</div>
-              <div className="af-stat-label">Actualité</div>
+              <div className="af-stat-label">{t("afrique.hero.stats.news")}</div>
             </div>
           </div>
         </div>
@@ -765,14 +764,14 @@ export default function Afrique() {
           <img src={featured.image} alt={featured.title} />
           <div className="af-hero-overlay" />
           <div className="af-hero-caption">
-            <span className="af-caption-tag">⭐ À la une</span>
+            <span className="af-caption-tag">{t("afrique.hero.featured.tag")}</span>
             <h2 className="af-caption-title">{featured.title}</h2>
             <div className="af-caption-meta">
               <span className="af-caption-date">{featured.date}</span>
               <span className="af-caption-dot" />
               <span className="af-caption-loc">{featured.location}</span>
             </div>
-            <Link to={`/article/${featured.id}`} className="af-cta">Lire l'article <ArrowRight /></Link>
+            <Link to={`/article/${featured.id}`} className="af-cta">{t("afrique.hero.featured.read")} <ArrowRight /></Link>
           </div>
         </div>
       </section>
@@ -791,10 +790,10 @@ export default function Afrique() {
       {/* BODY */}
       <div className="af-body">
         <div className="af-section-hd">
-          <span className="af-section-hd-label">Actualités</span>
-          <h2 className="af-section-hd-title">Dernières analyses</h2>
+          <span className="af-section-hd-label">{t("afrique.body.sectionLabel")}</span>
+          <h2 className="af-section-hd-title">{t("afrique.body.sectionTitle")}</h2>
           <div className="af-section-hd-line" />
-          <span className="af-section-hd-count">{articles.length} articles</span>
+          <span className="af-section-hd-count">{articles.length} {t("afrique.body.sectionCount")}</span>
         </div>
 
         <div className="af-layout">
@@ -819,7 +818,7 @@ export default function Afrique() {
                       <PinIcon /> {article.location}
                     </span>
                     <span className="af-article-link">
-                      Lire l'article <ArrowRight />
+                      {t("afrique.article.read")} <ArrowRight />
                     </span>
                   </div>
                 </div>
@@ -832,7 +831,7 @@ export default function Afrique() {
             {/* Highlights */}
             <div className="af-sb-block">
               <div className="af-sb-hd">
-                <span className="af-sb-hd-title">À retenir</span>
+                <span className="af-sb-hd-title">{t("afrique.sidebar.highlights.title")}</span>
                 <div className="af-sb-hd-line" />
               </div>
               <div className="af-hi-list">
@@ -850,15 +849,13 @@ export default function Afrique() {
 
             {/* About */}
             <div className="af-about">
-              <div className="af-about-tag">À propos du dossier</div>
-              <div className="af-about-title">L'Afrique au cœur de la révolution IA</div>
+              <div className="af-about-tag">{t("afrique.sidebar.about.tag")}</div>
+              <div className="af-about-title">{t("afrique.sidebar.about.title")}</div>
               <p className="af-about-text">
-                Ce dossier compile les initiatives, partenariats et analyses
-                qui positionnent le continent africain comme acteur incontournable
-                de l'intelligence artificielle mondiale en 2026.
+                {t("afrique.sidebar.about.text")}
               </p>
               <div className="af-countries">
-                {["Nigeria", "Maroc", "Kenya", "Ghana", "Afrique du Sud", "Sénégal"].map(c => (
+                {t("afrique.sidebar.about.countries").map(c => (
                   <span key={c} className="af-country">{c}</span>
                 ))}
               </div>
@@ -869,10 +866,8 @@ export default function Afrique() {
 
       {/* FOOTER */}
       <footer className="af-footer">
-        <div className="af-footer-brand">
-          Dossier <span>Afrique &amp; IA</span> — 2026
-        </div>
-        <Link to="/" className="af-footer-back">← Retour à l'accueil</Link>
+        <div className="af-footer-brand" dangerouslySetInnerHTML={{ __html: t("afrique.footer.brand") }} />
+        <Link to="/" className="af-footer-back">{t("afrique.footer.back")}</Link>
       </footer>
     </div>
   );

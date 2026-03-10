@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
+import { useLanguage } from "../contexts/LanguageContext";
 
 const CSS = `
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
@@ -572,6 +573,8 @@ html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
 `;
 
 export default function SolutionIAAvancee() {
+  const { t } = useLanguage();
+  
   useEffect(() => {
     const style = document.createElement("style");
     style.textContent = CSS;
@@ -579,89 +582,22 @@ export default function SolutionIAAvancee() {
     return () => document.head.removeChild(style);
   }, []);
 
-  const problems = [
-    { ico: "🔄", t: "Processus manuels répétitifs", sub: "Tâches chronophages qui ralentissent les équipes et créent des erreurs." },
-    { ico: "📞", t: "Service client saturé", sub: "Équipes débordées, temps de réponse longs, qualité inégale." },
-    { ico: "🎲", t: "Décisions à l'intuition", sub: "Absence de données objectives pour piloter l'entreprise." },
-    { ico: "📊", t: "Manque de prévision", sub: "Difficulté à anticiper ventes, stocks, churn et risques." },
-    { ico: "🌍", t: "Outils génériques inadaptés", sub: "Solutions conçues pour d'autres contextes, inefficaces localement." },
-  ];
+  // Fonction helper pour s'assurer que nous avons un tableau
+  const safeArray = (value) => {
+    return Array.isArray(value) ? value : [];
+  };
 
-  const solutions = [
-    {
-      ico: "🤖",
-      title: "Agents IA personnalisés",
-      items: [
-        "Chatbots internes (support RH, procédures, FAQ)",
-        "Assistants clients 24/7",
-        "Agents RAG connectés à vos documents"
-      ]
-    },
-    {
-      ico: "⚡",
-      title: "Automatisation intelligente",
-      items: [
-        "Automatisation du support client",
-        "Workflow automatisé (emails, CRM, relances)",
-        "Classification automatique de documents"
-      ]
-    },
-    {
-      ico: "📈",
-      title: "Modèles prédictifs",
-      items: [
-        "Prévision des ventes",
-        "Détection de fraude",
-        "Scoring crédit",
-        "Prédiction churn"
-      ]
-    },
-    {
-      ico: "📊",
-      title: "Dashboards décisionnels avancés",
-      items: [
-        "KPI en temps réel",
-        "Indicateurs financiers",
-        "Performance commerciale",
-        "Optimisation logistique"
-      ]
-    }
-  ];
+  const problems = safeArray(t("solutionIAAvancee.problem.items"));
 
-  const methodology = [
-    { n: "1", title: "Cadrage stratégique", desc: "Besoin métier, contraintes, objectifs" },
-    { n: "2", title: "Conception & Architecture", desc: "Structure data, tech, sécurité" },
-    { n: "3", title: "Développement & Intégration", desc: "Construction et connexion systèmes" },
-    { n: "4", title: "Tests & Validation", desc: "Robustesse, performance, cas limites" },
-    { n: "5", title: "Formation & Adoption", desc: "Compétences et documentation" },
-    { n: "6", title: "Suivi & Optimisation", desc: "KPIs et amélioration continue" },
-  ];
+  const solutions = safeArray(t("solutionIAAvancee.solutions.items"));
 
-  const targets = [
-    { ico: "🚀", label: "PME en croissance" },
-    { ico: "🏢", label: "Grandes entreprises" },
-    { ico: "📡", label: "Acteurs télécom" },
-    { ico: "🛒", label: "Distribution & retail" },
-    { ico: "💰", label: "Finance & microfinance" },
-    { ico: "🛍️", label: "E-commerce" },
-    { ico: "🚚", label: "Logistique" },
-  ];
+  const methodology = safeArray(t("solutionIAAvancee.methodology.steps"));
 
-  const difference = [
-    { bold: "Solutions adaptées aux infrastructures locales", rest: " — conçues pour les réalités techniques africaines." },
-    { bold: "Approche progressive et réaliste", rest: " — sans révolution brutale, avec montée en puissance maîtrisée." },
-    { bold: "Focus ROI mesurable", rest: " — chaque solution évaluée sur sa valeur business concrète." },
-    { bold: "Expertise Data & IA combinée", rest: " — double compétence rare et précieuse." },
-    { bold: "Accompagnement stratégique + opérationnel", rest: " — du conseil à la mise en production." },
-  ];
+  const targets = safeArray(t("solutionIAAvancee.targets.items"));
 
-  const deliverables = [
-    "Une solution IA fonctionnelle et documentée",
-    "Une architecture claire et maintenable",
-    "Un plan d'évolution sur 12-24 mois",
-    "Des indicateurs de performance mesurables",
-    "Une équipe formée et autonome"
-  ];
+  const difference = safeArray(t("solutionIAAvancee.difference.items"));
+
+  const deliverables = safeArray(t("solutionIAAvancee.deliverables.items"));
 
   return (
     <div className="ai">
@@ -674,33 +610,28 @@ export default function SolutionIAAvancee() {
           <div>
             <div className="ai-hero-tag">
               <span className="ai-hero-tag-line" />
-              Développement sur mesure – Agents IA – Automatisation
+              {t("solutionIAAvancee.hero.tag")}
             </div>
             <h1 className="ai-hero-h1">
-              Développez des solutions IA <span className="italic-gold">adaptées à votre réalité africaine</span>
+              {t("solutionIAAvancee.hero.title")}<span className="italic-gold">{t("solutionIAAvancee.hero.title_highlight")}</span>
             </h1>
             <p className="ai-hero-desc">
-              Nous concevons et déployons des solutions intelligentes sur mesure — agents IA, automatisations, modèles prédictifs et dashboards avancés — alignées sur vos objectifs métiers et vos contraintes opérationnelles.
+              {t("solutionIAAvancee.hero.description")}
             </p>
             <div className="ai-hero-actions">
               <button className="ai-btn-hero">
-                Demander une étude de faisabilité <span>→</span>
+                {t("solutionIAAvancee.hero.request_feasibility")} <span>→</span>
               </button>
               <button className="ai-btn-ghost">
-                <span>▶</span> Voir nos réalisations
+                <span>▶</span> {t("solutionIAAvancee.hero.see_realizations")}
               </button>
             </div>
           </div>
 
           <div className="ai-hero-panel">
-            <div className="ai-hero-panel-head">NOTRE APPROCHE</div>
+            <div className="ai-hero-panel-head">{t("solutionIAAvancee.hero.approach_title")}</div>
             <div className="ai-hero-steps">
-              {[
-                { n: "1", t: "Architecture réaliste", d: "Adaptée à vos contraintes" },
-                { n: "2", t: "Intégration existante", d: "Avec vos outils actuels" },
-                { n: "3", t: "Adoption mesurable", d: "Formation et accompagnement" },
-                { n: "4", t: "Montée en puissance", d: "Progressive et sécurisée" },
-              ].map((s, i) => (
+              {safeArray(t("solutionIAAvancee.hero.steps")).map((s, i) => (
                 <div key={i} className="ai-hero-step">
                   <div className="ai-step-num">{s.n}</div>
                   <div className="ai-step-info">
@@ -711,8 +642,8 @@ export default function SolutionIAAvancee() {
               ))}
             </div>
             <div className="ai-hero-panel-foot">
-              <span className="label">Développement</span>
-              <span className="value">Sur mesure</span>
+              <span className="label">{t("solutionIAAvancee.hero.approach_label")}</span>
+              <span className="value">{t("solutionIAAvancee.hero.approach_value")}</span>
             </div>
           </div>
         </div>
@@ -726,13 +657,13 @@ export default function SolutionIAAvancee() {
               <div className="ai-problem-header">
                 <div className="ai-eyebrow">
                   <span className="ai-eyebrow-bar" />
-                  LE PROBLÈME
+                  {t("solutionIAAvancee.problem.eyebrow")}
                 </div>
                 <h2 className="ai-h2">
-                  De nombreuses organisations africaines <em>font face à</em>
+                  {t("solutionIAAvancee.problem.title")}<em>{t("solutionIAAvancee.problem.title_highlight")}</em>
                 </h2>
                 <p className="ai-sub">
-                  L'IA peut transformer ces défis en avantage compétitif — à condition d'être bien conçue et adaptée au terrain.
+                  {t("solutionIAAvancee.problem.subtitle")}
                 </p>
               </div>
               <div className="ai-problem-list">
@@ -749,15 +680,12 @@ export default function SolutionIAAvancee() {
             </div>
 
             <div className="ai-approach-panel">
-              <h3>NOTRE APPROCHE</h3>
-              <p>
-                Chez Aifrica, nous développons des solutions IA <strong>progressives, robustes</strong> et <strong>adaptées aux réalités africaines</strong>.
-              </p>
+              <h3>{t("solutionIAAvancee.problem.approach_title")}</h3>
+              <p dangerouslySetInnerHTML={{ __html: t("solutionIAAvancee.problem.approach_description") }} />
               <div className="ai-approach-checks">
-                <div className="ai-approach-check">Une architecture réaliste</div>
-                <div className="ai-approach-check">Une intégration avec vos outils existants</div>
-                <div className="ai-approach-check">Une adoption mesurable par vos équipes</div>
-                <div className="ai-approach-check">Une montée en puissance progressive</div>
+                {safeArray(t("solutionIAAvancee.problem.approach_checks")).map((check, i) => (
+                  <div key={i} className="ai-approach-check">{check}</div>
+                ))}
               </div>
             </div>
           </div>
@@ -770,13 +698,13 @@ export default function SolutionIAAvancee() {
           <div className="text-center">
             <div className="ai-eyebrow">
               <span className="ai-eyebrow-bar" />
-              CE QUE NOUS DÉVELOPPONS
+              {t("solutionIAAvancee.solutions.eyebrow")}
             </div>
             <h2 className="ai-h2">
-              Des solutions <em>intelligentes</em> pour chaque besoin
+              {t("solutionIAAvancee.solutions.title")}<em>{t("solutionIAAvancee.solutions.title_highlight")}</em>{t("solutionIAAvancee.solutions.title_end")}
             </h2>
             <p className="ai-sub" style={{ margin: '0 auto' }}>
-              De l'agent conversationnel au dashboard prédictif, nous couvrons tout le spectre de l'IA appliquée.
+              {t("solutionIAAvancee.solutions.subtitle")}
             </p>
           </div>
 
@@ -788,7 +716,7 @@ export default function SolutionIAAvancee() {
                   <h3 className="ai-solution-title">{solution.title}</h3>
                 </div>
                 <ul className="ai-solution-list">
-                  {solution.items.map((item, j) => (
+                  {safeArray(solution.items).map((item, j) => (
                     <li key={j}>{item}</li>
                   ))}
                 </ul>
@@ -804,13 +732,13 @@ export default function SolutionIAAvancee() {
           <div className="text-center">
             <div className="ai-eyebrow dark">
               <span className="ai-eyebrow-bar" />
-              NOTRE MÉTHODOLOGIE
+              {t("solutionIAAvancee.methodology.eyebrow")}
             </div>
             <h2 className="ai-h2 dark">
-              Un développement <em>structuré</em> en 6 étapes
+              {t("solutionIAAvancee.methodology.title")}<em>{t("solutionIAAvancee.methodology.title_highlight")}</em>{t("solutionIAAvancee.methodology.title_end")}
             </h2>
             <p className="ai-sub dark" style={{ margin: '0 auto' }}>
-              De l'idée à la production, nous vous accompagnons à chaque phase du projet.
+              {t("solutionIAAvancee.methodology.subtitle")}
             </p>
           </div>
 
@@ -832,49 +760,49 @@ export default function SolutionIAAvancee() {
           <div className="text-center">
             <div className="ai-eyebrow">
               <span className="ai-eyebrow-bar" />
-              CAS D'USAGE AFRIQUE
+              {t("solutionIAAvancee.caseStudies.eyebrow")}
             </div>
             <h2 className="ai-h2">
-              Des applications <em>concrètes</em> qui transforment le business
+              {t("solutionIAAvancee.caseStudies.title")}<em>{t("solutionIAAvancee.caseStudies.title_highlight")}</em>{t("solutionIAAvancee.caseStudies.title_end")}
             </h2>
             <p className="ai-sub" style={{ margin: '0 auto' }}>
-              Découvrez comment l'IA résout des problèmes réels dans différents secteurs africains.
+              {t("solutionIAAvancee.caseStudies.subtitle")}
             </p>
           </div>
 
           <div className="ai-case" style={{ marginTop: '64px' }}>
             <div className="ai-case-head">
               <div className="ai-case-head-left">
-                <h2>E-commerce</h2>
-                <p>Chatbot 24/7 pour répondre aux questions fréquentes et suivre les commandes.</p>
+                <h2>{t("solutionIAAvancee.caseStudies.ecommerce.title")}</h2>
+                <p>{t("solutionIAAvancee.caseStudies.ecommerce.problem")}</p>
               </div>
-              <div className="ai-case-badge">Service client</div>
+              <div className="ai-case-badge">{t("solutionIAAvancee.caseStudies.ecommerce.type")}</div>
             </div>
             <div className="ai-case-cols">
               <div className="ai-case-col">
-                <div className="ai-case-col-tag">Problème</div>
+                <div className="ai-case-col-tag">{t("solutionIAAvancee.caseStudies.ecommerce.problem_tag")}</div>
                 <p>
-                  Équipe support surchargée, temps de réponse supérieur à 24h, perte de clients sur questions simples.
+                  {t("solutionIAAvancee.caseStudies.ecommerce.problem_description")}
                 </p>
               </div>
               <div className="ai-case-col">
-                <div className="ai-case-col-tag">Solution</div>
+                <div className="ai-case-col-tag">{t("solutionIAAvancee.caseStudies.ecommerce.solution_tag")}</div>
                 <p>
-                  Chatbot intelligent connecté au catalogue et système de commandes, avec handover vers humain.
+                  {t("solutionIAAvancee.caseStudies.ecommerce.solution_description")}
                 </p>
               </div>
               <div className="ai-case-col">
-                <div className="ai-case-col-tag">Technologies</div>
+                <div className="ai-case-col-tag">{t("solutionIAAvancee.caseStudies.ecommerce.tech_tag")}</div>
                 <p>
-                  RAG sur documentation produit, intégration API e-commerce, interface WhatsApp/Web.
+                  {t("solutionIAAvancee.caseStudies.ecommerce.tech_description")}
                 </p>
               </div>
               <div className="ai-case-col">
-                <div className="ai-case-col-tag">Résultats</div>
+                <div className="ai-case-col-tag">{t("solutionIAAvancee.caseStudies.ecommerce.results.tag")}</div>
                 <ul>
-                  <li className="ai-case-result">−70% tickets support simples</li>
-                  <li className="ai-case-result">+40% satisfaction client</li>
-                  <li className="ai-case-result">24/7 disponibilité</li>
+                  {safeArray(t("solutionIAAvancee.caseStudies.ecommerce.results.items")).map((item, i) => (
+                    <li key={i} className="ai-case-result">{item}</li>
+                  ))}
                 </ul>
               </div>
             </div>
@@ -883,36 +811,36 @@ export default function SolutionIAAvancee() {
           <div className="ai-case" style={{ marginTop: '40px' }}>
             <div className="ai-case-head">
               <div className="ai-case-head-left">
-                <h2>Logistique</h2>
-                <p>Optimisation des itinéraires pour réduire coûts carburant et délais.</p>
+                <h2>{t("solutionIAAvancee.caseStudies.logistics.title")}</h2>
+                <p>{t("solutionIAAvancee.caseStudies.logistics.problem")}</p>
               </div>
-              <div className="ai-case-badge">Optimisation</div>
+              <div className="ai-case-badge">{t("solutionIAAvancee.caseStudies.logistics.type")}</div>
             </div>
             <div className="ai-case-cols">
               <div className="ai-case-col">
-                <div className="ai-case-col-tag">Problème</div>
+                <div className="ai-case-col-tag">{t("solutionIAAvancee.caseStudies.logistics.problem_tag")}</div>
                 <p>
-                  Itinéraires non optimisés, coûts carburant élevés, retards fréquents, faible utilisation flotte.
+                  {t("solutionIAAvancee.caseStudies.logistics.problem_description")}
                 </p>
               </div>
               <div className="ai-case-col">
-                <div className="ai-case-col-tag">Solution</div>
+                <div className="ai-case-col-tag">{t("solutionIAAvancee.caseStudies.logistics.solution_tag")}</div>
                 <p>
-                  Algorithme d'optimisation multi-critères avec contraintes locales (routes, trafic, zones).
+                  {t("solutionIAAvancee.caseStudies.logistics.solution_description")}
                 </p>
               </div>
               <div className="ai-case-col">
-                <div className="ai-case-col-tag">Technologies</div>
+                <div className="ai-case-col-tag">{t("solutionIAAvancee.caseStudies.logistics.tech_tag")}</div>
                 <p>
-                  GPS tracking, algorithmes optimisation, dashboard temps réel, application mobile chauffeurs.
+                  {t("solutionIAAvancee.caseStudies.logistics.tech_description")}
                 </p>
               </div>
               <div className="ai-case-col">
-                <div className="ai-case-col-tag">Résultats</div>
+                <div className="ai-case-col-tag">{t("solutionIAAvancee.caseStudies.logistics.results.tag")}</div>
                 <ul>
-                  <li className="ai-case-result">−25% coûts carburant</li>
-                  <li className="ai-case-result">−30% temps de livraison</li>
-                  <li className="ai-case-result">+50% utilisation véhicules</li>
+                  {safeArray(t("solutionIAAvancee.caseStudies.logistics.results.items")).map((item, i) => (
+                    <li key={i} className="ai-case-result">{item}</li>
+                  ))}
                 </ul>
               </div>
             </div>
@@ -921,36 +849,36 @@ export default function SolutionIAAvancee() {
           <div className="ai-case" style={{ marginTop: '40px' }}>
             <div className="ai-case-head">
               <div className="ai-case-head-left">
-                <h2>Microfinance</h2>
-                <p>Automatisation d'un scoring simple avec garde-fous humains.</p>
+                <h2>{t("solutionIAAvancee.caseStudies.microfinance.title")}</h2>
+                <p>{t("solutionIAAvancee.caseStudies.microfinance.problem")}</p>
               </div>
-              <div className="ai-case-badge">Scoring</div>
+              <div className="ai-case-badge">{t("solutionIAAvancee.caseStudies.microfinance.type")}</div>
             </div>
             <div className="ai-case-cols">
               <div className="ai-case-col">
-                <div className="ai-case-col-tag">Problème</div>
+                <div className="ai-case-col-tag">{t("solutionIAAvancee.caseStudies.microfinance.problem_tag")}</div>
                 <p>
-                  Évaluation manuelle des risques, temps de traitement 2-3 jours, critères incohérents.
+                  {t("solutionIAAvancee.caseStudies.microfinance.problem_description")}
                 </p>
               </div>
               <div className="ai-case-col">
-                <div className="ai-case-col-tag">Solution</div>
+                <div className="ai-case-col-tag">{t("solutionIAAvancee.caseStudies.microfinance.solution_tag")}</div>
                 <p>
-                  Modèle scoring ML avec variables locales, interface validation humaine, apprentissage continu.
+                  {t("solutionIAAvancee.caseStudies.microfinance.solution_description")}
                 </p>
               </div>
               <div className="ai-case-col">
-                <div className="ai-case-col-tag">Technologies</div>
+                <div className="ai-case-col-tag">{t("solutionIAAvancee.caseStudies.microfinance.tech_tag")}</div>
                 <p>
-                  Machine learning, intégration données clients, dashboard validation, API banque partenaires.
+                  {t("solutionIAAvancee.caseStudies.microfinance.tech_description")}
                 </p>
               </div>
               <div className="ai-case-col">
-                <div className="ai-case-col-tag">Résultats</div>
+                <div className="ai-case-col-tag">{t("solutionIAAvancee.caseStudies.microfinance.results.tag")}</div>
                 <ul>
-                  <li className="ai-case-result">−80% temps de traitement</li>
-                  <li className="ai-case-result">+15% précision scoring</li>
-                  <li className="ai-case-result">Réduction risque 20%</li>
+                  {safeArray(t("solutionIAAvancee.caseStudies.microfinance.results.items")).map((item, i) => (
+                    <li key={i} className="ai-case-result">{item}</li>
+                  ))}
                 </ul>
               </div>
             </div>
@@ -959,36 +887,36 @@ export default function SolutionIAAvancee() {
           <div className="ai-case" style={{ marginTop: '40px' }}>
             <div className="ai-case-head">
               <div className="ai-case-head-left">
-                <h2>Distribution</h2>
-                <p>Prévision des ventes pour réduire les ruptures en saison forte.</p>
+                <h2>{t("solutionIAAvancee.caseStudies.distribution.title")}</h2>
+                <p>{t("solutionIAAvancee.caseStudies.distribution.problem")}</p>
               </div>
-              <div className="ai-case-badge">Prévision</div>
+              <div className="ai-case-badge">{t("solutionIAAvancee.caseStudies.distribution.type")}</div>
             </div>
             <div className="ai-case-cols">
               <div className="ai-case-col">
-                <div className="ai-case-col-tag">Problème</div>
+                <div className="ai-case-col-tag">{t("solutionIAAvancee.caseStudies.distribution.problem_tag")}</div>
                 <p>
-                  Ruptures fréquentes en haute saison, surstocks autres périodes, pertes opportunités.
+                  {t("solutionIAAvancee.caseStudies.distribution.problem_description")}
                 </p>
               </div>
               <div className="ai-case-col">
-                <div className="ai-case-col-tag">Solution</div>
+                <div className="ai-case-col-tag">{t("solutionIAAvancee.caseStudies.distribution.solution_tag")}</div>
                 <p>
-                  Modèle prédictif ventes par point de vente, alertes réapprovisionnement, recommendations stocks.
+                  {t("solutionIAAvancee.caseStudies.distribution.solution_description")}
                 </p>
               </div>
               <div className="ai-case-col">
-                <div className="ai-case-col-tag">Technologies</div>
+                <div className="ai-case-col-tag">{t("solutionIAAvancee.caseStudies.distribution.tech_tag")}</div>
                 <p>
-                  Time series forecasting, données ventes historiques, variables saisonnières, dashboard stocks.
+                  {t("solutionIAAvancee.caseStudies.distribution.tech_description")}
                 </p>
               </div>
               <div className="ai-case-col">
-                <div className="ai-case-col-tag">Résultats</div>
+                <div className="ai-case-col-tag">{t("solutionIAAvancee.caseStudies.distribution.results.tag")}</div>
                 <ul>
-                  <li className="ai-case-result">−60% ruptures stock</li>
-                  <li className="ai-case-result">−25% surstocks</li>
-                  <li className="ai-case-result">+35% ventes saison</li>
+                  {safeArray(t("solutionIAAvancee.caseStudies.distribution.results.items")).map((item, i) => (
+                    <li key={i} className="ai-case-result">{item}</li>
+                  ))}
                 </ul>
               </div>
             </div>
@@ -1002,13 +930,13 @@ export default function SolutionIAAvancee() {
           <div className="text-center">
             <div className="ai-eyebrow dark">
               <span className="ai-eyebrow-bar" />
-              POUR QUI ?
+              {t("solutionIAAvancee.targets.eyebrow")}
             </div>
             <h2 className="ai-h2 dark">
-              Nous servons <em>divers secteurs</em> de l'économie africaine
+              {t("solutionIAAvancee.targets.title")}<em>{t("solutionIAAvancee.targets.title_highlight")}</em>{t("solutionIAAvancee.targets.title_end")}
             </h2>
             <p className="ai-sub dark" style={{ margin: '0 auto' }}>
-              Notre expertise couvre les besoins spécifiques de chaque industrie.
+              {t("solutionIAAvancee.targets.subtitle")}
             </p>
           </div>
 
@@ -1030,13 +958,13 @@ export default function SolutionIAAvancee() {
             <div>
               <div className="ai-eyebrow">
                 <span className="ai-eyebrow-bar" />
-                NOTRE DIFFÉRENCE
+                {t("solutionIAAvancee.difference.eyebrow")}
               </div>
               <h2 className="ai-h2">
-                L'expertise <em>africaine</em> qui fait la différence
+                {t("solutionIAAvancee.difference.title")}<em>{t("solutionIAAvancee.difference.title_highlight")}</em>{t("solutionIAAvancee.difference.title_end")}
               </h2>
               <p className="ai-sub">
-                Nous combinons excellence technique et compréhension des réalités locales pour garantir votre succès.
+                {t("solutionIAAvancee.difference.subtitle")}
               </p>
               <div className="ai-diff-list">
                 {difference.map((item, i) => (
@@ -1061,7 +989,7 @@ export default function SolutionIAAvancee() {
               </div>
               <div className="ai-diff-center">
                 <div className="ai-diff-big">5+</div>
-                <div className="ai-diff-label">Avantages concurrentiels</div>
+                <div className="ai-diff-label">{t("solutionIAAvancee.difference.count_label")}</div>
               </div>
             </div>
           </div>
@@ -1074,13 +1002,13 @@ export default function SolutionIAAvancee() {
           <div className="text-center">
             <div className="ai-eyebrow">
               <span className="ai-eyebrow-bar" />
-              CE QUE VOUS OBTENEZ
+              {t("solutionIAAvancee.deliverables.eyebrow")}
             </div>
             <h2 className="ai-h2">
-              Des livrables <em>complets</em> pour pérenniser votre succès
+              {t("solutionIAAvancee.deliverables.title")}<em>{t("solutionIAAvancee.deliverables.title_highlight")}</em>{t("solutionIAAvancee.deliverables.title_end")}
             </h2>
             <p className="ai-sub" style={{ margin: '0 auto' }}>
-              Notre intervention vous laisse avec une solution autonome et évolutionnaire.
+              {t("solutionIAAvancee.deliverables.subtitle")}
             </p>
           </div>
 
@@ -1088,7 +1016,7 @@ export default function SolutionIAAvancee() {
             <div className="ai-deliv-card">
               <div className="ai-deliv-header">
                 <div className="ai-deliv-ico">📦</div>
-                <h3 className="ai-deliv-title">Package complet de livraison</h3>
+                <h3 className="ai-deliv-title">{t("solutionIAAvancee.deliverables.title")}</h3>
               </div>
               <div className="ai-deliv-grid">
                 {deliverables.map((item, i) => (
@@ -1107,15 +1035,15 @@ export default function SolutionIAAvancee() {
       <section className="ai-cta">
         <div className="ai-cta-glow" />
         <div className="ai-cta-inner">
-          <div className="ai-cta-eyebrow">PRÊT À TRANSFORMER ?</div>
+          <div className="ai-cta-eyebrow">{t("solutionIAAvancee.cta.eyebrow")}</div>
           <h2 className="ai-cta-title">
-            Transformez vos <span className="gold">opérations</span> grâce à <span className="italic">l'IA</span>
+            {t("solutionIAAvancee.cta.title")}<span className="gold">{t("solutionIAAvancee.cta.title_highlight")}</span>{t("solutionIAAvancee.cta.title_end")} <span className="italic">{t("solutionIAAvancee.cta.title_italic")}</span>
           </h2>
           <p className="ai-cta-sub">
-            Développez votre solution IA sur mesure avec notre expertise technique et notre compréhension des réalités africaines.
+            {t("solutionIAAvancee.cta.description")}
           </p>
           <button className="ai-cta-btn">
-            Planifier un échange stratégique <span>→</span>
+            {t("solutionIAAvancee.cta.button")} <span>→</span>
           </button>
         </div>
       </section>
@@ -1123,10 +1051,10 @@ export default function SolutionIAAvancee() {
       {/* ── FOOTER ── */}
       <footer className="ai-footer">
         <div className="ai-footer-logo">
-          AIF<span>RICA</span>
+          {t("solutionIAAvancee.footer.logo")}<span>{t("solutionIAAvancee.footer.logo_end")}</span>
         </div>
         <div className="ai-footer-text">
-          © 2024 Aifrica - Solutions IA avancées pour l'Afrique
+          {t("solutionIAAvancee.footer.copyright")}
         </div>
       </footer>
     </div>

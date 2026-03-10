@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useLanguage } from "../contexts/LanguageContext";
 
 const styles = `
   @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;600;700&display=swap');
@@ -891,7 +892,6 @@ const styles = `
   }
   @media (max-width: 640px) {
     .pl-solutions-grid { grid-template-columns: 1fr; }
-    .pl-stat-grid { grid-template-columns: 1fr 1fr; }
     .pl-solutions-hd { flex-direction: column; align-items: flex-start; }
   }
 `;
@@ -903,69 +903,15 @@ const Icon = ({ d }) => (
   </svg>
 );
 
-/* ─── DATA ─── */
-const solutions = [
-  {
-    icon: "M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z",
-    title: "IA Générative",
-    desc: "Créez du contenu unique et personnalisé avec des modèles d'IA générative adaptés au contexte africain.",
-    feats: ["Génération de texte multilingue", "Création d'images et designs", "Traduction automatique avancée", "Synthèse vocale naturelle"],
-  },
-  {
-    icon: "M3 3v18h18M18 17V9M13 17V5M8 17v-3",
-    title: "Analyse de Données",
-    desc: "Transformez vos données brutes en insights pertinents pour prendre des décisions éclairées.",
-    feats: ["Analyse prédictive", "Visualisation interactive", "Reporting automatisé", "Détection d'anomalies"],
-  },
-  {
-    icon: "M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5",
-    title: "IA Agentique",
-    desc: "Déployez des agents intelligents autonomes pour automatiser vos processus métier critiques.",
-    feats: ["Agents conversationnels", "Automatisation intelligente", "Apprentissage continu", "Intégration multi-plateforme"],
-  },
-  {
-    icon: "M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z",
-    title: "Sécurité IA",
-    desc: "Protégez vos systèmes et vos données avec nos solutions de sécurité basées sur l'IA.",
-    feats: ["Détection de menaces", "Analyse comportementale", "Sécurité prédictive", "Réponse automatique"],
-  },
-  {
-    icon: "M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75M9 7a4 4 0 1 0 0-8 4 4 0 0 0 0 8z",
-    title: "Personnalisation",
-    desc: "Offrez des expériences uniques à chaque utilisateur avec l'IA adaptative en temps réel.",
-    feats: ["Recommandations personnalisées", "Segmentation dynamique", "Optimisation temps réel", "Profils intelligents"],
-  },
-  {
-    icon: "M13 2L3 14h9l-1 8 10-12h-9l1-8z",
-    title: "Optimisation",
-    desc: "Maximisez l'efficacité de vos opérations et réduisez les coûts avec l'IA d'optimisation.",
-    feats: ["Optimisation des ressources", "Planification intelligente", "Réduction des coûts", "Amélioration continue"],
-  },
-];
-
-const timeline = [
-  { n: "01", title: "Analyse & Conseil", desc: "Nous étudions vos besoins et élaborons une stratégie IA sur mesure. Notre équipe analyse vos processus actuels et identifie les opportunités d'optimisation les plus impactantes." },
-  { n: "02", title: "Développement", desc: "Nos ingénieurs développent des solutions IA personnalisées en utilisant les technologies les plus adaptées à votre contexte, avec une méthodologie agile garantissant des livraisons rapides." },
-  { n: "03", title: "Intégration", desc: "Nous intégrons nos solutions dans votre écosystème technologique existant de façon transparente, sans perturber vos opérations en cours." },
-  { n: "04", title: "Formation des équipes", desc: "Nous formons vos collaborateurs à l'utilisation des nouvelles solutions pour maximiser l'adoption et l'efficacité. Des sessions personnalisées sont organisées selon vos besoins." },
-  { n: "05", title: "Support Continu", desc: "Notre équipe reste disponible pour la maintenance, les mises à jour et l'amélioration continue. Un support réactif est disponible pour tous nos clients." },
-];
-
-const faqs = [
-  { q: "Qu'est-ce que la plateforme AIFRICA ?", a: "AIFRICA est une plateforme d'intelligence artificielle complète conçue spécifiquement pour le marché africain. Elle offre des solutions IA personnalisées pour automatiser les processus, analyser les données et prendre des décisions plus intelligentes." },
-  { q: "Quels types d'entreprises peuvent utiliser AIFRICA ?", a: "Notre plateforme s'adapte à tous les secteurs : finance, santé, éducation, agriculture, commerce, logistique et bien d'autres. Que vous soyez une startup, une PME ou une grande entreprise, nous avons des solutions adaptées à vos besoins." },
-  { q: "Comment commencer avec AIFRICA ?", a: "Le processus est simple : contactez-nous pour une consultation gratuite, notre équipe analyse vos besoins, nous vous proposons une solution personnalisée, et après validation, nous procédons à l'implémentation." },
-  { q: "Mes données sont-elles sécurisées ?", a: "Absolument. La sécurité est notre priorité. Vos données sont chiffrées de bout en bout, stockées dans des centres de données sécurisés, et nous respectons toutes les réglementations de protection des données, y compris le RGPD." },
-  { q: "Quel est le coût des solutions AIFRICA ?", a: "Nos tarifs sont flexibles et adaptés à votre budget. Nous proposons différents modèles : abonnement mensuel, paiement à l'utilisation, ou projets sur mesure. Contactez-nous pour un devis personnalisé." },
-  { q: "Quel est le délai de mise en place ?", a: "Le délai varie selon la complexité du projet. Pour les solutions standards, la mise en place prend de 2 à 4 semaines. Pour les projets personnalisés, le délai moyen est de 2 à 3 mois." },
-  { q: "Offrez-vous une formation aux équipes ?", a: "Oui, nous proposons des programmes de formation complets pour vos équipes. De la sensibilisation à l'IA jusqu'à l'expertise technique, nos formateurs assurent que votre personnel maîtrise parfaitement nos solutions." },
-  { q: "Dans quels pays intervenez-vous ?", a: "Nous intervenons dans plus de 15 pays africains : Côte d'Ivoire, Sénégal, Cameroun, Maroc, Kenya, Nigeria, Ghana, Madagascar et bien d'autres. Nous disposons d'experts locaux dans chaque région." },
-];
-
-const tickerItems = ["IA Générative", "Analyse de Données", "IA Agentique", "Sécurité IA", "Personnalisation", "Optimisation", "Afrique & Innovation", "Transformation Digitale"];
-
 export default function PlateformeAifrica() {
   const [faqOpen, setFaqOpen] = useState(null);
+  const { t } = useLanguage();
+
+  const solutions = t('plateformeAifrica.page.solutions_page.items');
+  const timeline = t('plateformeAifrica.page.process.steps');
+  const faqs = t('plateformeAifrica.page.faq_page.items');
+  const tickerItems = t('plateformeAifrica.page.ticker');
+  const stats = t('plateformeAifrica.page.stats');
 
   return (
     <>
@@ -977,11 +923,11 @@ export default function PlateformeAifrica() {
           <div className="pl-nav-inner">
             <div className="pl-nav-logo">AI<span>FRICA</span></div>
             <ul className="pl-nav-links">
-              {["Solutions", "Processus", "FAQ", "Contact"].map(l => (
+              {[t('plateformeAifrica.page.navbar.solutions'), t('plateformeAifrica.page.navbar.processus'), t('plateformeAifrica.page.navbar.faq'), t('plateformeAifrica.page.navbar.contact')].map(l => (
                 <li key={l}><a href="#">{l}</a></li>
               ))}
             </ul>
-            <button className="pl-nav-cta">Démo Gratuite</button>
+            <button className="pl-nav-cta">{t('plateformeAifrica.page.navbar.demo')}</button>
           </div>
         </nav>
 
@@ -989,34 +935,27 @@ export default function PlateformeAifrica() {
         <section className="pl-hero">
           <div className="pl-hero-inner">
             <div>
-              <div className="pl-hero-tag">Plateforme IA · Afrique</div>
+              <div className="pl-hero-tag">{t('plateformeAifrica.page.hero.tag')}</div>
               <h1 className="pl-hero-h1">
-                L'Intelligence<br />
-                Artificielle au<br />
-                Service de <em>l'Afrique</em>
+                {t('plateformeAifrica.page.hero.title')}<br />
+                {t('plateformeAifrica.page.hero.title_line2')}<br />
+                {t('plateformeAifrica.page.hero.title_line3')} <em>{t('plateformeAifrica.page.hero.title_highlight')}</em>
               </h1>
               <p className="pl-hero-desc">
-                Transformez vos opérations, accélérez votre croissance et prenez
-                des décisions éclairées grâce à nos solutions IA conçues pour
-                le marché africain.
+                {t('plateformeAifrica.page.hero.description')}
               </p>
               <div className="pl-hero-actions">
                 <button className="pl-btn-primary">
-                  Commencer Gratuitement
+                  {t('plateformeAifrica.page.hero.start_free')}
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
                 </button>
-                <button className="pl-btn-ghost">Voir la Démo</button>
+                <button className="pl-btn-ghost">{t('plateformeAifrica.page.hero.see_demo')}</button>
               </div>
             </div>
 
             <div className="pl-hero-right">
               <div className="pl-stat-grid">
-                {[
-                  { num: "500+", label: "Entreprises accompagnées" },
-                  { num: "15+", label: "Pays africains couverts" },
-                  { num: "98%", label: "Satisfaction client" },
-                  { num: "3×", label: "ROI moyen constaté" },
-                ].map((s, i) => (
+                {stats.map((s, i) => (
                   <div key={i} className="pl-stat-cell">
                     <div className="pl-stat-num">{s.num}</div>
                     <div className="pl-stat-label">{s.label}</div>
@@ -1026,7 +965,7 @@ export default function PlateformeAifrica() {
               <div className="pl-hero-scroll">
                 <div className="pl-scroll-label">
                   <div className="pl-scroll-line" />
-                  Découvrir
+                  {t('plateformeAifrica.page.hero.discover')}
                 </div>
               </div>
             </div>
@@ -1048,28 +987,22 @@ export default function PlateformeAifrica() {
         <section className="pl-mission">
           <div className="pl-mission-inner">
             <div className="pl-mission-left">
-              <div className="pl-section-tag">Notre Mission</div>
-              <h2 className="pl-section-h2">La Data et l'IA au service des entreprises africaines</h2>
+              <div className="pl-section-tag">{t('plateformeAifrica.page.mission.tag')}</div>
+              <h2 className="pl-section-h2">{t('plateformeAifrica.page.mission.title')}</h2>
               <div className="pl-mission-body">
-                <p>L'Afrique entre dans une nouvelle ère économique. Portées par une jeunesse dynamique, une urbanisation accélérée et une connectivité en pleine expansion, les entreprises du continent font face à des opportunités immenses — mais aussi à des défis de taille.</p>
-                <p>AIFRICA est spécialisée dans l'accompagnement des organisations africaines vers la transformation numérique par la Data et l'Intelligence Artificielle. Notre mission est de mettre ces technologies au service de la réalité des entreprises africaines, pour des résultats concrets, mesurables et durables.</p>
-                <p>Nous croyons que la Data et l'IA ne sont pas réservées aux grandes entreprises mondiales. Elles sont accessibles, adaptables, et peuvent devenir un levier de croissance puissant pour toute organisation — quelle que soit sa taille ou son secteur d'activité.</p>
+                <p>{t('plateformeAifrica.page.mission.paragraph1')}</p>
+                <p>{t('plateformeAifrica.page.mission.paragraph2')}</p>
+                <p>{t('plateformeAifrica.page.mission.paragraph3')}</p>
               </div>
               <div className="pl-mission-quote">
-                <p>AIFRICA, c'est l'intelligence de demain, au service de l'Afrique d'aujourd'hui.</p>
+                <p>{t('plateformeAifrica.page.mission.quote')}</p>
               </div>
             </div>
 
             <div className="pl-mission-right">
-              <div className="pl-mission-right-title">Pourquoi AIFRICA ?</div>
+              <div className="pl-mission-right-title">{t('plateformeAifrica.page.mission.why_title')}</div>
               <ul className="pl-feat-list">
-                {[
-                  ["✓", "Solutions adaptées aux réalités africaines", "Contexte local, infrastructure disponible, langues parlées"],
-                  ["✓", "Équipe d'experts certifiés en IA & Data", "Senior data scientists et ingénieurs ML expérimentés"],
-                  ["✓", "Accompagnement de bout en bout", "Du conseil à la mise en production, nous sommes là"],
-                  ["✓", "ROI mesurable et garanti", "Résultats chiffrés dès les 90 premiers jours"],
-                  ["✓", "Sécurité et conformité", "Données hébergées localement, conformité RGPD garantie"],
-                ].map(([icon, title, sub], i) => (
+                {t('plateformeAifrica.page.mission.features').map(([icon, title, sub], i) => (
                   <li key={i} className="pl-feat-item">
                     <div className="pl-feat-icon">{icon}</div>
                     <div>
@@ -1088,11 +1021,11 @@ export default function PlateformeAifrica() {
           <div className="pl-solutions-inner">
             <div className="pl-solutions-hd">
               <div>
-                <div className="pl-section-tag">Nos Solutions</div>
-                <h2 className="pl-section-h2">Une suite complète de solutions IA</h2>
+                <div className="pl-section-tag">{t('plateformeAifrica.page.solutions_page.tag')}</div>
+                <h2 className="pl-section-h2">{t('plateformeAifrica.page.solutions_page.title')}</h2>
               </div>
               <p style={{ maxWidth: 380, fontSize: "0.85rem", lineHeight: 1.8, color: "var(--ink-soft)" }}>
-                Des technologies de pointe adaptées aux défis spécifiques du marché africain, déployées avec expertise.
+                {t('plateformeAifrica.page.solutions_page.description')}
               </p>
             </div>
             <div className="pl-solutions-grid">
@@ -1120,13 +1053,13 @@ export default function PlateformeAifrica() {
                 <div className="pl-section-tag" style={{ color: "var(--terra-lt)" }}>
                   <span style={{ display: "inline-flex", alignItems: "center", gap: 10 }}>
                     <span style={{ width: 20, height: 2, background: "var(--terra-lt)", display: "inline-block" }} />
-                    Notre Processus
+                    {t('plateformeAifrica.page.process.tag')}
                   </span>
                 </div>
-                <h2 className="pl-section-h2-white">Comment nous travaillons ensemble</h2>
+                <h2 className="pl-section-h2-white">{t('plateformeAifrica.page.process.title')}</h2>
               </div>
               <p className="pl-process-hd-right">
-                Une méthodologie éprouvée, pensée pour minimiser les risques et maximiser la valeur à chaque étape de votre transformation IA. Résultats garantis dès les 90 premiers jours.
+                {t('plateformeAifrica.page.process.description')}
               </p>
             </div>
             <div className="pl-timeline">
@@ -1147,13 +1080,13 @@ export default function PlateformeAifrica() {
         <section className="pl-faq">
           <div className="pl-faq-inner">
             <div className="pl-faq-left">
-              <div className="pl-section-tag">FAQ</div>
-              <h2 className="pl-section-h2">Questions fréquentes</h2>
+              <div className="pl-section-tag">{t('plateformeAifrica.page.faq_page.tag')}</div>
+              <h2 className="pl-section-h2">{t('plateformeAifrica.page.faq_page.title')}</h2>
               <p className="pl-faq-left-desc">
-                Vous ne trouvez pas la réponse à votre question ? Notre équipe est disponible du lundi au vendredi pour vous accompagner.
+                {t('plateformeAifrica.page.faq_page.description')}
               </p>
               <button className="pl-faq-contact">
-                Contacter un expert
+                {t('plateformeAifrica.page.faq_page.contact')}
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
               </button>
             </div>
@@ -1176,17 +1109,17 @@ export default function PlateformeAifrica() {
         {/* ── CTA ── */}
         <section className="pl-cta">
           <div className="pl-cta-inner">
-            <div className="pl-cta-tag">Passez à l'action</div>
+            <div className="pl-cta-tag">{t('plateformeAifrica.page.cta_page.tag')}</div>
             <h2 className="pl-cta-h2">
-              Prêt à transformer votre entreprise<br />
-              avec <em>l'Intelligence Artificielle</em> ?
+              {t('plateformeAifrica.page.cta_page.title')}<br />
+              {t('plateformeAifrica.page.cta_page.title_highlight')} ?
             </h2>
             <p className="pl-cta-desc">
-              Rejoignez des centaines d'entreprises africaines qui utilisent déjà AIFRICA pour accélérer leur croissance, optimiser leurs opérations et innover dans leur secteur.
+              {t('plateformeAifrica.page.cta_page.description')}
             </p>
             <div className="pl-cta-actions">
-              <button className="pl-cta-btn-main">Demander une Démo Gratuite</button>
-              <button className="pl-cta-btn-ghost">Parler à un Expert</button>
+              <button className="pl-cta-btn-main">{t('plateformeAifrica.page.cta_page.main_button')}</button>
+              <button className="pl-cta-btn-ghost">{t('plateformeAifrica.page.cta_page.ghost_button')}</button>
             </div>
           </div>
         </section>
@@ -1194,7 +1127,7 @@ export default function PlateformeAifrica() {
         {/* ── FOOTER ── */}
         <footer className="pl-footer">
           <div className="pl-footer-brand">AI<span>FRICA</span></div>
-          <p className="pl-footer-copy">© 2026 AIFRICA · L'intelligence de demain au service de l'Afrique d'aujourd'hui</p>
+          <p className="pl-footer-copy">{t('plateformeAifrica.page.footer.copyright')}</p>
         </footer>
 
       </div>

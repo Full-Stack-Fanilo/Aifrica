@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useLanguage } from "../contexts/LanguageContext";
 import {
   FaEnvelope,
   FaMapMarkerAlt,
@@ -12,6 +13,7 @@ import {
 import "../css/Footer.css";
 
 export default function Footer() {
+  const { t } = useLanguage();
   const scrollToSection = (sectionId) => {
     const element = document.getElementById(sectionId);
     if (element) {
@@ -21,19 +23,8 @@ export default function Footer() {
 
   const currentYear = new Date().getFullYear();
 
-  const platformLinks = [
-    { to: "/pateforme-aifrica", label: "Plateforme Aifrica" },
-    { to: "/accompagnement-IA", label: "Accompagnement IA" },
-    { to: "/dataIntelligence", label: "Data Intelligence" },
-    { to: "/IA-Générative", label: "IA Générative" },
-  ];
-
-  const servicesLinks = [
-    { to: "/diagnosticDataIA", label: "Diagnostic Data & IA" },
-    { to: "/consultingIaData", label: "Consulting IA & Data" },
-    { to: "/acculturationIA", label: "Acculturation IA" },
-    { to: "/solutionIASurMesure", label: "Solution IA avancée" },
-  ];
+  const platformLinks = t('footer.platform.links');
+  const servicesLinks = t('footer.services.links');
 
   const socialLinks = [
     { icon: <FaLinkedin />, url: "#", label: "LinkedIn" },
@@ -50,21 +41,20 @@ export default function Footer() {
           <div className="newsletter-content">
             <div className="newsletter-text">
               <h3 className="newsletter-title">
-                Restez informé de nos dernières innovations
+                {t('footer.newsletter.title')}
               </h3>
               <p className="newsletter-subtitle">
-                Recevez nos actualités, études de cas et conseils IA directement
-                dans votre boîte mail
+                {t('footer.newsletter.subtitle')}
               </p>
             </div>
             <div className="newsletter-form">
               <input
                 type="email"
-                placeholder="Votre adresse email"
+                placeholder={t('footer.newsletter.placeholder')}
                 className="newsletter-input"
               />
               <button className="newsletter-button">
-                S'abonner
+                {t('footer.newsletter.button')}
                 <FaArrowRight />
               </button>
             </div>
@@ -78,12 +68,9 @@ export default function Footer() {
           <div className="footer-grid">
             {/* Company Info */}
             <div className="footer-column footer-about">
-              <h4 className="footer-title">Aifrica</h4>
+              <h4 className="footer-title">{t('footer.about.title')}</h4>
               <p className="footer-description">
-                Plateforme d'intelligence artificielle dédiée à accompagner les
-                entreprises africaines dans leur transformation digitale. Nous
-                combinons IA générative, analyse de données et agents IA pour
-                automatiser, optimiser et innover.
+                {t('footer.about.description')}
               </p>
               <div className="footer-social">
                 {socialLinks.map((social, index) => (
@@ -103,7 +90,7 @@ export default function Footer() {
 
             {/* Platform Links */}
             <div className="footer-column">
-              <h4 className="footer-title">Plateforme</h4>
+              <h4 className="footer-title">{t('footer.platform.title')}</h4>
               <ul className="footer-links">
                 {platformLinks.map((link, index) => (
                   <li key={index}>
@@ -117,7 +104,7 @@ export default function Footer() {
 
             {/* Services Links */}
             <div className="footer-column">
-              <h4 className="footer-title">Services</h4>
+              <h4 className="footer-title">{t('footer.services.title')}</h4>
               <ul className="footer-links">
                 {servicesLinks.map((link, index) => (
                   <li key={index}>
@@ -131,19 +118,19 @@ export default function Footer() {
 
             {/* Contact Info */}
             <div className="footer-column">
-              <h4 className="footer-title">Contact</h4>
+              <h4 className="footer-title">{t('footer.contact.title')}</h4>
               <ul className="footer-contact">
                 <li className="contact-item">
                   <div className="contact-icon">
                     <FaEnvelope />
                   </div>
                   <div className="contact-details">
-                    <span className="contact-label">Email</span>
+                    <span className="contact-label">{t('footer.contact.emailLabel')}</span>
                     <a
-                      href="mailto:contact@aifrica.tech"
+                      href={`mailto:${t('footer.contact.email')}`}
                       className="contact-value"
                     >
-                      contact@aifrica.com
+                      {t('footer.contact.email')}
                     </a>
                   </div>
                 </li>
@@ -152,8 +139,8 @@ export default function Footer() {
                     <FaMapMarkerAlt />
                   </div>
                   <div className="contact-details">
-                    <span className="contact-label">Localisation</span>
-                    <span className="contact-value">Cyber Cité Ebène, Ile Maurice</span>
+                    <span className="contact-label">{t('footer.contact.locationLabel')}</span>
+                    <span className="contact-value">{t('footer.contact.location')}</span>
                   </div>
                 </li>
               </ul>
@@ -167,28 +154,28 @@ export default function Footer() {
         <div className="footer-container">
           <div className="footer-bottom-content">
             <p className="footer-copyright">
-              © {currentYear} Aifrica. Tous droits réservés.
+              {t('footer.legal.copyright').replace('{year}', currentYear)}
             </p>
             <div className="footer-legal">
               <button
                 className="legal-link"
                 onClick={() => scrollToSection("privacy")}
               >
-                Politique de confidentialité
+                {t('footer.legal.privacy')}
               </button>
               <span className="legal-separator">•</span>
               <button
                 className="legal-link"
                 onClick={() => scrollToSection("terms")}
               >
-                Conditions d'utilisation
+                {t('footer.legal.terms')}
               </button>
               <span className="legal-separator">•</span>
               <button
                 className="legal-link"
                 onClick={() => scrollToSection("cookies")}
               >
-                Cookies
+                {t('footer.legal.cookies')}
               </button>
             </div>
           </div>

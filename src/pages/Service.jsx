@@ -7,46 +7,45 @@ import img3 from "../assets/images/services3.png";
 import img4 from "../assets/images/services4.png";
 import img5 from "../assets/images/services5.png";
 import img6 from "../assets/images/service-preview.png";
+import { useLanguage } from "../contexts/LanguageContext";
 
 export default function Service() {
+  const { t } = useLanguage();
+  
   const services = [
     {
       icon: img1,
-      title: "Diagnostic",
-      description: "Evaluation de la maturité Data & IA de votre entreprise",
+      title: t('services.page.items.diagnostic.title'),
+      description: t('services.page.items.diagnostic.description'),
       link: "#diagnostic",
       color: "#1a3a52",
     },
     {
       icon: img3,
-      title: "Consulting",
-      description:
-        "Définition et accompagnement de vos besoins en data et intelligence artificielle",
+      title: t('services.page.items.consulting.title'),
+      description: t('services.page.items.consulting.description'),
       link: "#consulting",
       color: "#d4a017",
     },
     {
       icon: img2,
-      title: "Acculturation",
-      description:
-        "Formation sur les enjeux de l'IA pour votre métier et votre secteur d'activité",
+      title: t('services.page.items.acculturation.title'),
+      description: t('services.page.items.acculturation.description'),
       link: "#acculturation",
       color: "#1a3a52",
     },
     {
       icon: img5,
-      title: "Solution avancée",
-      description:
-        "Implémentation des solutions sur mesure pour des besoins spécifiques",
+      title: t('services.page.items.solution.title'),
+      description: t('services.page.items.solution.description'),
       link: "#solutions",
       color: "#f4c430",
       highlight: true,
     },
     {
       icon: img4,
-      title: "Orchestration",
-      description:
-        "Gestion de bout en bout de projets et de risques sur volet transverse de la transformation Data & IA",
+      title: t('services.page.items.orchestration.title'),
+      description: t('services.page.items.orchestration.description'),
       link: "#orchestration",
       color: "#1a3a52",
     },
@@ -60,23 +59,21 @@ export default function Service() {
           <div className="services-header">
             <span className="services-badge">
               <FaCheckCircle className="badge-icon" />
-              Nos Services
+              {t('services.page.badge')}
             </span>
             <h1 className="services-title">
-              Accompagnement complet pour votre transformation{" "}
-              <span className="highlight-service">Data & IA</span>
+              {t('services.page.title')}
+              <span className="highlight-service">{t('services.page.title_highlight')}</span>
             </h1>
             <p className="services-text">
-              Nous accompagnons votre organisation dans l'adoption de l'IA :
-              stratégie, consulting, formations et solutions IA avancées pour
-              propulser votre entreprise vers l'excellence digitale.
+              {t('services.page.description')}
             </p>
           </div>
           <div className="illustration-wrapper">
             <img
               className="illustration-img"
               src={img6}
-              alt="Services Aifrica"
+              alt={t('services.page.badge')}
             />
           </div>
         </div>
@@ -108,7 +105,7 @@ export default function Service() {
                   <div className="service-card-header">
                     <h4 className="service-title">{service.title}</h4>
                     {service.highlight && (
-                      <span className="popular-badge">Populaire</span>
+                      <span className="popular-badge">{t('services.page.popular')}</span>
                     )}
                   </div>
 
@@ -117,7 +114,7 @@ export default function Service() {
                   </div>
 
                   <a href={service.link} className="service-link">
-                    <span>Découvrir</span>
+                    <span>{t('services.page.discover')}</span>
                     <FaArrowRight className="arrow-icon" />
                   </a>
                 </div>

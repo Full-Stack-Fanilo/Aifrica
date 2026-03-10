@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
+import { useLanguage } from "../contexts/LanguageContext";
 
 const CSS = `
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
@@ -562,6 +563,8 @@ html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
 `;
 
 export default function ConsultingIAData() {
+  const { t } = useLanguage();
+  
   useEffect(() => {
     const style = document.createElement("style");
     style.textContent = CSS;
@@ -569,45 +572,20 @@ export default function ConsultingIAData() {
     return () => document.head.removeChild(style);
   }, []);
 
-  const approachCards = [
-    { ico: "🎯", n: "01", title: "Analyse des objectifs métiers", items: ["Priorités stratégiques", "Irritants opérationnels", "Enjeux financiers", "Contraintes réglementaires"] },
-    { ico: "🔍", n: "02", title: "Sélection des cas d'usage", items: ["Impact business potentiel", "Faisabilité technique", "Disponibilité des données", "Niveau de maturité"] },
-    { ico: "🗺️", n: "03", title: "Construction de la roadmap", items: ["Quick wins identifiés", "Projets structurants", "Jalons clairs", "Budget estimatif"] },
-    { ico: "🏗️", n: "04", title: "Gouvernance & organisation", items: ["Rôles & responsabilités", "Gouvernance data", "Processus décisionnels", "Gestion du changement"] },
-  ];
+  // Fonction helper pour s'assurer que nous avons un tableau
+  const safeArray = (value) => {
+    return Array.isArray(value) ? value : [];
+  };
 
-  const deliverables = [
-    { ico: "🗺️", txt: "Roadmap IA priorisée (3–12 mois)" },
-    { ico: "📋", txt: "Document stratégique complet" },
-    { ico: "📝", txt: "Backlog détaillé des cas d'usage" },
-    { ico: "🏛️", txt: "Modèle de gouvernance" },
-    { ico: "📊", txt: "Indicateurs de succès mesurables" },
-    { ico: "⚡", txt: "Plan d'exécution réaliste" },
-  ];
+  const approachCards = safeArray(t("consultingIAData.approach.cards"));
 
-  const problems = [
-    { ico: "🚀", t: "Projets IA sans vision globale", sub: "Initiatives isolées sans cohérence stratégique." },
-    { ico: "📈", t: "Multiplication sans ROI mesurable", sub: "Investissements non suivis d'indicateurs de performance." },
-    { ico: "🎯", t: "Mauvaise priorisation", sub: "Cas d'usage choisis sans analyse d'impact business." },
-    { ico: "💡", t: "Confusion innovation/valeur", sub: "Technologie adoptée pour elle-même, pas pour le résultat." },
-    { ico: "🏗️", t: "Gouvernance sous-estimée", sub: "Organisation et changement de culture négligés." },
-  ];
+  const deliverables = safeArray(t("consultingIAData.deliverables.items"));
 
-  const targets = [
-    { ico: "🏢", label: "Grandes entreprises africaines" },
-    { ico: "🚀", label: "PME en croissance" },
-    { ico: "🏛️", label: "Administrations" },
-    { ico: "🔗", label: "Organisations multi-équipes" },
-    { ico: "🌍", label: "Écosystèmes innovants" },
-  ];
+  const problems = safeArray(t("consultingIAData.problem.items"));
 
-  const whyItems = [
-    { bold: "Expertise Data & IA", rest: " — double compétence technique et business." },
-    { bold: "Compréhension des réalités africaines", rest: " — adapté aux contextes locaux." },
-    { bold: "Vision stratégique + exécution opérationnelle", rest: " — du conseil à l'implémentation." },
-    { bold: "Approche progressive et pragmatique", rest: " — sans révolution brutale." },
-    { bold: "Focus ROI mesurable", rest: " — chaque initiative évaluée sur sa valeur business." },
-  ];
+  const targets = safeArray(t("consultingIAData.targets.items"));
+
+  const whyItems = safeArray(t("consultingIAData.why.items"));
 
   return (
     <div className="ai">
@@ -620,34 +598,28 @@ export default function ConsultingIAData() {
           <div>
             <div className="ai-hero-tag">
               <span className="ai-hero-tag-line" />
-              Expertise stratégique – Roadmap – Gouvernance
+              {t("consultingIAData.hero.tag")}
             </div>
             <h1 className="ai-hero-h1">
-              Construisez une stratégie IA <span className="italic-gold">alignée sur vos objectifs business</span>
+              {t("consultingIAData.hero.title")}<span className="italic-gold">{t("consultingIAData.hero.title_highlight")}</span>
             </h1>
             <p className="ai-hero-desc">
-              L'intelligence artificielle n'est pas un projet technologique. C'est une transformation stratégique.
-              Aifrica vous accompagne dans la définition d'une feuille de route Data & IA réaliste, priorisée et adaptée à votre contexte africain.
+              {t("consultingIAData.hero.description")}
             </p>
             <div className="ai-hero-actions">
               <button className="ai-btn-hero">
-                Planifier un échange stratégique <span>→</span>
+                {t("consultingIAData.hero.request_consulting")} <span>→</span>
               </button>
               <button className="ai-btn-ghost">
-                <span>▶</span> Découvrir l'approche
+                <span>▶</span> {t("consultingIAData.hero.discover_approach")}
               </button>
             </div>
           </div>
 
           <div className="ai-hero-panel">
-            <div className="ai-hero-panel-head">Notre mission</div>
+            <div className="ai-hero-panel-head">{t("consultingIAData.hero.mission_title")}</div>
             <div className="ai-hero-steps">
-              {[
-                { n: "1", t: "Analyse métier", d: "Comprendre vos priorités stratégiques" },
-                { n: "2", t: "Cas d'usage", d: "Identifier les opportunités à fort impact" },
-                { n: "3", t: "Roadmap IA", d: "Feuille de route progressive et réaliste" },
-                { n: "4", t: "Gouvernance", d: "Structurer pour durer" },
-              ].map((s, i) => (
+              {safeArray(t("consultingIAData.hero.steps")).map((s, i) => (
                 <div key={i} className="ai-hero-step">
                   <div className="ai-step-num">{s.n}</div>
                   <div className="ai-step-info">
@@ -658,8 +630,8 @@ export default function ConsultingIAData() {
               ))}
             </div>
             <div className="ai-hero-panel-foot">
-              <span className="label">Durée indicative</span>
-              <span className="value">2 – 6 semaines</span>
+              <span className="label">{t("consultingIAData.hero.duration_label")}</span>
+              <span className="value">{t("consultingIAData.hero.duration_value")}</span>
             </div>
           </div>
         </div>
@@ -673,13 +645,13 @@ export default function ConsultingIAData() {
               <div className="ai-problem-header">
                 <div className="ai-eyebrow">
                   <span className="ai-eyebrow-bar" />
-                  LE PROBLÈME
+                  {t("consultingIAData.problem.eyebrow")}
                 </div>
                 <h2 className="ai-h2">
-                  Beaucoup d'organisations <em>multiplient les erreurs</em>
+                  {t("consultingIAData.problem.title")}<em>{t("consultingIAData.problem.title_highlight")}</em>
                 </h2>
                 <p className="ai-sub">
-                  Résultat : projets coûteux, faible adoption, impact limité.
+                  {t("consultingIAData.problem.subtitle")}
                 </p>
               </div>
               <div className="ai-problem-list">
@@ -696,16 +668,12 @@ export default function ConsultingIAData() {
             </div>
 
             <div className="ai-risk-panel">
-              <h3>NOTRE MISSION</h3>
-              <p>
-                Transformer votre <strong>ambition IA</strong> en stratégie <strong>claire, structurée et exécutable</strong>.
-                Nous traduisons vos objectifs métiers en initiatives Data & IA concrètes, hiérarchisées et mesurables.
-              </p>
+              <h3>{t("consultingIAData.problem.mission_title")}</h3>
+              <p dangerouslySetInnerHTML={{ __html: t("consultingIAData.problem.mission_description") }} />
               <div className="ai-risk-tags">
-                <span className="ai-tag">Stratégie</span>
-                <span className="ai-tag">Exécution</span>
-                <span className="ai-tag">Mesure</span>
-                <span className="ai-tag">Durabilité</span>
+                {safeArray(t("consultingIAData.problem.mission_tags")).map(tag => (
+                  <span key={tag} className="ai-tag">{tag}</span>
+                ))}
               </div>
             </div>
           </div>
@@ -718,13 +686,13 @@ export default function ConsultingIAData() {
           <div className="text-center">
             <div className="ai-eyebrow dark">
               <span className="ai-eyebrow-bar" />
-              NOTRE APPROCHE STRATÉGIQUE
+              {t("consultingIAData.approach.eyebrow")}
             </div>
             <h2 className="ai-h2 dark">
-              Une méthode <em>éprouvée</em> en 4 étapes
+              {t("consultingIAData.approach.title")}<em>{t("consultingIAData.approach.title_highlight")}</em>{t("consultingIAData.approach.title_end")}
             </h2>
             <p className="ai-sub dark" style={{ margin: '0 auto' }}>
-              De l'analyse métier à la gouvernance, nous construisons votre stratégie IA étape par étape.
+              {t("consultingIAData.approach.subtitle")}
             </p>
           </div>
           
@@ -734,7 +702,7 @@ export default function ConsultingIAData() {
                 <div className="ai-acard-ico">{card.ico}</div>
                 <h3 className="ai-acard-title">{card.title}</h3>
                 <ul className="ai-acard-list">
-                  {card.items.map((item, j) => (
+                  {safeArray(card.items).map((item, j) => (
                     <li key={j}>{item}</li>
                   ))}
                 </ul>
@@ -751,13 +719,13 @@ export default function ConsultingIAData() {
             <div>
               <div className="ai-eyebrow">
                 <span className="ai-eyebrow-bar" />
-                CE QUE VOUS OBTENEZ
+                {t("consultingIAData.deliverables.eyebrow")}
               </div>
               <h2 className="ai-h2">
-                Des livrables <em>concrets</em> et actionnables
+                {t("consultingIAData.deliverables.title")}<em>{t("consultingIAData.deliverables.title_highlight")}</em>{t("consultingIAData.deliverables.title_end")}
               </h2>
               <p className="ai-sub">
-                Notre intervention se traduit par des documents et outils que vous pouvez utiliser immédiatement.
+                {t("consultingIAData.deliverables.subtitle")}
               </p>
               <div className="ai-deliv-list" style={{ marginTop: '44px' }}>
                 {deliverables.map((item, i) => (
@@ -780,7 +748,7 @@ export default function ConsultingIAData() {
               </div>
               <div className="ai-deliv-center">
                 <div className="ai-deliv-big">6+</div>
-                <div className="ai-deliv-label">Livrables stratégiques</div>
+                <div className="ai-deliv-label">{t("consultingIAData.deliverables.count_label")}</div>
               </div>
             </div>
           </div>
@@ -793,55 +761,55 @@ export default function ConsultingIAData() {
           <div className="text-center">
             <div className="ai-eyebrow">
               <span className="ai-eyebrow-bar" />
-              CAS D'USAGE AFRIQUE
+              {t("consultingIAData.caseStudies.eyebrow")}
             </div>
             <h2 className="ai-h2">
-              Des exemples <em>concrets</em> de notre approche
+              {t("consultingIAData.caseStudies.title")}<em>{t("consultingIAData.caseStudies.title_highlight")}</em>{t("consultingIAData.caseStudies.title_end")}
             </h2>
             <p className="ai-sub" style={{ margin: '0 auto' }}>
-              Découvrez comment nous appliquons notre méthodologie à des contextes africains réels.
+              {t("consultingIAData.caseStudies.subtitle")}
             </p>
           </div>
 
           <div className="ai-case" style={{ marginTop: '64px' }}>
             <div className="ai-case-head">
               <div className="ai-case-head-left">
-                <h2>Télécom – Réduction du churn</h2>
-                <p>Problème : Taux de résiliation élevé, service client saturé.</p>
+                <h2>{t("consultingIAData.caseStudies.telecom.title")}</h2>
+                <p>{t("consultingIAData.caseStudies.telecom.problem")}</p>
               </div>
-              <div className="ai-case-badge">9 mois</div>
+              <div className="ai-case-badge">{t("consultingIAData.caseStudies.telecom.duration")}</div>
             </div>
             <div className="ai-case-cols">
               <div className="ai-case-col">
-                <div className="ai-case-col-tag">Approche stratégique</div>
+                <div className="ai-case-col-tag">{t("consultingIAData.caseStudies.telecom.approach.tag")}</div>
                 <ul>
-                  <li>Priorisation d'un modèle de prédiction churn</li>
-                  <li>Automatisation partielle du support</li>
-                  <li>Mise en place d'un reporting décisionnel</li>
+                  {safeArray(t("consultingIAData.caseStudies.telecom.approach.items")).map((item, i) => (
+                    <li key={i}>{item}</li>
+                  ))}
                 </ul>
               </div>
               <div className="ai-case-col">
-                <div className="ai-case-col-tag">Roadmap progressive</div>
+                <div className="ai-case-col-tag">{t("consultingIAData.caseStudies.telecom.roadmap.tag")}</div>
                 <ul>
-                  <li>Phase 1: Data quality & baseline</li>
-                  <li>Phase 2: Modèle prédictif simple</li>
-                  <li>Phase 3: Industrialisation & scaling</li>
+                  {safeArray(t("consultingIAData.caseStudies.telecom.roadmap.items")).map((item, i) => (
+                    <li key={i}>{item}</li>
+                  ))}
                 </ul>
               </div>
               <div className="ai-case-col">
-                <div className="ai-case-col-tag">Organisation</div>
+                <div className="ai-case-col-tag">{t("consultingIAData.caseStudies.telecom.organization.tag")}</div>
                 <ul>
-                  <li>Équipe data dédiée</li>
-                  <li>Gouvernance des algorithmes</li>
-                  <li>Formation des équipes métiers</li>
+                  {safeArray(t("consultingIAData.caseStudies.telecom.organization.items")).map((item, i) => (
+                    <li key={i}>{item}</li>
+                  ))}
                 </ul>
               </div>
               <div className="ai-case-col">
-                <div className="ai-case-col-tag">Résultats attendus</div>
+                <div className="ai-case-col-tag">{t("consultingIAData.caseStudies.telecom.results.tag")}</div>
                 <ul>
-                  <li className="ai-case-result">−30% taux de churn</li>
-                  <li className="ai-case-result">−40% coûts support</li>
-                  <li className="ai-case-result">+25% satisfaction client</li>
+                  {safeArray(t("consultingIAData.caseStudies.telecom.results.items")).map((item, i) => (
+                    <li key={i} className="ai-case-result">{item}</li>
+                  ))}
                 </ul>
               </div>
             </div>
@@ -850,42 +818,42 @@ export default function ConsultingIAData() {
           <div className="ai-case" style={{ marginTop: '40px' }}>
             <div className="ai-case-head">
               <div className="ai-case-head-left">
-                <h2>Administration publique</h2>
-                <p>Problème : Difficulté à analyser les demandes citoyennes.</p>
+                <h2>{t("consultingIAData.caseStudies.administration.title")}</h2>
+                <p>{t("consultingIAData.caseStudies.administration.problem")}</p>
               </div>
-              <div className="ai-case-badge">6 mois</div>
+              <div className="ai-case-badge">{t("consultingIAData.caseStudies.administration.duration")}</div>
             </div>
             <div className="ai-case-cols">
               <div className="ai-case-col">
-                <div className="ai-case-col-tag">Approche</div>
+                <div className="ai-case-col-tag">{t("consultingIAData.caseStudies.administration.approach.tag")}</div>
                 <ul>
-                  <li>Structuration des données</li>
-                  <li>Mise en place d'indicateurs</li>
-                  <li>Déploiement progressif d'automatisations</li>
+                  {safeArray(t("consultingIAData.caseStudies.administration.approach.items")).map((item, i) => (
+                    <li key={i}>{item}</li>
+                  ))}
                 </ul>
               </div>
               <div className="ai-case-col">
-                <div className="ai-case-col-tag">Priorisation</div>
+                <div className="ai-case-col-tag">{t("consultingIAData.caseStudies.administration.prioritization.tag")}</div>
                 <ul>
-                  <li>Demandes les plus fréquentes</li>
-                  <li>Goulot d'étranglement identifié</li>
-                  <li>Quick wins sur processus simples</li>
+                  {safeArray(t("consultingIAData.caseStudies.administration.prioritization.items")).map((item, i) => (
+                    <li key={i}>{item}</li>
+                  ))}
                 </ul>
               </div>
               <div className="ai-case-col">
-                <div className="ai-case-col-tag">Gouvernance</div>
+                <div className="ai-case-col-tag">{t("consultingIAData.caseStudies.administration.governance.tag")}</div>
                 <ul>
-                  <li>Comité de pilotage inter-services</li>
-                  <li>Référentiel de données unique</li>
-                  <li>Formation continue des agents</li>
+                  {safeArray(t("consultingIAData.caseStudies.administration.governance.items")).map((item, i) => (
+                    <li key={i}>{item}</li>
+                  ))}
                 </ul>
               </div>
               <div className="ai-case-col">
-                <div className="ai-case-col-tag">Impact</div>
+                <div className="ai-case-col-tag">{t("consultingIAData.caseStudies.administration.impact.tag")}</div>
                 <ul>
-                  <li className="ai-case-result">−50% délais de traitement</li>
-                  <li className="ai-case-result">+60% visibilité performance</li>
-                  <li className="ai-case-result">Meilleure satisfaction usagers</li>
+                  {safeArray(t("consultingIAData.caseStudies.administration.impact.items")).map((item, i) => (
+                    <li key={i} className="ai-case-result">{item}</li>
+                  ))}
                 </ul>
               </div>
             </div>
@@ -899,39 +867,39 @@ export default function ConsultingIAData() {
           <div className="text-center">
             <div className="ai-eyebrow">
               <span className="ai-eyebrow-bar" />
-              DURÉE INDICATIVE
+              {t("consultingIAData.duration.eyebrow")}
             </div>
             <h2 className="ai-h2">
-              2 à 6 semaines selon <em>périmètre</em> et disponibilité
+              {t("consultingIAData.duration.title")}<em>{t("consultingIAData.duration.title_highlight")}</em>{t("consultingIAData.duration.title_end")}
             </h2>
             <p className="ai-sub" style={{ margin: '0 auto' }}>
-              Une intervention modulaire qui s'adapte à votre contexte et vos contraintes.
+              {t("consultingIAData.duration.subtitle")}
             </p>
           </div>
 
           <div className="ai-dur-layout">
             <div className="ai-dur-card light">
-              <div className="ai-dur-ico">⚡</div>
-              <h3>Version Express</h3>
+              <div className="ai-dur-ico">{t("consultingIAData.duration.express.ico")}</div>
+              <h3>{t("consultingIAData.duration.express.title")}</h3>
               <p>
-                Pour les organisations qui ont déjà une maturité Data & IA et besoin d'un regard externe pour valider leur stratégie.
+                {t("consultingIAData.duration.express.description")}
               </p>
               <ul className="ai-dur-list">
-                <li><span className="ai-dur-check">✓</span> 2 semaines de travail intensif</li>
-                <li><span className="ai-dur-check">✓</span> Focus sur les quick wins prioritaires</li>
-                <li><span className="ai-dur-check">✓</span> Livrable: roadmap condensée</li>
+                {safeArray(t("consultingIAData.duration.express.items")).map((item, i) => (
+                  <li key={i}><span className="ai-dur-check">✓</span> {item}</li>
+                ))}
               </ul>
             </div>
             <div className="ai-dur-card dark">
-              <div className="ai-dur-ico">🏗️</div>
-              <h3>Version Complète</h3>
+              <div className="ai-dur-ico">{t("consultingIAData.duration.complete.ico")}</div>
+              <h3>{t("consultingIAData.duration.complete.title")}</h3>
               <p>
-                Pour les organisations qui partent de zéro ou veulent une transformation en profondeur avec accompagnement long terme.
+                {t("consultingIAData.duration.complete.description")}
               </p>
               <ul className="ai-dur-list">
-                <li><span className="ai-dur-check">✓</span> 4-6 semaines avec ateliers co-construits</li>
-                <li><span className="ai-dur-check">✓</span> Analyse approfondie et gouvernance</li>
-                <li><span className="ai-dur-check">✓</span> Livrables complets + suivi 3 mois</li>
+                {safeArray(t("consultingIAData.duration.complete.items")).map((item, i) => (
+                  <li key={i}><span className="ai-dur-check">✓</span> {item}</li>
+                ))}
               </ul>
             </div>
           </div>
@@ -944,13 +912,13 @@ export default function ConsultingIAData() {
           <div className="text-center">
             <div className="ai-eyebrow dark">
               <span className="ai-eyebrow-bar" />
-              POUR QUI ?
+              {t("consultingIAData.targets.eyebrow")}
             </div>
             <h2 className="ai-h2 dark">
-              Nous accompagnons <em>tous les types</em> d'organisations
+              {t("consultingIAData.targets.title")}<em>{t("consultingIAData.targets.title_highlight")}</em>{t("consultingIAData.targets.title_end")}
             </h2>
             <p className="ai-sub dark" style={{ margin: '0 auto' }}>
-              Notre approche s'adapte à votre taille, votre secteur et votre maturité Data & IA.
+              {t("consultingIAData.targets.subtitle")}
             </p>
           </div>
 
@@ -972,13 +940,13 @@ export default function ConsultingIAData() {
             <div>
               <div className="ai-eyebrow">
                 <span className="ai-eyebrow-bar" />
-                POURQUOI AIFRICA ?
+                {t("consultingIAData.why.eyebrow")}
               </div>
               <h2 className="ai-h2">
-                L'expertise <em>africaine</em> au service de votre stratégie
+                {t("consultingIAData.why.title")}<em>{t("consultingIAData.why.title_highlight")}</em>{t("consultingIAData.why.title_end")}
               </h2>
               <p className="ai-sub">
-                Nous combinons expertise technique et compréhension des réalités locales pour vous garantir le succès.
+                {t("consultingIAData.why.subtitle")}
               </p>
               <div className="ai-why-list">
                 {whyItems.map((item, i) => (
@@ -994,15 +962,14 @@ export default function ConsultingIAData() {
 
             <div className="ai-brand">
               <div className="ai-brand-wordmark">
-                AIF<span>RICA</span>
+                {t("consultingIAData.why.brand_wordmark")}<span>{t("consultingIAData.why.brand_wordmark_end")}</span>
               </div>
-              <div className="ai-brand-sub">EXPERTISE DATA & IA</div>
+              <div className="ai-brand-sub">{t("consultingIAData.why.brand_sub")}</div>
               <div className="ai-brand-divider" />
               <div className="ai-brand-vals">
-                <div className="ai-brand-val">Expertise technique</div>
-                <div className="ai-brand-val">Vision business</div>
-                <div className="ai-brand-val">Contexte africain</div>
-                <div className="ai-brand-val">Résultats mesurables</div>
+                {safeArray(t("consultingIAData.why.values")).map((v, i) => (
+                  <div key={i} className="ai-brand-val">{v}</div>
+                ))}
               </div>
             </div>
           </div>
@@ -1013,15 +980,15 @@ export default function ConsultingIAData() {
       <section className="ai-cta">
         <div className="ai-cta-glow" />
         <div className="ai-cta-inner">
-          <div className="ai-cta-eyebrow">PRÊT À AGIR ?</div>
+          <div className="ai-cta-eyebrow">{t("consultingIAData.cta.eyebrow")}</div>
           <h2 className="ai-cta-title">
-            Donnez une direction <span className="gold">claire</span> à votre <span className="italic">transformation IA</span>
+            {t("consultingIAData.cta.title")}<span className="gold">{t("consultingIAData.cta.title_highlight")}</span> {t("consultingIAData.cta.title_end")} <span className="italic">{t("consultingIAData.cta.title_italic")}</span>
           </h2>
           <p className="ai-cta-sub">
-            Transformez votre ambition en stratégie concrète avec notre expertise Data & IA adaptée au contexte africain.
+            {t("consultingIAData.cta.description")}
           </p>
           <button className="ai-cta-btn">
-            Discuter de votre stratégie Data & IA <span>→</span>
+            {t("consultingIAData.cta.button")} <span>→</span>
           </button>
         </div>
       </section>
@@ -1029,10 +996,10 @@ export default function ConsultingIAData() {
       {/* ── FOOTER ── */}
       <footer className="ai-footer">
         <div className="ai-footer-logo">
-          AIF<span>RICA</span>
+          {t("consultingIAData.footer.logo")}<span>{t("consultingIAData.footer.logo_end")}</span>
         </div>
         <div className="ai-footer-text">
-          © 2024 Aifrica - Expertise Data & IA pour l'Afrique
+          {t("consultingIAData.footer.copyright")}
         </div>
       </footer>
     </div>

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { useLanguage } from "../contexts/LanguageContext";
 import {
   FaHandsHelping,
   FaBrain,
@@ -573,31 +574,32 @@ const styles = `
 `;
 
 const axes = [
-  { icon: <FaBrain />, cls: "ic-blue",   title: "Identifier les cas d'usage IA",   desc: "Analyse métier, cartographie des processus et sélection des cas d'usage les plus pertinents pour votre entreprise." },
-  { icon: <FaComments />, cls: "ic-gold", title: "Démystifier l'IA",               desc: "Vulgarisation du jargon IA et aide à comprendre les technologies utiles à vos besoins." },
-  { icon: <FaShieldAlt />, cls: "ic-green", title: "Sensibilisation aux risques",   desc: "Cybersécurité, conformité légale, éthique, gestion des risques et acculturation de vos équipes." },
-  { icon: <FaRobot />, cls: "ic-indigo",  title: "Choisir la bonne solution IA",   desc: "Sélection rigoureuse des technologies adaptées à vos besoins et votre environnement applicatif." },
-  { icon: <FaChartLine />, cls: "ic-orange", title: "Méthodologie IA",              desc: "Approche structurée garantissant un déploiement maîtrisé et un retour sur investissement mesurable." },
-  { icon: <FaCheckCircle />, cls: "ic-red",  title: "Accélération de projets IA",  desc: "Contournez les freins internes, déployez rapidement, obtenez des résultats concrets grâce à nos experts IA." },
+  { icon: <FaBrain />, cls: "ic-blue",   titleKey: "accompagnementIA.axes.items.0.title", descKey: "accompagnementIA.axes.items.0.description" },
+  { icon: <FaComments />, cls: "ic-gold", titleKey: "accompagnementIA.axes.items.1.title", descKey: "accompagnementIA.axes.items.1.description" },
+  { icon: <FaShieldAlt />, cls: "ic-green", titleKey: "accompagnementIA.axes.items.2.title", descKey: "accompagnementIA.axes.items.2.description" },
+  { icon: <FaRobot />, cls: "ic-indigo",  titleKey: "accompagnementIA.axes.items.3.title", descKey: "accompagnementIA.axes.items.3.description" },
+  { icon: <FaChartLine />, cls: "ic-orange", titleKey: "accompagnementIA.axes.items.4.title", descKey: "accompagnementIA.axes.items.4.description" },
+  { icon: <FaCheckCircle />, cls: "ic-red",  titleKey: "accompagnementIA.axes.items.5.title", descKey: "accompagnementIA.axes.items.5.description" },
 ];
 
 const steps = [
-  { n: "1", title: "Protection des données",   desc: "Mise en place de protocoles robustes et conformité réglementaire renforcée." },
-  { n: "2", title: "Audit des risques IA",      desc: "Détection des biais, analyse des risques éthiques et sécurisation des systèmes." },
-  { n: "3", title: "Déploiement maîtrisé",      desc: "Intégration dans vos métiers avec supervision continue et suivi régulier." },
-  { n: "4", title: "Adoption sécurisée",        desc: "Accompagnement complet pour éviter erreurs, cyber-risques et mauvaises décisions automatisées." },
+  { n: "1", titleKey: "accompagnementIA.steps.items.0.title", descKey: "accompagnementIA.steps.items.0.description" },
+  { n: "2", titleKey: "accompagnementIA.steps.items.1.title", descKey: "accompagnementIA.steps.items.1.description" },
+  { n: "3", titleKey: "accompagnementIA.steps.items.2.title", descKey: "accompagnementIA.steps.items.2.description" },
+  { n: "4", titleKey: "accompagnementIA.steps.items.3.title", descKey: "accompagnementIA.steps.items.3.description" },
 ];
 
 const faqs = [
-  { q: "Pourquoi un accompagnement IA est-il important ?",     a: "La plupart des entreprises peinent à industrialiser l'IA ou à aligner leurs projets avec leurs enjeux métiers. Aifrica vous aide à structurer, sécuriser et accélérer vos initiatives." },
-  { q: "Comment identifier les bons cas d'usage IA ?",          a: "Nous analysons vos processus, vos données et vos objectifs afin de détecter les cas d'usage réellement pertinents pour votre entreprise." },
-  { q: "Comment Aifrica sécurise-t-elle l'adoption de l'IA ?", a: "Nous mettons en place des protocoles de sécurité, des mécanismes de conformité, ainsi que des audits de risques pour garantir une IA maîtrisée et éthique." },
-  { q: "Comment Aifrica aide-t-elle à démystifier l'IA ?",      a: "Nous vulgarisons les concepts, clarifions les choix technologiques et accompagnons vos équipes pour rendre l'IA accessible et compréhensible." },
-  { q: "Est-ce que l'accompagnement IA assure un ROI ?",        a: "Oui. Notre approche vise à structurer vos projets pour maximiser les résultats, réduire les coûts et accélérer la valeur générée par l'IA." },
+  { qKey: "accompagnementIA.faq.items.0.question", aKey: "accompagnementIA.faq.items.0.answer" },
+  { qKey: "accompagnementIA.faq.items.1.question", aKey: "accompagnementIA.faq.items.1.answer" },
+  { qKey: "accompagnementIA.faq.items.2.question", aKey: "accompagnementIA.faq.items.2.answer" },
+  { qKey: "accompagnementIA.faq.items.3.question", aKey: "accompagnementIA.faq.items.3.answer" },
+  { qKey: "accompagnementIA.faq.items.4.question", aKey: "accompagnementIA.faq.items.4.answer" },
 ];
 
 export default function AccompagnementIA() {
   const [activeIndex, setActiveIndex] = useState(null);
+  const { t } = useLanguage();
   const toggle = (i) => setActiveIndex(activeIndex === i ? null : i);
 
   return (
@@ -608,19 +610,19 @@ export default function AccompagnementIA() {
       <section className="acc-hero" id="services">
         <div className="acc-hero-inner">
           <div className="acc-hero-badge">
-            <FaRocket /> Accompagnement IA
+            <FaRocket /> {t('accompagnementIA.hero.badge')}
           </div>
           <h1>
-            Adoptez l'IA avec <span className="gold">méthode & sécurité</span>
+            {t('accompagnementIA.hero.title')} <span className="gold">{t('accompagnementIA.hero.title_highlight')}</span>
           </h1>
           <div className="acc-hero-quote">
-            "Sur l'IA, l'Afrique n'a plus le droit de perdre du temps."
+            "{t('accompagnementIA.hero.quote')}"
           </div>
           <p className="acc-hero-desc">
-            Aifrica vous accompagne pour intégrer l'IA dans vos métiers, vos processus et votre stratégie — de manière structurée, efficace et sécurisée.
+            {t('accompagnementIA.hero.description')}
           </p>
           <a href="#contact" className="acc-hero-cta">
-            Démarrer l'accompagnement <FaArrowRight />
+            {t('accompagnementIA.hero.cta')} <FaArrowRight />
           </a>
         </div>
       </section>
@@ -628,20 +630,14 @@ export default function AccompagnementIA() {
       {/* WHY */}
       <section className="acc-why">
         <div className="acc-section-inner">
-          <p className="acc-section-label">Pourquoi nous choisir</p>
-          <h2 className="acc-section-title">Un accompagnement IA est indispensable</h2>
+          <p className="acc-section-label">{t('accompagnementIA.why.label')}</p>
+          <h2 className="acc-section-title">{t('accompagnementIA.why.title')}</h2>
           <p className="acc-section-sub">
-            La majorité des entreprises s'intéresse à l'IA, mais peu réussissent à l'industrialiser ou à créer des résultats concrets. C'est là où Aifrica fait réellement la différence.
+            {t('accompagnementIA.why.subtitle')}
           </p>
           <div className="acc-why-grid">
             <ul className="acc-why-list">
-              {[
-                "Identifier les bons cas d'usage IA",
-                "Démystifier l'IA et simplifier les choix technologiques",
-                "Sensibiliser vos équipes aux risques, conformité et éthique",
-                "Sélectionner les solutions IA adaptées à vos besoins",
-                "Déployer une méthodologie garantissant un ROI rapide",
-              ].map((item, i) => (
+              {t('accompagnementIA.why.features').map((item, i) => (
                 <li key={i}>
                   <FaCheckCircle className="ic" />
                   <span>{item}</span>
@@ -649,10 +645,10 @@ export default function AccompagnementIA() {
               ))}
             </ul>
             <div className="acc-stat-block">
-              <div className="big-num">100%</div>
-              <div className="big-label">Accompagnement stratégique</div>
+              <div className="big-num">{t('accompagnementIA.why.stat.number')}</div>
+              <div className="big-label">{t('accompagnementIA.why.stat.label')}</div>
               <p className="big-desc">
-                Une intégration IA pensée pour vos objectifs métier, avec un suivi continu et des résultats mesurables à chaque étape.
+                {t('accompagnementIA.why.stat.description')}
               </p>
             </div>
           </div>
@@ -662,17 +658,17 @@ export default function AccompagnementIA() {
       {/* AXES */}
       <section className="acc-axes">
         <div className="acc-section-inner">
-          <p className="acc-section-label">Notre approche</p>
-          <h2 className="acc-section-title">Nos axes d'accompagnement</h2>
+          <p className="acc-section-label">{t('accompagnementIA.axes.label')}</p>
+          <h2 className="acc-section-title">{t('accompagnementIA.axes.title')}</h2>
           <p className="acc-section-sub">
-            Aifrica met en place une approche structurée, sécurisée et adaptée à vos enjeux.
+            {t('accompagnementIA.axes.subtitle')}
           </p>
           <div className="acc-cards-grid">
             {axes.map((ax, i) => (
               <div className="acc-card" key={i}>
                 <div className={`acc-card-icon ${ax.cls}`}>{ax.icon}</div>
-                <h4>{ax.title}</h4>
-                <p>{ax.desc}</p>
+                <h4>{t(ax.titleKey)}</h4>
+                <p>{t(ax.descKey)}</p>
               </div>
             ))}
           </div>
@@ -682,17 +678,17 @@ export default function AccompagnementIA() {
       {/* STEPS */}
       <section className="acc-steps">
         <div className="acc-section-inner">
-          <p className="acc-section-label">Processus</p>
-          <h2 className="acc-section-title">Sécuriser l'adoption de l'IA</h2>
+          <p className="acc-section-label">{t('accompagnementIA.steps.label')}</p>
+          <h2 className="acc-section-title">{t('accompagnementIA.steps.title')}</h2>
           <p className="acc-section-sub">
-            Une IA responsable, maîtrisée et sécurisée : un impératif pour toutes les entreprises africaines.
+            {t('accompagnementIA.steps.subtitle')}
           </p>
           <div className="acc-steps-grid">
             {steps.map((s, i) => (
               <div className="acc-step" key={i} style={{ position: "relative" }}>
                 <div className="acc-step-num">{s.n}</div>
-                <h3>{s.title}</h3>
-                <p>{s.desc}</p>
+                <h3>{t(s.titleKey)}</h3>
+                <p>{t(s.descKey)}</p>
                 {i < steps.length - 1 && (
                   <span className="acc-step-connector"><FaArrowRight /></span>
                 )}
@@ -705,10 +701,10 @@ export default function AccompagnementIA() {
       {/* FAQ */}
       <section className="acc-faq">
         <div className="acc-section-inner" style={{ textAlign: "center" }}>
-          <p className="acc-section-label">FAQ</p>
-          <h2 className="acc-section-title">Questions fréquentes</h2>
+          <p className="acc-section-label">{t('accompagnementIA.faq.label')}</p>
+          <h2 className="acc-section-title">{t('accompagnementIA.faq.title')}</h2>
           <p className="acc-section-sub" style={{ margin: "0 auto 0" }}>
-            Tout ce que vous devez savoir sur notre accompagnement IA
+            {t('accompagnementIA.faq.subtitle')}
           </p>
         </div>
         <div className="acc-faq-list">
@@ -719,11 +715,11 @@ export default function AccompagnementIA() {
               onClick={() => toggle(i)}
             >
               <div className="acc-faq-q">
-                <h3>{faq.q}</h3>
+                <h3>{t(faq.qKey)}</h3>
                 <FaChevronDown className={`acc-faq-chevron ${activeIndex === i ? "open" : ""}`} />
               </div>
               {activeIndex === i && (
-                <div className="acc-faq-a">{faq.a}</div>
+                <div className="acc-faq-a">{t(faq.aKey)}</div>
               )}
             </div>
           ))}
@@ -733,12 +729,12 @@ export default function AccompagnementIA() {
       {/* CTA */}
       <section className="acc-cta">
         <div className="acc-cta-inner">
-          <h2>Prêt à accélérer votre <span className="gold">transformation IA</span> ?</h2>
+          <h2>{t('accompagnementIA.cta.title')} <span className="gold">{t('accompagnementIA.cta.title_highlight')}</span>{t('accompagnementIA.cta.title_end')}</h2>
           <p>
-            Rejoignez les entreprises africaines qui font confiance à Aifrica pour structurer, sécuriser et maximiser leur adoption de l'intelligence artificielle.
+            {t('accompagnementIA.cta.description')}
           </p>
           <a href="#contact" className="acc-cta-btn">
-            Nous contacter <FaArrowRight />
+            {t('accompagnementIA.cta.button')} <FaArrowRight />
           </a>
         </div>
       </section>
